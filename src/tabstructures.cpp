@@ -106,7 +106,7 @@ void AnalysisStructures::runStructs(Generator *g)
         {
             QTreeWidgetItem* item = new QTreeWidgetItem(seeditem);
             item->setText(C_SEED, "-");
-            item->setText(C_STRUCT, "spawn");
+            item->setText(C_STRUCT, "出生点");
             item->setData(C_COUNT, Qt::DisplayRole, QVariant::fromValue(1));
             item->setData(C_X, Qt::DisplayRole, QVariant::fromValue(pos.x));
             item->setData(C_Z, Qt::DisplayRole, QVariant::fromValue(pos.z));
@@ -144,7 +144,7 @@ void AnalysisStructures::runStructs(Generator *g)
         {
             QTreeWidgetItem* stitem = new QTreeWidgetItem(seeditem);
             stitem->setText(C_SEED, "-");
-            stitem->setText(C_STRUCT, "stronghold");
+            stitem->setText(C_STRUCT, "要塞");
             stitem->setData(C_COUNT, Qt::DisplayRole, QVariant::fromValue(shp.size()));
 
             if (collect)
@@ -169,7 +169,7 @@ void AnalysisStructures::runStructs(Generator *g)
         return;
     }
     if (stop)
-        seeditem->setText(0, QString::asprintf("%" PRId64, wi.seed) + " " + tr("(incomplete)"));
+        seeditem->setText(0, QString::asprintf("%" PRId64, wi.seed) + " " + tr("(不完整)"));
     emit itemDone(seeditem);
 }
 
@@ -192,9 +192,9 @@ void AnalysisStructures::runQuads(Generator *g)
     {
         QString label;
         if (qi.typ == Swamp_Hut)
-            label = tr("quad-hut");
+            label = tr("四联女巫小屋");
         else
-            label = tr("quad-monument");
+            label = tr("四联海底神殿");
 
         QTreeWidgetItem *item = new QTreeWidgetItem(seeditem);
 
@@ -334,7 +334,7 @@ void TabStructures::onAnalysisFinished()
     ui->treeStructs->setSortingEnabled(true);
     ui->treeQuads->setSortingEnabled(true);
     ui->pushStart->setChecked(false);
-    ui->pushStart->setText(tr("Analyze"));
+    ui->pushStart->setText(tr("统计"));
 }
 
 void TabStructures::onBufferTimeout()
@@ -364,7 +364,7 @@ void TabStructures::onBufferTimeout()
         qbufq.clear();
     }
     QString progress = QString::asprintf(" (%d/%d)", thread.idx.load(), thread.seeds.size());
-    ui->pushStart->setText(tr("Stop") + progress);
+    ui->pushStart->setText(tr("停止") + progress);
 
     QApplication::processEvents(); // force processing of events so we can time correctly
 
@@ -450,7 +450,7 @@ void TabStructures::on_pushStart_clicked()
     ui->pushExport->setEnabled(false);
     ui->pushStart->setChecked(true);
     QString progress = QString::asprintf(" (0/%d)", thread.seeds.size());
-    ui->pushStart->setText(tr("Stop") + progress);
+    ui->pushStart->setText(tr("停止") + progress);
     thread.start();
 }
 
@@ -469,7 +469,7 @@ void csvline(QTextStream& stream, const QString& qte, const QString& sep, QStrin
 void TabStructures::on_pushExport_clicked()
 {
     QString fnam = QFileDialog::getSaveFileName(
-        this, tr("Export structure analysis"), parent->prevdir, tr("Text files (*.txt *csv);;Any files (*)"));
+        this, tr("导出结构统计结果"), parent->prevdir, tr("文本文件(*.txt *csv);;任意文件(*)"));
     if (fnam.isEmpty())
         return;
 
@@ -479,7 +479,7 @@ void TabStructures::on_pushExport_clicked()
 
     if (!file.open(QIODevice::WriteOnly))
     {
-        parent->warning(tr("Failed to open file for export:\n\"%1\"").arg(fnam));
+        parent->warning(tr("无法打开以下导出文件:\n\"%1\"").arg(fnam));
         return;
     }
 
@@ -499,7 +499,7 @@ void TabStructures::on_pushExport_clicked()
 
         if (ui->checkCollect->isChecked())
         {
-            QStringList header = { tr("seed"), tr("structure"), tr("x"), tr("z"), tr("details") };
+            QStringList header = { tr("种子"), tr("结构"), tr("x"), tr("z"), tr("详情") };
             csvline(stream, qte, sep, header);
             QString seed;
             QString structure;
@@ -540,7 +540,7 @@ void TabStructures::on_pushExport_clicked()
                     cnt[seed][structure] = item->text(C_COUNT);
             }
 
-            QStringList header = { tr("seed") };
+            QStringList header = { tr("种子") };
             for (auto& sit : structures)
                 header.append(sit);
             csvline(stream, qte, sep, header);
@@ -566,7 +566,7 @@ void TabStructures::on_pushExport_clicked()
         stream << qte << "#X2" << sep << datq.x2 << qte << "\n";
         stream << qte << "#Z2" << sep << datq.z2 << qte << "\n";
 
-        QStringList header = { tr("seed"), tr("type"), tr("distance"), tr("x"), tr("z"), tr("radius"), tr("spawn area") };
+        QStringList header = { tr("种子"), tr("种类"), tr("距离"), tr("x"), tr("z"), tr("半径"), tr("有效刷怪面积") };
         csvline(stream, qte, sep, header);
         QString seed;
         for (QTreeWidgetItemIterator it(ui->treeQuads); *it; ++it)

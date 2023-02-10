@@ -25,7 +25,7 @@ static QString getTip(int mc, int layer, uint32_t flags, int id)
 {
     uint64_t mL = 0, mM = 0;
     genPotential(&mL, &mM, layer, mc, flags, id);
-    QString tip = ConditionDialog::tr("Generates any of:");
+    QString tip = ConditionDialog::tr("符合以下任意一个:");
     for (int j = 0; j < 64; j++)
         if (mL & (1ULL << j))
             tip += QString("\n") + biome2str(mc, j);
@@ -49,10 +49,10 @@ ConditionDialog::ConditionDialog(FormConditions *parent, Config *config, int mcv
 
     textDescription = new QTextEdit(this);
     textDescription->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
-    ui->collapseDescription->init(tr("Description/Notes"), textDescription, true);
+    ui->collapseDescription->init(tr("条件描述"), textDescription, true);
 
     const char *p_mcs = mc2str(mc);
-    QString mcs = tr("MC %1", "Minecraft version").arg(p_mcs ? p_mcs : "?");
+    QString mcs = tr("MC %1", "MC版本").arg(p_mcs ? p_mcs : "?");
     ui->labelMC->setText(mcs);
 
     ui->lineSummary->setFont(*gp_font_mono);
@@ -83,7 +83,7 @@ ConditionDialog::ConditionDialog(FormConditions *parent, Config *config, int mcv
         if (initcond && initcond->relative > 0)
         {
             initindex = ui->comboBoxRelative->count();
-            QString condstr = QString("[%1] %2 broken reference")
+            QString condstr = QString("[%1] %2 参考条件不存在")
                 .arg(initcond->relative, 2, 10, QChar('0'))
                 .arg(WARNING_CHAR);
             ui->comboBoxRelative->addItem(condstr, initcond->relative);
@@ -171,12 +171,12 @@ ConditionDialog::ConditionDialog(FormConditions *parent, Config *config, int mcv
     const int *extremes = getBiomeParaExtremes(MC_NEWEST);
     struct { QString name; int idx; } climates[] =
     {
-        {tr("Temperature:"),        NP_TEMPERATURE      },
-        {tr("Humidity:"),           NP_HUMIDITY         },
-        {tr("Continentalness:"),    NP_CONTINENTALNESS  },
-        {tr("Erosion:"),            NP_EROSION          },
+        {tr("温度:"),    NP_TEMPERATURE      },
+        {tr("湿度:"),    NP_HUMIDITY         },
+        {tr("海陆分布:"),    NP_CONTINENTALNESS  },
+        {tr("侵蚀程度:"), NP_EROSION          },
         // depth has more dependencies and is not supported
-        {tr("Weirdness:"),          NP_WEIRDNESS        },
+        {tr("稀有程度:"),   NP_WEIRDNESS        },
     };
     for (int i = 0; i < 5; i++)
     {
@@ -185,8 +185,8 @@ ConditionDialog::ConditionDialog(FormConditions *parent, Config *config, int mcv
         int cmax = extremes[2*climates[i].idx + 1];
         LabeledRange *ok = new LabeledRange(this, cmin-1, cmax+1);
         LabeledRange *ex = new LabeledRange(this, cmin-1, cmax+1);
-        ok->setLimitText(tr("-Inf"), tr("+Inf"));
-        ex->setLimitText(tr("-Inf"), tr("+Inf"));
+        ok->setLimitText(tr("无下限"), tr("无上限"));
+        ex->setLimitText(tr("无下限"), tr("无上限"));
         ex->setHighlight(QColor(0,0,0,0), QColor(Qt::red));
         connect(ok, SIGNAL(onRangeChange()), this, SLOT(onClimateLimitChanged()));
         connect(ex, SIGNAL(onRangeChange()), this, SLOT(onClimateLimitChanged()));
@@ -195,7 +195,7 @@ ConditionDialog::ConditionDialog(FormConditions *parent, Config *config, int mcv
 
         QCheckBox *all = new QCheckBox(this);
         all->setFixedWidth(20);
-        all->setToolTip(tr("Require full range instead of intersection"));
+        all->setToolTip(tr("全范围而非交叉"));
         connect(all, SIGNAL(stateChanged(int)), this, SLOT(onClimateLimitChanged()));
         climatecomplete[climates[i].idx] = all;
 
@@ -223,9 +223,9 @@ ConditionDialog::ConditionDialog(FormConditions *parent, Config *config, int mcv
         {
             tip += climates[j].name.leftJustified(18);
             const int *l = lim + 2 * climates[j].idx;
-            tip += (l[0] == INT_MIN) ? tr("  -Inf") : QString::asprintf("%6d", (int)l[0]);
+            tip += (l[0] == INT_MIN) ? tr("  无下限") : QString::asprintf("%6d", (int)l[0]);
             tip += " - ";
-            tip += (l[1] == INT_MAX) ? tr("  +Inf") : QString::asprintf("%6d", (int)l[1]);
+            tip += (l[1] == INT_MAX) ? tr("  无上限") : QString::asprintf("%6d", (int)l[1]);
             if (j < 4) tip += "\n";
         }
         tip += "</pre>";
@@ -513,17 +513,17 @@ void ConditionDialog::updateMode()
     if (ft.step > 1)
     {
         QString multxt = QString("%1%2").arg(QChar(0xD7)).arg(ft.step);
-        loc = tr("Location (coordinates are multiplied by %1)").arg(multxt);
-        areatip = tr("From floor(-x/2)%1 to floor(x/2)%1 on both axes (inclusive)").arg(multxt);
-        lowtip = tr("Lower bound %1 (inclusive)").arg(multxt);
-        uptip = tr("Upper bound %1 (inclusive)").arg(multxt);
+        loc = tr("范围(坐标 %1)").arg(multxt);
+        areatip = tr("X、Z坐标从floor(-x/2)%1 (含)到 floor(x/2)%1 (含)").arg(multxt);
+        lowtip = tr("最小值 %1 (含)").arg(multxt);
+        uptip = tr("最大值 %1 (含)").arg(multxt);
     }
     else
     {
-        loc = tr("Location");
-        areatip = tr("From floor(-x/2) to floor(x/2) on both axes (inclusive)");
-        lowtip = tr("Lower bound (inclusive)");
-        uptip = tr("Upper bound (inclusive)");
+        loc = tr("范围");
+        areatip = tr("X、Z坐标从floor(-x/2)%1 (含)到 floor(x/2)%1 (含)");
+        lowtip = tr("最小值(含)");
+        uptip = tr("最大值(含)");
     }
     ui->groupBoxPosition->setTitle(loc);
     ui->radioSquare->setToolTip(areatip);
@@ -590,7 +590,7 @@ void ConditionDialog::updateBiomeSelection()
                 available.push_back(it.first);
                 if (ft.layer != L_VORONOI_1)
                 {
-                    QString tip = tr("Generates any of:");
+                    QString tip = tr("生成以下任意一个:");
                     for (int j = 0; j < 64; j++)
                     {
                         if (mL & (1ULL << j))
@@ -703,8 +703,8 @@ int ConditionDialog::warnIfBad(Condition cond)
     {
         if (ui->checkStartPieces->isEnabled())
         {
-            QString text = tr("No allowed start pieces specified. Condition can never be true.");
-            QMessageBox::warning(this, tr("Missing Start Piece"), text, QMessageBox::Ok);
+            QString text = tr("该结构不会首先生成选定的部分，故该条件将无法满足");
+            QMessageBox::warning(this, tr("错误的首先生成部分"), text, QMessageBox::Ok);
             return QMessageBox::Cancel;
         }
     }
@@ -714,11 +714,8 @@ int ConditionDialog::warnIfBad(Condition cond)
         {
             if (cond.limok[i][0] == INT_MAX || cond.limok[i][1] == INT_MIN)
             {
-                QString text = tr(
-                    "The condition contains a climate range which is unbounded "
-                    "with the full range required, which can never be satisfied."
-                    );
-                QMessageBox::warning(this, tr("Bad Climate Range"), text,
+                QString text = tr("该条件包含了越界的气候条件范围，该条件将无法满足");
+                QMessageBox::warning(this, tr("错误的气候条件范围"), text,
                     QMessageBox::Ok);
                 return QMessageBox::Cancel;
             }
@@ -730,8 +727,8 @@ int ConditionDialog::warnIfBad(Condition cond)
         int h = cond.z2 - cond.z1 + 1;
         if ((unsigned int)(w * h) < cond.count * cond.biomeSize)
         {
-            QString text = tr("Area is too small for the required biome size.");
-            QMessageBox::warning(this, tr("Area Insufficient"), text, QMessageBox::Ok);
+            QString text = tr("划定区域太小，无法满足给定的群系要求");
+            QMessageBox::warning(this, tr("区域不够大"), text, QMessageBox::Ok);
             return QMessageBox::Cancel;
         }
     }
@@ -743,11 +740,10 @@ int ConditionDialog::warnIfBad(Condition cond)
             uint64_t underground = (1ULL << (dripstone_caves-128)) | (1ULL << (lush_caves-128));
             if ((m & underground) && cond.y > 246)
             {
-                return QMessageBox::warning(this, tr("Bad Surface Height"),
-                    tr("Cave biomes do not generate above Y = 246. "
-                    "You should consider lowering the sampling height."
+                return QMessageBox::warning(this, tr("采样高度过高"),
+                    tr("洞穴群系无法生成在 Y >= 246 的地方，请考虑降低采样高度"
                     "\n\n"
-                    "Continue anyway?"),
+                    "是否继续？"),
                     QMessageBox::Ok | QMessageBox::Cancel);
             }
         }
@@ -986,7 +982,7 @@ void ConditionDialog::on_comboBoxCat_currentIndexChanged(int idx)
     ui->comboBoxType->clear();
 
     int slot = 0;
-    ui->comboBoxType->insertItem(slot, tr("Select type"), QVariant::fromValue((int)F_SELECT));
+    ui->comboBoxType->insertItem(slot, tr("选择种类"), QVariant::fromValue((int)F_SELECT));
 
     const FilterInfo *ft_list[FILTER_MAX] = {};
     const FilterInfo *ft;
@@ -1130,9 +1126,9 @@ void ConditionDialog::on_lineBiomeSize_textChanged(const QString &)
     double area = ui->lineBiomeSize->text().toInt();
     QString s;
     if (filterindex == F_BIOME_CENTER_256)
-        s = QString::asprintf("(~%g sq. chunks)", area * 256);
+        s = QString::asprintf("(~%g 平方区块)", area * 256);
     else
-        s = QString::asprintf("(%g sq. chunks)", area / 16.0);
+        s = QString::asprintf("(%g 平方区块)", area / 16.0);
     ui->labelBiomeSize->setText(s);
 }
 

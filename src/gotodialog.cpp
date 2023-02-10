@@ -43,9 +43,9 @@ void GotoDialog::on_buttonBox_clicked(QAbstractButton *button)
         qreal scale = ui->lineScale->text().toDouble();
         if (scale > 4096)
         {
-            int button = QMessageBox::warning(this, tr("Unsafe Scale"),
-                tr("Setting a very large scale may be unsafe.\n"
-                   "Continue anyway?"), QMessageBox::Abort|QMessageBox::Yes);
+            int button = QMessageBox::warning(this, tr("缩放比例过大"),
+                tr("将缩放比例调得过大可能导致一系列问题\n"
+                   "是否继续？"), QMessageBox::Abort|QMessageBox::Yes);
             if (button == QMessageBox::Abort)
                 return;
         }

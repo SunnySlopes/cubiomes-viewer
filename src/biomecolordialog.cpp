@@ -56,14 +56,14 @@ BiomeColorDialog::BiomeColorDialog(QWidget *parent, QString initrc, int mc, int 
     QPixmap alignicon(14, 14);
     alignicon.fill(Qt::transparent);
 
-    separator = new QLabel(tr("Currently inactive biomes:"), this);
+    separator = new QLabel(tr("当前不可用群系:"), this);
     separator->setVisible(false);
 
-    button = new QPushButton(QIcon(alignicon), tr("All to default"), this);
+    button = new QPushButton(QIcon(alignicon), tr("全部激活"), this);
     connect(button, &QPushButton::clicked, this, &BiomeColorDialog::onAllToDefault);
     ui->gridLayout->addWidget(button, 0, 1);
 
-    button = new QPushButton(QIcon(alignicon), tr("All to dimmed"), this);
+    button = new QPushButton(QIcon(alignicon), tr("全部取消激活"), this);
     connect(button, &QPushButton::clicked, this, &BiomeColorDialog::onAllToDimmed);
     ui->gridLayout->addWidget(button, 0, 2);
 
@@ -80,12 +80,12 @@ BiomeColorDialog::BiomeColorDialog(QWidget *parent, QString initrc, int mc, int 
         ui->gridLayout->addWidget(button, i+1, 0);
 
         col = QColor(coldefault[i][0], coldefault[i][1], coldefault[i][2]);
-        buttons[i][1] = button = new QPushButton(getColorIcon(col), tr("Default reset"), this);
+        buttons[i][1] = button = new QPushButton(getColorIcon(col), tr("重置默认颜色"), this);
         connect(button, &QPushButton::clicked, [=]() { this->setBiomeColor(i, col); });
         ui->gridLayout->addWidget(button, i+1, 1);
 
         col = QColor(coldefault[i][0] / DIM_DIVIDER, coldefault[i][1] / DIM_DIVIDER, coldefault[i][2] / DIM_DIVIDER);
-        buttons[i][2] = button = new QPushButton(getColorIcon(col), tr("Dimmed reset"), this);
+        buttons[i][2] = button = new QPushButton(getColorIcon(col), tr("重置未激活状态颜色"), this);
         connect(button, &QPushButton::clicked, [=]() { this->setBiomeColor(i, col); });
         ui->gridLayout->addWidget(button, i+1, 2);
     }
@@ -108,7 +108,7 @@ BiomeColorDialog::BiomeColorDialog(QWidget *parent, QString initrc, int mc, int 
         ui->comboColormaps->addItem(line.mid(1).trimmed(), rc);
     }
     ui->comboColormaps->model()->sort(0, Qt::AscendingOrder);
-    ui->comboColormaps->insertItem(0, tr("[default]"));
+    ui->comboColormaps->insertItem(0, tr("[默认]"));
     int index = 0;
     for (int i = 0; i < ui->comboColormaps->count(); i++)
     {
@@ -303,9 +303,9 @@ void BiomeColorDialog::on_buttonSaveAs_clicked()
     }
     bool ok;
     QString desc = QInputDialog::getText(
-            this, tr("Save biome colors as..."),
-            tr("Biome colors:"), QLineEdit::Normal,
-            QString("Colormap#%1").arg(n), &ok);
+            this, tr("将群系颜色设为: "),
+            tr("群系颜色:"), QLineEdit::Normal,
+            QString("群系颜色图#%1").arg(n), &ok);
     if (!ok || desc.isEmpty())
         return;
 

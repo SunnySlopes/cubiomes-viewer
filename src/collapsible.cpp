@@ -98,8 +98,8 @@ void Collapsible::init(const QString& title, QWidget *widget, bool collapsed)
     layoutContent->addWidget(widget);
     contentHeight = widget->sizeHint().height();
     content = widget;
-    animgroup->addAnimation(new QPropertyAnimation(content, "minimumHeight"));
-    animgroup->addAnimation(new QPropertyAnimation(content, "maximumHeight"));
+    animgroup->addAnimation(new QPropertyAnimation(content, "最小高度"));
+    animgroup->addAnimation(new QPropertyAnimation(content, "最大高度"));
     setCollapsed(collapsed);
 }
 
@@ -130,7 +130,7 @@ void Collapsible::setInfo(const QString& title, const QString& text)
     QPushButton *button = new QPushButton(pixmap, "", this);
     button->setStyleSheet("border: none;");
     button->setIconSize(pixmap.rect().size());
-    button->setToolTip(tr("Show help"));
+    button->setToolTip(tr("显示帮助"));
     button->setMaximumSize(14, 14);
 
     connect(button, SIGNAL(clicked()), this, SLOT(showInfo()));

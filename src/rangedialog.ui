@@ -3,7 +3,7 @@
  <class>RangeDialog</class>
  <widget class="QDialog" name="RangeDialog">
   <property name="windowTitle">
-   <string>Search range</string>
+   <string>搜索范围</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../rc/icons.qrc">
@@ -13,14 +13,14 @@
    <item row="4" column="2">
     <widget class="QCheckBox" name="checkHex">
      <property name="text">
-      <string>Hexadecimal</string>
+      <string>十六进制</string>
      </property>
     </widget>
    </item>
    <item row="3" column="0">
     <widget class="QLabel" name="label_3">
      <property name="text">
-      <string>Maximum:</string>
+      <string>最大值:</string>
      </property>
     </widget>
    </item>
@@ -37,14 +37,14 @@
    <item row="0" column="0" colspan="3">
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set a value range for the incremental search. &lt;/p&gt;&lt;p&gt;Bounds are unsigned.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;请指定搜索范围&lt;/p&gt;&lt;p&gt;负数请加上18446744073709551616(2^64)再输入&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </item>
    <item row="2" column="0">
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Minimum:</string>
+      <string>最小值:</string>
      </property>
     </widget>
    </item>

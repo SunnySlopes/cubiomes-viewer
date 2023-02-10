@@ -3,7 +3,7 @@
  <class>StructureDialog</class>
  <widget class="QDialog" name="StructureDialog">
   <property name="windowTitle">
-   <string>Structure Zoom Limits</string>
+   <string>结构缩放限制</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../rc/icons.qrc">
@@ -23,7 +23,7 @@
    <item row="0" column="0" colspan="2">
     <widget class="QGroupBox" name="groupVis">
      <property name="title">
-      <string>Maximum scale for structure visibility</string>
+      <string>结构可见的最小缩放比例</string>
      </property>
     </widget>
    </item>

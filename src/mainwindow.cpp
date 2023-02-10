@@ -37,7 +37,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-    , dock(new QDockWidget(tr("Map"), this))
+    , dock(new QDockWidget(tr("地图"), this))
     , mapView(new MapView(this))
     , formCond()
     , formGen48()
@@ -62,9 +62,9 @@ MainWindow::MainWindow(QWidget *parent)
     formGen48 = new FormGen48(this);
     formControl = new FormSearchControl(this);
 
-    ui->tabContainer->addTab(new TabTriggers(this), tr("Triggers"));
-    ui->tabContainer->addTab(new TabBiomes(this), tr("Biomes"));
-    ui->tabContainer->addTab(new TabStructures(this), tr("Structures"));
+    ui->tabContainer->addTab(new TabTriggers(this), tr("触发器"));
+    ui->tabContainer->addTab(new TabBiomes(this), tr("群系"));
+    ui->tabContainer->addTab(new TabStructures(this), tr("结构"));
 
     QList<QAction*> layeracts = ui->menuBiome_layer->actions();
     int lopt = LOPT_DEFAULT_1;
@@ -79,14 +79,14 @@ MainWindow::MainWindow(QWidget *parent)
         lopt++;
     }
 
-    QAction *toorigin = new QAction(QIcon(":/icons/origin.png"), "Goto origin", this);
+    QAction *toorigin = new QAction(QIcon(":/icons/origin.png"), "前往坐标原点并重置缩放比例", this);
     connect(toorigin, &QAction::triggered, [=](){ this->mapGoto(0,0,16); });
     ui->toolBar->addAction(toorigin);
     ui->toolBar->addSeparator();
 
-    dimactions[0] = addMapAction(-1, "overworld", tr("Overworld"));
-    dimactions[1] = addMapAction(-1, "nether", tr("Nether"));
-    dimactions[2] = addMapAction(-1, "the_end", tr("End"));
+    dimactions[0] = addMapAction(-1, "overworld", tr("主世界"));
+    dimactions[1] = addMapAction(-1, "nether", tr("下界"));
+    dimactions[2] = addMapAction(-1, "the_end", tr("末地"));
     dimgroup = new QActionGroup(this);
 
     for (int i = 0; i < 3; i++)
@@ -99,30 +99,30 @@ MainWindow::MainWindow(QWidget *parent)
     ui->toolBar->addSeparator();
 
     saction.resize(STRUCT_NUM);
-    addMapAction(D_GRID, "grid", tr("Show grid"));
-    addMapAction(D_SLIME, "slime", tr("Show slime chunks"));
-    addMapAction(D_SPAWN, "spawn", tr("Show world spawn"));
-    addMapAction(D_STRONGHOLD, "stronghold", tr("Show strongholds"));
-    addMapAction(D_VILLAGE, "village", tr("Show villages"));
-    addMapAction(D_MINESHAFT, "mineshaft", tr("Show abandoned mineshafts"));
-    addMapAction(D_DESERT, "desert", tr("Show desert pyramid"));
-    addMapAction(D_JUNGLE, "jungle", tr("Show jungle temples"));
-    addMapAction(D_HUT, "hut", tr("Show swamp huts"));
-    addMapAction(D_MONUMENT, "monument", tr("Show ocean monuments"));
-    addMapAction(D_IGLOO, "igloo", tr("Show igloos"));
-    addMapAction(D_MANSION, "mansion", tr("Show woodland mansions"));
-    addMapAction(D_RUINS, "ruins", tr("Show ocean ruins"));
-    addMapAction(D_SHIPWRECK, "shipwreck", tr("Show shipwrecks"));
-    addMapAction(D_TREASURE, "treasure", tr("Show buried treasures"));
-    addMapAction(D_OUTPOST, "outpost", tr("Show pillager outposts"));
-    addMapAction(D_PORTAL, "portal", tr("Show ruined portals"));
-    addMapAction(D_ANCIENTCITY, "ancient_city", tr("Show ancient cities"));
+    addMapAction(D_GRID, "grid", tr("展示网格"));
+    addMapAction(D_SLIME, "slime", tr("展示史莱姆区块"));
+    addMapAction(D_SPAWN, "spawn", tr("展示世界出生点"));
+    addMapAction(D_STRONGHOLD, "stronghold", tr("展示要塞"));
+    addMapAction(D_VILLAGE, "village", tr("展示村庄"));
+    addMapAction(D_MINESHAFT, "mineshaft", tr("展示废弃矿井"));
+    addMapAction(D_DESERT, "desert", tr("展示沙漠神殿"));
+    addMapAction(D_JUNGLE, "jungle", tr("展示丛林神庙"));
+    addMapAction(D_HUT, "hut", tr("展示沼泽小屋"));
+    addMapAction(D_MONUMENT, "monument", tr("展示海底神殿"));
+    addMapAction(D_IGLOO, "igloo", tr("展示冰屋"));
+    addMapAction(D_MANSION, "mansion", tr("展示林地府邸"));
+    addMapAction(D_RUINS, "ruins", tr("展示海底遗迹"));
+    addMapAction(D_SHIPWRECK, "shipwreck", tr("展示沉船"));
+    addMapAction(D_TREASURE, "treasure", tr("展示宝藏"));
+    addMapAction(D_OUTPOST, "outpost", tr("展示前哨站"));
+    addMapAction(D_PORTAL, "portal", tr("展示废弃传送门"));
+    addMapAction(D_ANCIENTCITY, "ancient_city", tr("展示远古城市"));
     ui->toolBar->addSeparator();
-    addMapAction(D_FORTESS, "fortress", tr("Show nether fortresses"));
-    addMapAction(D_BASTION, "bastion", tr("Show bastions"));
+    addMapAction(D_FORTESS, "fortress", tr("展示下界要塞"));
+    addMapAction(D_BASTION, "bastion", tr("展示堡垒遗迹"));
     ui->toolBar->addSeparator();
-    addMapAction(D_ENDCITY, "endcity", tr("Show end cities"));
-    addMapAction(D_GATEWAY, "gateway", tr("Show end gateways"));
+    addMapAction(D_ENDCITY, "endcity", tr("展示末地城"));
+    addMapAction(D_GATEWAY, "gateway", tr("展示末地折跃门"));
 
     saction[D_GRID]->setChecked(true);
 
@@ -142,7 +142,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     loadSettings();
 
-    ui->collapseConstraints->init(tr("Conditions"), formCond, false);
+    ui->collapseConstraints->init(tr("条件"), formCond, false);
     connect(formCond, &FormConditions::changed, this, &MainWindow::onConditionsChanged);
     ui->collapseConstraints->setInfo(
         tr("Help: Conditions"),
@@ -167,7 +167,7 @@ MainWindow::MainWindow(QWidget *parent)
     // 48-bit generator settings are not all that interesting unless we are
     // using them, so start as collapsed if they are on the "Auto" setting.
     Gen48Settings gen48 = formGen48->getSettings(false);
-    ui->collapseGen48->init(tr("Seed generator (48-bit)"), formGen48, gen48.mode == GEN48_AUTO);
+    ui->collapseGen48->init(tr("种子生成器(低48二进制位)"), formGen48, gen48.mode == GEN48_AUTO);
     connect(formGen48, &FormGen48::changed, this, &MainWindow::onGen48Changed);
     ui->collapseGen48->setInfo(
         tr("Help: Seed generator"),
@@ -195,7 +195,7 @@ MainWindow::MainWindow(QWidget *parent)
         "</p></body></html>"
     ));
 
-    ui->collapseControl->init("Matching seeds", formControl, false);
+    ui->collapseControl->init("符合条件的种子", formControl, false);
     connect(formControl, &FormSearchControl::selectedSeedChanged, this, &MainWindow::onSelectedSeedChanged);
     connect(formControl, &FormSearchControl::searchStatusChanged, this, &MainWindow::onSearchStatusChanged);
     ui->collapseControl->setInfo(
@@ -212,7 +212,7 @@ MainWindow::MainWindow(QWidget *parent)
     update();
 
 #if WITH_UPDATER
-    QAction *updateaction = new QAction("Check for updates", this);
+    QAction *updateaction = new QAction("检查更新", this);
     connect(updateaction, &QAction::triggered, [=]() { searchForUpdates(false); });
     ui->menuHelp->insertAction(ui->actionAbout, updateaction);
     ui->menuHelp->insertSeparator(ui->actionAbout);
@@ -266,7 +266,7 @@ bool MainWindow::getSeed(WorldInfo *wi, bool applyrand)
     if (wi->mc < 0)
     {
         wi->mc = MC_NEWEST;
-        qDebug() << "Unknown MC version: " << wi->mc;
+        qDebug() << "未知MC版本: " << wi->mc;
         ok = false;
     }
 
@@ -287,7 +287,7 @@ bool MainWindow::setSeed(WorldInfo wi, int dim, int layeropt)
     const char *mcstr = mc2str(wi.mc);
     if (!mcstr)
     {
-        qDebug() << "Unknown MC version: " << wi.mc;
+        qDebug() << "未知MC版本: " << wi.mc;
         return false;
     }
 
@@ -488,7 +488,7 @@ bool MainWindow::saveProgress(QString fnam, bool quiet)
     if (!file.open(QIODevice::WriteOnly))
     {
         if (!quiet)
-            warning(tr("Failed to open file:\n\"%1\"").arg(fnam));
+            warning(tr("无法打开以下文件:\n\"%1\"").arg(fnam));
         return false;
     }
 
@@ -551,7 +551,7 @@ bool MainWindow::loadProgress(QString fnam, bool keepresults, bool quiet)
     if (!file.open(QIODevice::ReadOnly))
     {
         if (!quiet)
-            warning(tr("Failed to open progress file:\n\"%1\"").arg(fnam));
+            warning(tr("无法打开以下进度文件:\n\"%1\"").arg(fnam));
         return false;
     }
 
@@ -575,10 +575,10 @@ bool MainWindow::loadProgress(QString fnam, bool keepresults, bool quiet)
     {
         if (quiet)
             return false;
-        int button = QMessageBox::warning(this, tr("Warning"),
-            tr("File does not look like a progress file.\n"
-            "Progress may be incomplete or broken.\n\n"
-            "Continue anyway?"),
+        int button = QMessageBox::warning(this, tr("警告"),
+            tr("该文件可能不是进度文件，进度可能不完整或已损坏"
+            "\n\n"
+            "是否继续？"),
             QMessageBox::Abort|QMessageBox::Yes);
         if (button == QMessageBox::Abort)
             return false;
@@ -587,10 +587,10 @@ bool MainWindow::loadProgress(QString fnam, bool keepresults, bool quiet)
     {
         if (quiet)
             return false;
-        int button = QMessageBox::warning(this, tr("Warning"),
-            tr("File was created with a newer version.\n"
-            "Progress may be incomplete or broken.\n\n"
-            "Continue loading progress anyway?"),
+        int button = QMessageBox::warning(this, tr("警告"),
+            tr("进度文件由新版的Cubiomes Viewer生成\n"
+            "可能无法导入该版本软件\n\n"
+            "是否继续加载？"),
             QMessageBox::Abort|QMessageBox::Yes);
         if (button == QMessageBox::Abort)
             return false;
@@ -639,9 +639,9 @@ bool MainWindow::loadProgress(QString fnam, bool keepresults, bool quiet)
             {
                 if (quiet)
                     return false;
-                int button = QMessageBox::warning(this, tr("Warning"),
-                    tr("Condition [%1] at line %2 is not supported.\n\n"
-                    "Continue anyway?").arg(c.save).arg(lno),
+                int button = QMessageBox::warning(this, tr("警告"),
+                    tr("第 %2 行的条件 [%1] 不受支持\n\n"
+                    "是否继续？").arg(c.save).arg(lno),
                     QMessageBox::Abort|QMessageBox::Yes);
                 if (button == QMessageBox::Abort)
                     return false;
@@ -659,8 +659,8 @@ bool MainWindow::loadProgress(QString fnam, bool keepresults, bool quiet)
                 if (quiet)
                     return false;
                 int button = QMessageBox::warning(this, tr("Warning"),
-                    tr("Failed to parse line %1 of progress file:\n%2\n\n"
-                    "Continue anyway?").arg(lno).arg(line),
+                    tr("无法解析进度文件第 %1 行的条件:\n%2\n\n"
+                    "是否继续？").arg(lno).arg(line),
                     QMessageBox::Abort|QMessageBox::Yes);
                 if (button == QMessageBox::Abort)
                     return false;
@@ -756,7 +756,7 @@ void MainWindow::applyConfigChanges(const Config old, const Config conf)
 
 int MainWindow::warning(QString text, QMessageBox::StandardButtons buttons)
 {
-    return QMessageBox::warning(this, tr("Warning"), text, buttons);
+    return QMessageBox::warning(this, tr("警告"), text, buttons);
 }
 
 void MainWindow::mapGoto(qreal x, qreal z, qreal scale)
@@ -798,9 +798,9 @@ void MainWindow::on_seedEdit_textChanged(const QString &a)
     QString typ = "";
     switch (v)
     {
-    case S_TEXT:    typ = tr("text", "Seed input type"); break;
+    case S_TEXT:    typ = tr("文本", "种子导入文件类型"); break;
     case S_NUMERIC: typ = ""; break;
-    case S_RANDOM:  typ = tr("random", "Seed input type"); break;
+    case S_RANDOM:  typ = tr("任意", "种子导入文件类型"); break;
     }
     ui->labelSeedType->setText(typ);
 }
@@ -808,7 +808,7 @@ void MainWindow::on_seedEdit_textChanged(const QString &a)
 void MainWindow::on_actionSave_triggered()
 {
     QString fnam = QFileDialog::getSaveFileName(
-        this, tr("Save progress"), prevdir, tr("Text files (*.txt);;Any files (*)"));
+        this, tr("保存进度"), prevdir, tr("文本文件(*.txt);;任意文件(*)"));
     if (!fnam.isEmpty())
     {
         QFileInfo finfo(fnam);
@@ -820,7 +820,7 @@ void MainWindow::on_actionSave_triggered()
 void MainWindow::on_actionLoad_triggered()
 {
     QString fnam = QFileDialog::getOpenFileName(
-        this, tr("Load progress"), prevdir, tr("Text files (*.txt);;Any files (*)"));
+        this, tr("导入进度"), prevdir, tr("文本文件(*.txt);;任意文件(*)"));
     if (!fnam.isEmpty())
     {
         QFileInfo finfo(fnam);
@@ -1004,9 +1004,9 @@ void MainWindow::onAutosaveTimeout()
         saveProgress(path + "/session.save", true);
         //int dispms = 10000;
         //if (saveProgress(path + "/session.save", true))
-        //    ui->statusBar->showMessage(tr("Session autosaved"), dispms);
+        //    ui->statusBar->showMessage(tr("已自动保存"), dispms);
         //else
-        //    ui->statusBar->showMessage(tr("Autosave failed"), dispms);
+        //    ui->statusBar->showMessage(tr("自动保存失败"), dispms);
     }
 }
 

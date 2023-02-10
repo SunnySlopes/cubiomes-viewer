@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>356</width>
-    <height>130</height>
+    <width>363</width>
+    <height>148</height>
    </rect>
   </property>
   <property name="focusPolicy">
    <enum>Qt::StrongFocus</enum>
   </property>
   <property name="windowTitle">
-   <string>Coordinates</string>
+   <string>坐标</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../rc/icons.qrc">
@@ -24,7 +24,7 @@
    <item>
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Coordinates:</string>
+      <string>坐标:</string>
      </property>
     </widget>
    </item>
@@ -79,7 +79,7 @@
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>Scale:</string>
+        <string>缩放等级:</string>
        </property>
       </widget>
      </item>
@@ -93,7 +93,7 @@
      <item>
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>blocks per pixel</string>
+        <string>方块/像素</string>
        </property>
       </widget>
      </item>

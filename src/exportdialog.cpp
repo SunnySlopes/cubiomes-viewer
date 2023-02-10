@@ -205,12 +205,12 @@ void ExportDialog::update()
     QString wgen = (p_mcs ? p_mcs : "");
     wgen += ", ";
     if (dim == 0) {
-        wgen += tr("Overworld");
-        if (wi.large) wgen += tr("/large");
+        wgen += tr("主世界");
+        if (wi.large) wgen += tr("/放大化");
     } else if (dim == -1) {
-        wgen += tr("Nether");
+        wgen += tr("下界");
     } else if (dim == +1) {
-        wgen += tr("The End");
+        wgen += tr("末地");
     }
     ui->labelWorldGen->setText(wgen);
     ui->labelY->setText(QString::number(wi.y));
@@ -239,7 +239,7 @@ void ExportDialog::on_buttonFromVisible_clicked()
 void ExportDialog::on_buttonDirSelect_clicked()
 {
     QString dir = QFileDialog::getExistingDirectory(
-            this, tr("Select Export Directory"),
+            this, tr("选择导出目录"),
             ui->lineDir->text(),
             QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
     if (dir.isEmpty())
@@ -269,17 +269,15 @@ void ExportDialog::on_buttonBox_clicked(QAbstractButton *button)
 
         if (seeds.size() > 1 && !pattern.contains("%S"))
         {
-            QMessageBox::warning(this, tr("Warning"),
-                    tr("When exporting more than one seed, the file pattern "
-                    "has to include the \"%S\" format specifier for the seed number."));
+            QMessageBox::warning(this, tr("警告"),
+                    tr("导出多个种子时，文件必须包含“%S”来指定文件所属种子！"));
             return;
         }
 
         if (tiled && (!pattern.contains("%x") || !pattern.contains("%z")))
         {
-            QMessageBox::warning(this, tr("Warning"),
-                    tr("Exporting as tiled images requires both the \"%x\" and \"%z\" "
-                    "format specifiers in the file pattern, representing the tile coordinates."));
+            QMessageBox::warning(this, tr("警告"),
+                    tr("需要导出多张图时文件名必须包含“%x”和“%z”来指定文件所展示的坐标！"));
             return;
         }
 
@@ -296,7 +294,7 @@ void ExportDialog::on_buttonBox_clicked(QAbstractButton *button)
 
         if (x1 <= x0 || z1 <= z0)
         {
-            QMessageBox::warning(this, tr("Warning"), tr("Invalid area."));
+            QMessageBox::warning(this, tr("警告"), tr("请保证导出区域的X1 > X0, Z1 > Z0！"));
             return;
         }
 
@@ -347,9 +345,9 @@ void ExportDialog::on_buttonBox_clicked(QAbstractButton *button)
             int maxsiz = 0x8000;
             if (x1 - x0 >= maxsiz || z1 - z0 >= maxsiz)
             {
-                int button = QMessageBox::warning(this, tr("Warning"),
-                        tr("Consider tiling very large images into smaller sections.\n"
-                           "Continue?"),
+                int button = QMessageBox::warning(this, tr("警告"),
+                        tr("单张导出图片尺寸过大，建议划分区域导出\n"
+                           "是否继续？"),
                         QMessageBox::Cancel | QMessageBox::Yes);
                 if (button == QMessageBox::Cancel)
                 {
@@ -368,9 +366,9 @@ void ExportDialog::on_buttonBox_clicked(QAbstractButton *button)
 
         if (existwarn)
         {
-            int button = QMessageBox::warning(this, tr("Warning"),
-                    tr("One or more of files already exist.\n"
-                       "Continue and overwrite?"),
+            int button = QMessageBox::warning(this, tr("警告"),
+                    tr("已存在同名文件\n"
+                       "是否继续导出并覆盖原有文件？"),
                     QMessageBox::Cancel | QMessageBox::Yes);
             if (button == QMessageBox::Cancel)
             {
@@ -396,7 +394,7 @@ void ExportDialog::on_buttonBox_clicked(QAbstractButton *button)
         settings.setValue("export/bgIdx", ui->comboBackground->currentIndex());
 
         QProgressDialog *progress = new QProgressDialog(
-            tr("Export biome images..."), tr("Abort"), 0, workers.size(), mainwindow);
+            tr("正在导出图片"), tr("中止"), 0, workers.size(), mainwindow);
         progress->setValue(0);
 
         connect(progress, &QProgressDialog::canceled, master, &ExportThread::cancel);
@@ -410,6 +408,3 @@ void ExportDialog::on_buttonBox_clicked(QAbstractButton *button)
         master->start();
     }
 }
-
-
-

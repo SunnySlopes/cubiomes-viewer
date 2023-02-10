@@ -40,9 +40,9 @@ public:
     {
         QString txt = QSpinBox::textFromValue(value);
         if (value == 0)
-            txt += " " + tr("(ignore)");
+            txt += " " + tr("(忽略)");
         if (value == -1)
-            txt += " " + tr("(exclude)");
+            txt += " " + tr("(不含)");
         return txt;
     }
 
@@ -77,9 +77,9 @@ public:
     {
         QString txt = QSpinBox::textFromValue(value);
         if (value == 0)
-            txt += " " + tr("(exclude)");
+            txt += " " + tr("(不含)");
         if (value > 1)
-            txt += " " + tr("(cluster)");
+            txt += " " + tr("(多联)");
         return txt;
     }
 };

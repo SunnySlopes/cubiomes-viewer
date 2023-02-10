@@ -66,14 +66,14 @@ bool SearchMaster::set(
         snprintf(cid, sizeof(cid), "[%02d]", c.save);
         if (c.save < 1 || c.save > 99)
         {
-            QMessageBox::warning(parent, tr("Warning"),
-                tr("Condition with invalid ID %1.").arg(cid));
+            QMessageBox::warning(parent, tr("警告"),
+                tr("条件包含无效ID %1 ！").arg(cid));
             return false;
         }
         if (c.type < 0 || c.type >= FILTER_MAX)
         {
-            QMessageBox::warning(parent, tr("Error"),
-                    tr("Encountered invalid filter type %1 in condition ID %2.")
+            QMessageBox::warning(parent, tr("错误"),
+                    tr("条件 %2 包含无效筛选条件类型 %1 ！")
                     .arg(c.type).arg(cid));
             return false;
         }
@@ -84,21 +84,21 @@ bool SearchMaster::set(
 
         if (c.relative && refbuf[c.relative] == 0)
         {
-            QMessageBox::warning(parent, "Warning",
-                    tr("Condition with ID %1 has a broken reference position:\n"
-                    "condition missing or out of order.").arg(cid));
+            QMessageBox::warning(parent, "警告",
+                    tr("条件 %1 包含无效条件引用:\n"
+                    "条件缺失或超出范围！").arg(cid));
             return false;
         }
         if (++refbuf[c.save] > 1)
         {
-            QMessageBox::warning(parent, tr("Warning"),
-                    tr("More than one condition with ID %1.").arg(cid));
+            QMessageBox::warning(parent, tr("警告"),
+                    tr("条件 %1 包含超过1条条件！").arg(cid));
             return false;
         }
         if (c.relative && disabled[c.relative])
         {
-            int button = QMessageBox::information(NULL, tr("Warning"),
-                    tr("Condition %1 has been indirectly disabled by reference.")
+            int button = QMessageBox::information(NULL, tr("警告"),
+                    tr("条件 %1 因其参照条件禁用而被连带禁用！")
                     .arg(cid), QMessageBox::Abort|QMessageBox::Ignore);
             if (button == QMessageBox::Abort)
                 return false;
@@ -106,16 +106,16 @@ bool SearchMaster::set(
         if (wi.mc < finfo.mcmin)
         {
             const char *mcs = mc2str(finfo.mcmin);
-            QMessageBox::warning(parent, tr("Warning"),
-                    tr("Condition %1 requires a minimum Minecraft version of %2.")
+            QMessageBox::warning(parent, tr("警告"),
+                    tr("条件 %1 需要MC版本 >= %2 ！")
                     .arg(cid, mcs));
             return false;
         }
         if (wi.mc > finfo.mcmax)
         {
             const char *mcs = mc2str(finfo.mcmax);
-            QMessageBox::warning(parent, tr("Warning"),
-                    tr("Condition %1 not available for Minecraft versions above %2.")
+            QMessageBox::warning(parent, tr("警告"),
+                    tr("条件 %1 需要MC版本 <= %2 ！")
                     .arg(cid, mcs));
             return false;
         }
@@ -129,15 +129,15 @@ bool SearchMaster::set(
             uint64_t m = c.biomeToFindM;
             if ((c.biomeToExcl & b) || (c.biomeToExclM & m))
             {
-                QMessageBox::warning(parent, tr("Warning"),
-                        tr("Biome condition with ID %1 has contradicting "
-                        "flags for include and exclude.").arg(cid));
+                QMessageBox::warning(parent, tr("警告"),
+                        tr("群系条件 %1 同时被禁用和启用！")
+                        .arg(cid));
                 return false;
             }
             if ((b | m | c.biomeToExcl | c.biomeToExclM) == 0)
             {
-                int button = QMessageBox::information(parent, tr("Info"),
-                        tr("Biome condition with ID %1 specifies no biomes.")
+                int button = QMessageBox::information(parent, tr("提示"),
+                        tr("群系条件 %1 未添加任何具体群系！")
                         .arg(cid), QMessageBox::Abort|QMessageBox::Ignore);
                 if (button == QMessageBox::Abort)
                     return false;
@@ -160,10 +160,9 @@ bool SearchMaster::set(
             if (b || m)
             {
                 int cnt = __builtin_popcountll(b) + __builtin_popcountll(m);
-                QString msg = tr("Biome condition with ID %1 includes %n "
-                        "biome(s) that do not generate in MC %2.", "", cnt)
+                QString msg = tr("群系条件 %1 包含了MC %2 不会生成的群系", "", cnt)
                         .arg(cid, mc2str(wi.mc));
-                QMessageBox::warning(parent, tr("Warning"), msg);
+                QMessageBox::warning(parent, tr("警告"), msg);
                 return false;
             }
         }
@@ -173,9 +172,8 @@ bool SearchMaster::set(
             int h = c.z2 - c.z1 + 1;
             if (c.count > w * h)
             {
-                QMessageBox::warning(parent, tr("Warning"),
-                        tr("Temperature category condition with ID %1 has too "
-                        "many restrictions (%2) for the area (%3 x %4).")
+                QMessageBox::warning(parent, tr("警告"),
+                        tr("温度类别条件 %1 在(%3 x %4)的区域中条件太多(%2)！")
                         .arg(cid).arg(c.count).arg(w).arg(h));
                 return false;
             }
@@ -184,16 +182,16 @@ bool SearchMaster::set(
         {
             if (c.count >= 128)
             {
-                QMessageBox::warning(parent, tr("Warning"),
-                        tr("Structure condition %1 checks for too many instances (>= 128).")
+                QMessageBox::warning(parent, tr("警告"),
+                        tr("结构条件 %1 查询结构过多 (>= 128)！")
                         .arg(cid));
                 return false;
             }
         }
         if (c.skipref && c.rmax == 0 && c.x1 == 0 && c.x2 == 0 && c.z1 == 0 && c.z2 == 0)
         {
-            QMessageBox::warning(parent, tr("Warning"),
-                    tr("Condition %1 ignores its only location of size 1.")
+            QMessageBox::warning(parent, tr("警告"),
+                    tr("条件 %1 忽略了它唯一的检查位置！")
                     .arg(cid));
             return false;
         }
@@ -269,10 +267,10 @@ static void genQHBases(QObject *qtobj, int qual, uint64_t salt, std::vector<uint
 
     if ((qb = loadSavedSeeds(fnam.data(), &qn)) == NULL)
     {
-        printf("Writing quad-protobases to: %s\n", fnam.data());
+        printf("将四联种子集保存到: %s\n", fnam.data());
         fflush(stdout);
 
-        QMetaObject::invokeMethod(qtobj, "openProtobaseMsg", Qt::QueuedConnection, Q_ARG(QString, path));
+        QMetaObject::invokeMethod(qtobj, "打开种子集消息", Qt::QueuedConnection, Q_ARG(QString, path));
 
         int threads = QThread::idealThreadCount();
         int err = searchAll48(&qb, &qn, fnam.data(), threads, lbset, lbcnt, 20, check, NULL);
@@ -280,13 +278,13 @@ static void genQHBases(QObject *qtobj, int qual, uint64_t salt, std::vector<uint
         if (err)
         {
             QMetaObject::invokeMethod(
-                    qtobj, "warning", Qt::BlockingQueuedConnection,
-                    Q_ARG(QString, SearchMaster::tr("Failed to generate protobases.")));
+                    qtobj, "警告", Qt::BlockingQueuedConnection,
+                    Q_ARG(QString, SearchMaster::tr("未能成功创建种子集")));
             return;
         }
         else
         {
-            QMetaObject::invokeMethod(qtobj, "closeProtobaseMsg", Qt::BlockingQueuedConnection);
+            QMetaObject::invokeMethod(qtobj, "关闭种子集消息", Qt::BlockingQueuedConnection);
         }
     }
     else
@@ -542,10 +540,10 @@ void SearchMaster::stop()
             connectiontype = Qt::DirectConnection;
         }
         QMetaObject::invokeMethod(
-                parent, "warning", connectiontype,
+                parent, "警告", connectiontype,
                 Q_RETURN_ARG(int, button),
-                Q_ARG(QString, tr("Failed to stop %n worker thread(s).\n"
-                "Keep waiting for threads to stop?", "", running)),
+                Q_ARG(QString, tr("未能停止 %n 个工作线程\n"
+                "是否继续等待线程停止？", "", running)),
                 Q_ARG(QMessageBox::StandardButtons, QMessageBox::No|QMessageBox::Yes));
         if (button != QMessageBox::Yes)
             break;
@@ -874,6 +872,3 @@ void SearchWorker::run()
         break;
     }
 }
-
-
-

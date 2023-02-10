@@ -65,58 +65,58 @@ inline const char *mapopt2str(int opt)
 {
     switch (opt)
     {
-    case D_GRID:        return "grid";
-    case D_SLIME:       return "slime";
-    case D_DESERT:      return "desert";
-    case D_JUNGLE:      return "jungle";
-    case D_IGLOO:       return "igloo";
-    case D_HUT:         return "hut";
-    case D_VILLAGE:     return "village";
-    case D_MANSION:     return "mansion";
-    case D_MONUMENT:    return "monument";
-    case D_RUINS:       return "ruins";
-    case D_SHIPWRECK:   return "shipwreck";
-    case D_TREASURE:    return "treasure";
-    case D_MINESHAFT:   return "mineshaft";
-    case D_OUTPOST:     return "outpost";
-    case D_ANCIENTCITY: return "ancient_city";
-    case D_PORTAL:      return "portal";
-    case D_PORTALN:     return "portaln";
-    case D_SPAWN:       return "spawn";
-    case D_STRONGHOLD:  return "stronghold";
-    case D_FORTESS:     return "fortress";
-    case D_BASTION:     return "bastion";
-    case D_ENDCITY:     return "endcity";
-    case D_GATEWAY:     return "gateway";
+    case D_GRID:        return "网格";
+    case D_SLIME:       return "史莱姆";
+    case D_DESERT:      return "沙漠";
+    case D_JUNGLE:      return "丛林";
+    case D_IGLOO:       return "冰屋";
+    case D_HUT:         return "沼泽小屋";
+    case D_VILLAGE:     return "村庄";
+    case D_MANSION:     return "林地府邸";
+    case D_MONUMENT:    return "海底神殿";
+    case D_RUINS:       return "海底遗迹";
+    case D_SHIPWRECK:   return "沉船";
+    case D_TREASURE:    return "宝藏";
+    case D_MINESHAFT:   return "废弃矿井";
+    case D_OUTPOST:     return "前哨站";
+    case D_ANCIENTCITY: return "远古城市";
+    case D_PORTAL:      return "废弃传送门";
+    case D_PORTALN:     return "废弃传送门(下界)";
+    case D_SPAWN:       return "出生点";
+    case D_STRONGHOLD:  return "要塞";
+    case D_FORTESS:     return "下界要塞";
+    case D_BASTION:     return "堡垒遗迹";
+    case D_ENDCITY:     return "末地城";
+    case D_GATEWAY:     return "末地折越门";
     default:            return "";
     }
 }
 
 inline int str2mapopt(const char *s)
 {
-    if (!strcmp(s, "grid"))         return D_GRID;
-    if (!strcmp(s, "slime"))        return D_SLIME;
-    if (!strcmp(s, "desert"))       return D_DESERT;
-    if (!strcmp(s, "jungle"))       return D_JUNGLE;
-    if (!strcmp(s, "igloo"))        return D_IGLOO;
-    if (!strcmp(s, "hut"))          return D_HUT;
-    if (!strcmp(s, "village"))      return D_VILLAGE;
-    if (!strcmp(s, "mansion"))      return D_MANSION;
-    if (!strcmp(s, "monument"))     return D_MONUMENT;
-    if (!strcmp(s, "ruins"))        return D_RUINS;
-    if (!strcmp(s, "shipwreck"))    return D_SHIPWRECK;
-    if (!strcmp(s, "treasure"))     return D_TREASURE;
-    if (!strcmp(s, "mineshaft"))    return D_MINESHAFT;
-    if (!strcmp(s, "outpost"))      return D_OUTPOST;
-    if (!strcmp(s, "ancient_city")) return D_ANCIENTCITY;
-    if (!strcmp(s, "portal"))       return D_PORTAL;
-    if (!strcmp(s, "portaln"))      return D_PORTALN;
-    if (!strcmp(s, "spawn"))        return D_SPAWN;
-    if (!strcmp(s, "stronghold"))   return D_STRONGHOLD;
-    if (!strcmp(s, "fortress"))     return D_FORTESS;
-    if (!strcmp(s, "bastion"))      return D_BASTION;
-    if (!strcmp(s, "endcity"))      return D_ENDCITY;
-    if (!strcmp(s, "gateway"))      return D_GATEWAY;
+    if (!strcmp(s, "网格"))         return D_GRID;
+    if (!strcmp(s, "史莱姆"))        return D_SLIME;
+    if (!strcmp(s, "沙漠"))       return D_DESERT;
+    if (!strcmp(s, "丛林"))       return D_JUNGLE;
+    if (!strcmp(s, "冰屋"))        return D_IGLOO;
+    if (!strcmp(s, "沼泽小屋"))          return D_HUT;
+    if (!strcmp(s, "村庄"))      return D_VILLAGE;
+    if (!strcmp(s, "林地府邸"))      return D_MANSION;
+    if (!strcmp(s, "海底神殿"))     return D_MONUMENT;
+    if (!strcmp(s, "海底遗迹"))        return D_RUINS;
+    if (!strcmp(s, "沉船"))    return D_SHIPWRECK;
+    if (!strcmp(s, "宝藏"))     return D_TREASURE;
+    if (!strcmp(s, "废弃矿井"))    return D_MINESHAFT;
+    if (!strcmp(s, "前哨站"))      return D_OUTPOST;
+    if (!strcmp(s, "远古城市"))         return D_ANCIENTCITY;
+    if (!strcmp(s, "废弃传送门"))        return D_PORTAL;
+    if (!strcmp(s, "废弃传送门(下界)"))    return D_PORTALN;
+    if (!strcmp(s, "出生点"))             return D_SPAWN;
+    if (!strcmp(s, "要塞"))               return D_STRONGHOLD;
+    if (!strcmp(s, "下界要塞"))           return D_FORTESS;
+    if (!strcmp(s, "堡垒遗迹"))         return D_BASTION;
+    if (!strcmp(s, "末地城"))          return D_ENDCITY;
+    if (!strcmp(s, "末地折越门"))        return D_GATEWAY;
     return D_NONE;
 }
 

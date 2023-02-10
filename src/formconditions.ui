@@ -58,35 +58,35 @@
      <item>
       <widget class="QPushButton" name="buttonRemoveAll">
        <property name="text">
-        <string>Remove all</string>
+        <string>清空</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="buttonRemove">
        <property name="text">
-        <string>Remove</string>
+        <string>清除</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="buttonDisable">
        <property name="text">
-        <string>Disable</string>
+        <string>禁用</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="buttonEdit">
        <property name="text">
-        <string>Edit</string>
+        <string>修改</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="buttonAddFilter">
        <property name="text">
-        <string>Add</string>
+        <string>新增</string>
        </property>
       </widget>
      </item>

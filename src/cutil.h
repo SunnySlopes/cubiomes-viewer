@@ -14,25 +14,25 @@ inline const char* struct2str(int stype)
 {
     switch (stype)
     {
-    case Desert_Pyramid:    return "desert_pyramid";
-    case Jungle_Temple:     return "jungle_temple";
-    case Swamp_Hut:         return "swamp_hut";
-    case Igloo:             return "igloo";
-    case Village:           return "village";
-    case Ocean_Ruin:        return "ocean_ruin";
-    case Shipwreck:         return "shipwreck";
-    case Monument:          return "monument";
-    case Mansion:           return "mansion";
-    case Outpost:           return "outpost";
-    case Ruined_Portal:     return "ruined_portal";
-    case Ruined_Portal_N:   return "ruined_portal (nether)";
-    case Treasure:          return "treasure";
-    case Mineshaft:         return "mineshaft";
-    case Fortress:          return "fortress";
-    case Bastion:           return "bastion";
-    case End_City:          return "end_city";
-    case End_Gateway:       return "end_gateway";
-    case Ancient_City:      return "ancient_city";
+    case Desert_Pyramid:    return "沙漠神殿";
+    case Jungle_Temple:     return "丛林神庙";
+    case Swamp_Hut:         return "沼泽小屋";
+    case Igloo:             return "冰屋";
+    case Village:           return "村庄";
+    case Ocean_Ruin:        return "海底遗迹";
+    case Shipwreck:         return "沉船";
+    case Monument:          return "海底神殿";
+    case Mansion:           return "林地府邸";
+    case Outpost:           return "前哨站";
+    case Ruined_Portal:     return "废弃传送门";
+    case Ruined_Portal_N:   return "废弃传送门(下界)";
+    case Treasure:          return "宝藏";
+    case Mineshaft:         return "废弃矿井";
+    case Fortress:          return "下界要塞";
+    case Bastion:           return "堡垒遗迹";
+    case End_City:          return "末地城";
+    case End_Gateway:       return "末地折越门";
+    case Ancient_City:      return "远古城市";
     }
     return "?";
 }
@@ -50,39 +50,39 @@ struct StartPiece
 static const StartPiece g_start_pieces[] =
 {   // the index is used to encode the start pieces in the condition
     // (and should therefore ideally remain constant across upgrades)
-    {Village, plains, 0, -1, "plains_fountain_01", 0, 0},
-    {Village, plains, 1, -1, "plains_meeting_point_1", 1, 0},
-    {Village, plains, 2, -1, "plains_meeting_point_2", 2, 0},
-    {Village, plains, 3, -1, "plains_meeting_point_3", 3, 0},
-    {Village, desert, 1, -1, "desert_meeting_point_1", 4, 1},
-    {Village, desert, 2, -1, "desert_meeting_point_2", 5, 1},
-    {Village, desert, 3, -1, "desert_meeting_point_3", 6, 1},
-    {Village, savanna, 1, -1, "savanna_meeting_point_1", 0, 1},
-    {Village, savanna, 2, -1, "savanna_meeting_point_2", 1, 1},
-    {Village, savanna, 3, -1, "savanna_meeting_point_3", 2, 1},
-    {Village, savanna, 4, -1, "savanna_meeting_point_4", 3, 1},
-    {Village, taiga, 1, -1, "taiga_meeting_point_1", 7, 0},
-    {Village, taiga, 2, -1, "taiga_meeting_point_2", 8, 0},
-    {Village, snowy_tundra, 1, -1, "snowy_meeting_point_1", 4, 0},
-    {Village, snowy_tundra, 2, -1, "snowy_meeting_point_2", 5, 0},
-    {Village, snowy_tundra, 3, -1, "snowy_meeting_point_3", 6, 0},
-    {Bastion, -1, 0, -1, "units", 0, 0},
-    {Bastion, -1, 1, -1, "hoglin_stable", 1, 0},
-    {Bastion, -1, 2, -1, "treasure", 2, 0},
-    {Bastion, -1, 3, -1, "bridge", 3, 0},
-    {Ruined_Portal, -1, 1, 1, "giant_ruined_portal_1", 0, 1},
-    {Ruined_Portal, -1, 2, 1, "giant_ruined_portal_2", 1, 1},
-    {Ruined_Portal, -1, 3, 1, "giant_ruined_portal_3", 2, 1},
-    {Ruined_Portal, -1, 1, 0, "ruined_portal_1", 0, 0},
-    {Ruined_Portal, -1, 2, 0, "ruined_portal_2", 1, 0},
-    {Ruined_Portal, -1, 3, 0, "ruined_portal_3", 2, 0},
-    {Ruined_Portal, -1, 4, 0, "ruined_portal_4", 3, 0},
-    {Ruined_Portal, -1, 5, 0, "ruined_portal_5", 4, 0},
-    {Ruined_Portal, -1, 6, 0, "ruined_portal_6", 5, 0},
-    {Ruined_Portal, -1, 7, 0, "ruined_portal_7", 6, 0},
-    {Ruined_Portal, -1, 8, 0, "ruined_portal_8", 7, 0},
-    {Ruined_Portal, -1, 9, 0, "ruined_portal_9", 8, 0},
-    {Ruined_Portal, -1, 10, 0, "ruined_portal_10", 9, 0},
+    {Village, plains, 0, -1, "平原-喷泉", 0, 0},
+    {Village, plains, 1, -1, "平原-会合点1", 1, 0},
+    {Village, plains, 2, -1, "平原-会合点2", 2, 0},
+    {Village, plains, 3, -1, "平原-会合点3", 3, 0},
+    {Village, desert, 1, -1, "沙漠-会合点1", 4, 1},
+    {Village, desert, 2, -1, "沙漠-会合点2", 5, 1},
+    {Village, desert, 3, -1, "沙漠-会合点3", 6, 1},
+    {Village, savanna, 1, -1, "稀树草原-会合点1", 0, 1},
+    {Village, savanna, 2, -1, "稀树草原-会合点2", 1, 1},
+    {Village, savanna, 3, -1, "稀树草原-会合点3", 2, 1},
+    {Village, savanna, 4, -1, "稀树草原-会合点4", 3, 1},
+    {Village, taiga, 1, -1, "针叶林-会合点1", 7, 0},
+    {Village, taiga, 2, -1, "针叶林-会合点2", 8, 0},
+    {Village, snowy_tundra, 1, -1, "雪原-会合点1", 4, 0},
+    {Village, snowy_tundra, 2, -1, "雪原-会合点2", 5, 0},
+    {Village, snowy_tundra, 3, -1, "雪原-会合点3", 6, 0},
+    {Bastion, -1, 0, -1, "居住区", 0, 0},
+    {Bastion, -1, 1, -1, "疣猪兽棚", 1, 0},
+    {Bastion, -1, 2, -1, "藏宝室", 2, 0},
+    {Bastion, -1, 3, -1, "桥", 3, 0},
+    {Ruined_Portal, -1, 1, 1, "巨型废弃传送门1", 0, 1},
+    {Ruined_Portal, -1, 2, 1, "巨型废弃传送门2", 1, 1},
+    {Ruined_Portal, -1, 3, 1, "巨型废弃传送门3", 2, 1},
+    {Ruined_Portal, -1, 1, 0, "废弃传送门1", 0, 0},
+    {Ruined_Portal, -1, 2, 0, "废弃传送门2", 1, 0},
+    {Ruined_Portal, -1, 3, 0, "废弃传送门3", 2, 0},
+    {Ruined_Portal, -1, 4, 0, "废弃传送门4", 3, 0},
+    {Ruined_Portal, -1, 5, 0, "废弃传送门5", 4, 0},
+    {Ruined_Portal, -1, 6, 0, "废弃传送门6", 5, 0},
+    {Ruined_Portal, -1, 7, 0, "废弃传送门7", 6, 0},
+    {Ruined_Portal, -1, 8, 0, "废弃传送门8", 7, 0},
+    {Ruined_Portal, -1, 9, 0, "废弃传送门9", 8, 0},
+    {Ruined_Portal, -1, 10, 0, "废弃传送门10", 9, 0},
     {-1,0,0,0,0,0,0}
 };
 

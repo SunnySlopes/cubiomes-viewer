@@ -92,7 +92,7 @@ void ConfigDialog::setBiomeColorPath(QString path)
 
     if (path.isEmpty())
     {
-        ui->buttonBiomeColor->setText("...");
+        ui->buttonBiomeColor->setText("");
     }
     else
     {
@@ -114,7 +114,7 @@ void ConfigDialog::setBiomeColorPath(QString path)
 
         if (n >= 0)
         {
-            QString txt = tr("[%n biome(s)] %1", "", n).arg(finfo.baseName());
+            QString txt = tr("[%n 个群系] %1", "", n).arg(finfo.baseName());
             ui->buttonBiomeColor->setText(txt);
         }
         else
@@ -147,7 +147,7 @@ void ConfigDialog::on_buttonBiomeColor_clicked()
 {
     QFileInfo finfo(conf.biomeColorPath);
     QString fnam = QFileDialog::getOpenFileName(
-        this, tr("Load biome color map"), finfo.absolutePath(), tr("Text files (*.txt);;Any files (*)"));
+        this, tr("导入群系颜色图"), finfo.absolutePath(), tr("文本文件(*.txt);;任意文件(*)"));
     if (!fnam.isNull())
     {
         conf.biomeColorPath = fnam;

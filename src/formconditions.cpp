@@ -37,8 +37,8 @@ FormConditions::FormConditions(QWidget *parent)
         }
     }
 
-    qRegisterMetaType< Condition >("Condition");
-    qRegisterMetaTypeStreamOperators< Condition >("Condition");
+    qRegisterMetaType< Condition >("条件");
+    qRegisterMetaTypeStreamOperators< Condition >("条件");
 
     ui->listConditionsFull->setFont(*gp_font_mono);
 }
@@ -79,9 +79,9 @@ void FormConditions::updateSensitivity()
         ui->buttonDisable->setEnabled(true);
         Condition c = qvariant_cast<Condition>(selected[0]->data(Qt::UserRole));
         if (c.meta & Condition::DISABLED)
-            ui->buttonDisable->setText(tr("Enable"));
+            ui->buttonDisable->setText(tr("启用"));
         else
-            ui->buttonDisable->setText(tr("Disable"));
+            ui->buttonDisable->setText(tr("禁用"));
     }
     else
     {
@@ -240,40 +240,40 @@ void FormConditions::on_listConditionsFull_customContextMenuRequested(const QPoi
     if (parent)
     {
        QAction *actadd = menu.addAction(QIcon::fromTheme("list-add"),
-            tr("Add new condition"), this,
+            tr("新增条件"), this,
             &FormConditions::conditionsAdd, QKeySequence::New);
         actadd->setEnabled(true);
 
         QAction *actedit = menu.addAction(QIcon(),
-            tr("Edit condition"), this,
+            tr("修改条件"), this,
             &FormConditions::conditionsEdit, QKeySequence::Open);
         actedit->setEnabled(n == 1);
 
         QAction *actcut = menu.addAction(QIcon::fromTheme("edit-cut"),
-            tr("Cut %n condition(s)", "", n), this,
+            tr("剪切 %n 个条件", "", n), this,
             &FormConditions::conditionsCut, QKeySequence::Cut);
         actcut->setEnabled(n > 0);
 
         QAction *actcopy = menu.addAction(QIcon::fromTheme("edit-copy"),
-            tr("Copy %n condition(s)", "", n), this,
+            tr("复制 %n 个条件", "", n), this,
             &FormConditions::conditionsCopy, QKeySequence::Copy);
         actcopy->setEnabled(n > 0);
 
         int pn = conditionsPaste(true);
         QAction *actpaste = menu.addAction(QIcon::fromTheme("edit-paste"),
-            tr("Paste %n condition(s)", "", pn), this,
+            tr("粘贴 %n 个条件", "", pn), this,
             &FormConditions::conditionsPaste, QKeySequence::Paste);
         actpaste->setEnabled(pn > 0);
 
         QAction *actdel = menu.addAction(QIcon::fromTheme("edit-delete"),
-            tr("Remove %n condition(s)", "", n), this,
+            tr("删除 %n 个条件", "", n), this,
             &FormConditions::conditionsDelete, QKeySequence::Delete);
         actdel->setEnabled(n > 0);
     }
     else
     {
         QAction *actcopy = menu.addAction(QIcon::fromTheme("edit-copy"),
-            tr("Copy %n condition(s)", "", n), this,
+            tr("复制 %n 个条件", "", n), this,
             &FormConditions::conditionsCopy, QKeySequence::Copy);
         actcopy->setEnabled(n > 0);
     }

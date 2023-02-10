@@ -222,7 +222,7 @@ void getStructs(std::vector<VarPos> *out, const StructureConfig sconf,
                 if (sconf.structType == End_City)
                 {
                     SurfaceNoise sn;
-                    initSurfaceNoiseEnd(&sn, wi.seed);
+                    initSurfaceNoise(&sn, 1, wi.seed);
                     id = isViableEndCityTerrain(&g.en, &sn, p.x, p.z);
                     if (!id)
                         continue;
@@ -276,8 +276,8 @@ void Quad::run()
         {
             fprintf(
                 stderr,
-                "Failed to generate tile - "
-                "MC:%s seed:%" PRId64 " dim:%d @ [%d %d] (%d %d) 1:%d\n",
+                "无法生成标题"
+                "MC:%s 种子:%" PRId64 " 维度:%d @ [%d %d] (%d %d) 1:%d\n",
                 mc2str(g->mc), g->seed, g->dim,
                 x, z, w, h, scale);
             for (int i = 0; i < w*h; i++)

@@ -17,7 +17,7 @@
    <item row="1" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Seed(s):</string>
+      <string>种子:</string>
      </property>
     </widget>
    </item>
@@ -48,7 +48,7 @@
      </attribute>
      <column>
       <property name="text">
-       <string>seed</string>
+       <string>种子</string>
       </property>
       <property name="font">
        <font>
@@ -58,7 +58,7 @@
      </column>
      <column>
       <property name="text">
-       <string>condition</string>
+       <string>条件</string>
       </property>
       <property name="font">
        <font>
@@ -91,7 +91,7 @@
    <item row="0" column="0" colspan="2">
     <widget class="QLabel" name="labelDescription">
      <property name="text">
-      <string>Analyze the search condition triggers.</string>
+      <string>统计搜索条件触发器</string>
      </property>
     </widget>
    </item>
@@ -105,12 +105,12 @@
      </property>
      <item>
       <property name="text">
-       <string>Current seed</string>
+       <string>当前种子</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>From matching seeds list</string>
+       <string>符合条件的种子列表</string>
       </property>
      </item>
     </widget>
@@ -123,21 +123,21 @@
         <bool>false</bool>
        </property>
        <property name="text">
-        <string>Export...</string>
+        <string>导出</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pushExpand">
        <property name="text">
-        <string>Expand all</string>
+        <string>展开所有</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pushStart">
        <property name="text">
-        <string>Analyze</string>
+        <string>统计</string>
        </property>
       </widget>
      </item>

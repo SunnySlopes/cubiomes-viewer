@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Cubiomes Viewer</string>
+   <string>Cubiomes Viewer 汉化版</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../rc/icons.qrc">
@@ -43,10 +43,10 @@
           <item row="0" column="2">
            <widget class="QLabel" name="labelSeed">
             <property name="toolTip">
-             <string>Seed can be an integer or text. Leave empty for a random seed</string>
+             <string>请输入一个整数或一段文本，留空则生成随机种子</string>
             </property>
             <property name="text">
-             <string>seed:</string>
+             <string>种子:</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -56,17 +56,17 @@
           <item row="0" column="0">
            <widget class="QLabel" name="labeMC">
             <property name="toolTip">
-             <string>Minecraft version</string>
+             <string>MC版本</string>
             </property>
             <property name="text">
-             <string>MC</string>
+             <string>MC版本</string>
             </property>
            </widget>
           </item>
           <item row="0" column="1">
            <widget class="QComboBox" name="comboBoxMC">
             <property name="toolTip">
-             <string>Minecraft version</string>
+             <string>MC版本</string>
             </property>
             <property name="sizeAdjustPolicy">
              <enum>QComboBox::AdjustToMinimumContentsLength</enum>
@@ -185,7 +185,7 @@
           <item row="1" column="2">
            <widget class="QLabel" name="labelY">
             <property name="toolTip">
-             <string>Show map for this y-level</string>
+             <string>显示该Y值的地图</string>
             </property>
             <property name="text">
              <string>Y:</string>
@@ -198,7 +198,7 @@
           <item row="1" column="0" colspan="2">
            <widget class="QCheckBox" name="checkLarge">
             <property name="text">
-             <string>Large biomes</string>
+             <string>放大化群系</string>
             </property>
            </widget>
           </item>
@@ -214,10 +214,10 @@
             <item>
              <widget class="QLabel" name="labelSeedType">
               <property name="toolTip">
-               <string>Seed can be an integer or text. Leave empty for a random seed</string>
+               <string>请输入一个整数或一段文本，留空则生成随机种子</string>
               </property>
               <property name="text">
-               <string>random</string>
+               <string>随机</string>
               </property>
              </widget>
             </item>
@@ -239,17 +239,17 @@
             </property>
             <item>
              <property name="text">
-              <string>256 (Surface)</string>
+              <string>256 (地表)</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>128 (Nether Roof)</string>
+              <string>128 (下界基岩顶)</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>62 (Sea Level)</string>
+              <string>62 (海平面)</string>
              </property>
             </item>
             <item>
@@ -289,7 +289,7 @@
             </item>
             <item>
              <property name="text">
-              <string>-64 (Bedrock)</string>
+              <string>-64 (主世界基岩层)</string>
              </property>
             </item>
            </widget>
@@ -309,7 +309,7 @@
             </sizepolicy>
            </property>
            <attribute name="title">
-            <string>Search</string>
+            <string>搜索</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout">
             <property name="leftMargin">
@@ -367,8 +367,8 @@ QToolButton {
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1244</width>
-                 <height>667</height>
+                 <width>1233</width>
+                 <height>657</height>
                 </rect>
                </property>
                <property name="sizePolicy">
@@ -468,7 +468,7 @@ QSplitter {
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
-    <string>toolBar</string>
+    <string>工具栏</string>
    </property>
    <property name="autoFillBackground">
     <bool>false</bool>
@@ -521,16 +521,16 @@ QToolButton:checked {
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>22</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuMap">
     <property name="title">
-     <string>Map</string>
+     <string>地图</string>
     </property>
     <widget class="QMenu" name="menuBiome_layer">
      <property name="title">
-      <string>Biome layer/scale limit</string>
+      <string>地图种类</string>
      </property>
      <addaction name="actionDefault_1"/>
      <addaction name="actionDefault_4"/>
@@ -557,7 +557,7 @@ QToolButton:checked {
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>Help</string>
+     <string>帮助</string>
     </property>
     <addaction name="actionExamples"/>
     <addaction name="separator"/>
@@ -565,7 +565,7 @@ QToolButton:checked {
    </widget>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>文件</string>
     </property>
     <addaction name="actionLoad"/>
     <addaction name="actionSave"/>
@@ -579,7 +579,7 @@ QToolButton:checked {
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
-     <string>Edit</string>
+     <string>编辑</string>
     </property>
     <addaction name="actionCopy"/>
     <addaction name="actionPaste"/>
@@ -596,17 +596,17 @@ QToolButton:checked {
   </widget>
   <action name="actionAbout">
    <property name="text">
-    <string>About</string>
+    <string>关于</string>
    </property>
   </action>
   <action name="actionOpen_shadow_seed">
    <property name="text">
-    <string>Open shadow seed</string>
+    <string>查看影子种子</string>
    </property>
   </action>
   <action name="actionSave">
    <property name="text">
-    <string>Save session...</string>
+    <string>导出进度</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -614,7 +614,7 @@ QToolButton:checked {
   </action>
   <action name="actionLoad">
    <property name="text">
-    <string>Load session...</string>
+    <string>导入进度</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -622,65 +622,65 @@ QToolButton:checked {
   </action>
   <action name="actionSearch_seed_list">
    <property name="text">
-    <string>Search seed list...</string>
+    <string>搜索种子列表</string>
    </property>
    <property name="toolTip">
-    <string>Load seeds from file for search</string>
+    <string>从文件导入种子列表</string>
    </property>
   </action>
   <action name="actionSearch_full_seed_space">
    <property name="text">
-    <string>Search full seed space</string>
+    <string>搜索所有种子</string>
    </property>
   </action>
   <action name="actionCopy">
    <property name="text">
-    <string>Copy seeds from list</string>
+    <string>从列表复制种子</string>
    </property>
   </action>
   <action name="actionPaste">
    <property name="text">
-    <string>Paste seeds into list</string>
+    <string>粘贴种子</string>
    </property>
   </action>
   <action name="actionPreferences">
    <property name="text">
-    <string>Preferences...</string>
+    <string>偏好</string>
    </property>
   </action>
   <action name="actionQuit">
    <property name="text">
-    <string>Quit</string>
+    <string>退出</string>
    </property>
   </action>
   <action name="actionAddShadow">
    <property name="text">
-    <string>Add shadow for all seeds</string>
+    <string>将所有种子转化为其影子种子</string>
    </property>
   </action>
   <action name="actionExtGen">
    <property name="text">
-    <string>Advanced world settings...</string>
+    <string>高级世界生成选项</string>
    </property>
   </action>
   <action name="actionExamples">
    <property name="text">
-    <string>Example filters...</string>
+    <string>筛选示例</string>
    </property>
   </action>
   <action name="actionPresetSave">
    <property name="text">
-    <string>Save filter as preset...</string>
+    <string>保存筛选条件</string>
    </property>
   </action>
   <action name="actionPresetLoad">
    <property name="text">
-    <string>Load filter preset...</string>
+    <string>加载筛选条件</string>
    </property>
   </action>
   <action name="actionBiome_colors">
    <property name="text">
-    <string>Biome colors...</string>
+    <string>群系颜色</string>
    </property>
   </action>
   <action name="actionDefault_1">
@@ -691,7 +691,7 @@ QToolButton:checked {
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Default 1:1</string>
+    <string>1:1</string>
    </property>
    <property name="shortcut">
     <string>Alt+1</string>
@@ -702,7 +702,7 @@ QToolButton:checked {
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Default 1:4</string>
+    <string>1:4</string>
    </property>
    <property name="shortcut">
     <string>Alt+2</string>
@@ -713,7 +713,7 @@ QToolButton:checked {
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Default 1:16</string>
+    <string>1:16</string>
    </property>
    <property name="shortcut">
     <string>Alt+3</string>
@@ -724,7 +724,7 @@ QToolButton:checked {
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Default 1:64</string>
+    <string>1:64</string>
    </property>
    <property name="shortcut">
     <string>Alt+4</string>
@@ -735,7 +735,7 @@ QToolButton:checked {
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Default 1:256</string>
+    <string>1:256</string>
    </property>
    <property name="shortcut">
     <string>Alt+5</string>
@@ -743,7 +743,7 @@ QToolButton:checked {
   </action>
   <action name="actionGo_to">
    <property name="text">
-    <string>Go to...</string>
+    <string>前往坐标</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+G</string>
@@ -754,7 +754,7 @@ QToolButton:checked {
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>(1.13 - 1.17) O. Temp. 1:256</string>
+    <string>(1.13 - 1.17)海洋温度1:256</string>
    </property>
    <property name="shortcut">
     <string>Alt+7</string>
@@ -765,7 +765,7 @@ QToolButton:checked {
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>(1.13 - 1.17) River Mix 1:4</string>
+    <string>(1.13 - 1.17)河流1:4</string>
    </property>
    <property name="shortcut">
     <string>Alt+6</string>
@@ -773,12 +773,12 @@ QToolButton:checked {
   </action>
   <action name="actionExportImg">
    <property name="text">
-    <string>Export biomes as image...</string>
+    <string>将群系图导出为图片</string>
    </property>
   </action>
   <action name="actionStructure_visibility">
    <property name="text">
-    <string>Structure zoom limits...</string>
+    <string>结构可见最小缩放等级</string>
    </property>
   </action>
   <action name="actionParaTemperature">
@@ -786,7 +786,7 @@ QToolButton:checked {
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>(1.18+) Temperature</string>
+    <string>(1.18+)温度分布</string>
    </property>
    <property name="shortcut">
     <string>Alt+T</string>
@@ -797,7 +797,7 @@ QToolButton:checked {
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>(1.18+) Humidity</string>
+    <string>(1.18+)湿度分布</string>
    </property>
    <property name="shortcut">
     <string>Alt+H</string>
@@ -808,7 +808,7 @@ QToolButton:checked {
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>(1.18+) Continentalness</string>
+    <string>(1.18+)海陆分布</string>
    </property>
    <property name="shortcut">
     <string>Alt+C</string>
@@ -819,7 +819,7 @@ QToolButton:checked {
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>(1.18+) Erosion</string>
+    <string>(1.18+)侵蚀分布</string>
    </property>
    <property name="shortcut">
     <string>Alt+E</string>
@@ -830,7 +830,7 @@ QToolButton:checked {
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>(1.18+) Weirdness</string>
+    <string>(1.18+)稀有度分布</string>
    </property>
    <property name="shortcut">
     <string>Alt+W</string>
@@ -841,7 +841,7 @@ QToolButton:checked {
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>(1.18+) Depth</string>
+    <string>(1.18+)深度分布</string>
    </property>
    <property name="shortcut">
     <string>Alt+D</string>
@@ -852,7 +852,7 @@ QToolButton:checked {
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Dockable</string>
+    <string>可移动</string>
    </property>
   </action>
  </widget>
