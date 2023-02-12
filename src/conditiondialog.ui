@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Condition Editor</string>
+   <string>条件编辑器</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../rc/icons.qrc">
@@ -23,7 +23,7 @@
      <item row="0" column="0">
       <widget class="QLabel" name="labelMC">
        <property name="text">
-        <string>MC: 1.X</string>
+        <string>MC版本</string>
        </property>
       </widget>
      </item>
@@ -46,12 +46,12 @@
        </property>
        <item>
         <property name="text">
-         <string>Select category</string>
+         <string>选择目录</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Algorithm helpers</string>
+         <string>算法辅助</string>
         </property>
         <property name="icon">
          <iconset resource="../rc/icons.qrc">
@@ -60,7 +60,7 @@
        </item>
        <item>
         <property name="text">
-         <string>Quad-structure</string>
+         <string>四联结构</string>
         </property>
         <property name="icon">
          <iconset resource="../rc/icons.qrc">
@@ -69,7 +69,7 @@
        </item>
        <item>
         <property name="text">
-         <string>Structures</string>
+         <string>结构</string>
         </property>
         <property name="icon">
          <iconset resource="../rc/icons.qrc">
@@ -78,7 +78,7 @@
        </item>
        <item>
         <property name="text">
-         <string>Biomes</string>
+         <string>主世界群系</string>
         </property>
         <property name="icon">
          <iconset resource="../rc/icons.qrc">
@@ -87,7 +87,7 @@
        </item>
        <item>
         <property name="text">
-         <string>Nether biomes</string>
+         <string>下界群系</string>
         </property>
         <property name="icon">
          <iconset resource="../rc/icons.qrc">
@@ -96,7 +96,7 @@
        </item>
        <item>
         <property name="text">
-         <string>End biomes</string>
+         <string>末地群系</string>
         </property>
         <property name="icon">
          <iconset resource="../rc/icons.qrc">
@@ -105,7 +105,7 @@
        </item>
        <item>
         <property name="text">
-         <string>Others</string>
+         <string>其他</string>
         </property>
         <property name="icon">
          <iconset resource="../rc/icons.qrc">
@@ -139,7 +139,7 @@
        </property>
        <item>
         <property name="text">
-         <string>Select type</string>
+         <string>选择种类</string>
         </property>
        </item>
       </widget>
@@ -147,7 +147,7 @@
      <item row="0" column="1">
       <widget class="QLabel" name="labelFilterType">
        <property name="text">
-        <string>Condition type:</string>
+        <string>条件类型:</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -183,7 +183,7 @@
        <item row="0" column="0" rowspan="2" colspan="2">
         <widget class="QGroupBox" name="groupBoxGeneral">
          <property name="title">
-          <string>General</string>
+          <string>一般条件</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_9">
           <property name="leftMargin">
@@ -201,7 +201,7 @@
           <item row="0" column="5">
            <widget class="QCheckBox" name="checkEnabled">
             <property name="text">
-             <string>Condition enabled</string>
+             <string>条件启用</string>
             </property>
            </widget>
           </item>
@@ -239,7 +239,7 @@
           <item row="0" column="0">
            <widget class="QLabel" name="label_2">
             <property name="text">
-             <string>Label:</string>
+             <string>标签:</string>
             </property>
            </widget>
           </item>
@@ -249,13 +249,13 @@
        <item row="2" column="0" rowspan="2" colspan="2">
         <widget class="QGroupBox" name="groupBoxPosition">
          <property name="title">
-          <string>Location</string>
+          <string>坐标</string>
          </property>
          <layout class="QGridLayout" name="gridLayout">
           <item row="2" column="0" colspan="3">
            <widget class="QCheckBox" name="checkRadius">
             <property name="text">
-             <string>Within radial distance: </string>
+             <string>半径: </string>
             </property>
            </widget>
           </item>
@@ -264,7 +264,7 @@
             <item>
              <widget class="QLabel" name="labelX1">
               <property name="toolTip">
-               <string>Lower bound (inclusive)</string>
+               <string>最小值(含)</string>
               </property>
               <property name="text">
                <string>X&lt;sub&gt;1&lt;/sub&gt;:</string>
@@ -274,7 +274,7 @@
             <item>
              <widget class="QLineEdit" name="lineEditX1">
               <property name="toolTip">
-               <string>Lower bound (inclusive)</string>
+               <string>最小值(含)</string>
               </property>
               <property name="text">
                <string>0</string>
@@ -284,7 +284,7 @@
             <item>
              <widget class="QLabel" name="labelZ1">
               <property name="toolTip">
-               <string>Lower bound (inclusive)</string>
+               <string>最小值(含)</string>
               </property>
               <property name="text">
                <string>Z&lt;sub&gt;1&lt;/sub&gt;:</string>
@@ -294,7 +294,7 @@
             <item>
              <widget class="QLineEdit" name="lineEditZ1">
               <property name="toolTip">
-               <string>Lower bound (inclusive)</string>
+               <string>最小值(含)</string>
               </property>
               <property name="text">
                <string>0</string>
@@ -317,7 +317,7 @@
             <item>
              <widget class="QLabel" name="labelX2">
               <property name="toolTip">
-               <string>Upper bound (inclusive)</string>
+               <string>最大值(含)</string>
               </property>
               <property name="text">
                <string>X&lt;sub&gt;2&lt;/sub&gt;:</string>
@@ -327,7 +327,7 @@
             <item>
              <widget class="QLineEdit" name="lineEditX2">
               <property name="toolTip">
-               <string>Upper bound (inclusive)</string>
+               <string>最大值(含)</string>
               </property>
               <property name="text">
                <string>0</string>
@@ -337,7 +337,7 @@
             <item>
              <widget class="QLabel" name="labelZ2">
               <property name="toolTip">
-               <string>Upper bound (inclusive)</string>
+               <string>最大值(含)</string>
               </property>
               <property name="text">
                <string>Z&lt;sub&gt;2&lt;/sub&gt;:</string>
@@ -347,7 +347,7 @@
             <item>
              <widget class="QLineEdit" name="lineEditZ2">
               <property name="toolTip">
-               <string>Upper bound (inclusive)</string>
+               <string>最大值(含)</string>
               </property>
               <property name="text">
                <string>0</string>
@@ -359,7 +359,7 @@
           <item row="3" column="0" colspan="3">
            <widget class="QRadioButton" name="radioSquare">
             <property name="text">
-             <string>Within centred square of side:</string>
+             <string>正方形范围边长:</string>
             </property>
             <property name="checked">
              <bool>true</bool>
@@ -369,14 +369,14 @@
           <item row="4" column="0">
            <widget class="QRadioButton" name="radioCustom">
             <property name="text">
-             <string>Custom:</string>
+             <string>自定义范围:</string>
             </property>
            </widget>
           </item>
           <item row="5" column="0" colspan="3">
            <widget class="QLabel" name="labelRelative">
             <property name="text">
-             <string>Location is relative to:</string>
+             <string>位置相对于:</string>
             </property>
            </widget>
           </item>
@@ -387,7 +387,7 @@
             </property>
             <item>
              <property name="text">
-              <string>World origin</string>
+              <string>世界原点</string>
              </property>
             </item>
            </widget>
@@ -402,7 +402,7 @@
           <item row="0" column="0" colspan="3">
            <widget class="QLabel" name="labelSpinBox">
             <property name="text">
-             <string>Instances within area:</string>
+             <string>范围内包含的结构数量:</string>
             </property>
            </widget>
           </item>
@@ -415,7 +415,7 @@
              </sizepolicy>
             </property>
             <property name="specialValueText">
-             <string>0 (exclude)</string>
+             <string>0 (不包含)</string>
             </property>
             <property name="minimum">
              <number>0</number>
@@ -431,10 +431,10 @@
           <item row="0" column="4" colspan="2">
            <widget class="QCheckBox" name="checkSkipRef">
             <property name="toolTip">
-             <string>Skip instances at exactly the relative reference location</string>
+             <string>忽略刚好满足距离要求的结构</string>
             </property>
             <property name="text">
-             <string>Ignore reference</string>
+             <string>忽略参考</string>
             </property>
            </widget>
           </item>
@@ -514,13 +514,13 @@
            <item row="0" column="0">
             <widget class="QGroupBox" name="groupBox_6">
              <property name="title">
-              <string>Details</string>
+              <string>详细信息</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_5">
               <item row="0" column="0">
                <widget class="QLabel" name="label_3">
                 <property name="text">
-                 <string>None</string>
+                 <string/>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -558,26 +558,26 @@
               </sizepolicy>
              </property>
              <property name="title">
-              <string>Biomes</string>
+              <string>群系</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_13">
               <item row="0" column="0">
                <widget class="QCheckBox" name="checkApprox">
                 <property name="toolTip">
-                 <string>Enables optimizations that trade some accuracy for speed</string>
+                 <string>允许牺牲一些精度换取一些速度</string>
                 </property>
                 <property name="text">
-                 <string>Approximate</string>
+                 <string>大致搜索</string>
                 </property>
                </widget>
               </item>
               <item row="0" column="1">
                <widget class="QCheckBox" name="checkMatchAny">
                 <property name="toolTip">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p style=&quot;white-space:pre&quot;&gt;Satisfied if &lt;span style=&quot; font-weight:600;&quot;&gt;any&lt;/span&gt; of the checked biomes are present&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 <string>选区内包含下列任一勾选的群系即可满足条件</string>
                 </property>
                 <property name="text">
-                 <string>Match any</string>
+                 <string>包含任一群系</string>
                 </property>
                </widget>
               </item>
@@ -597,7 +597,7 @@
               <item row="0" column="3">
                <widget class="QLabel" name="labelY">
                 <property name="text">
-                 <string>Sample at height (Y):</string>
+                 <string>采样高度(Y):</string>
                 </property>
                </widget>
               </item>
@@ -611,17 +611,17 @@
                 </property>
                 <item>
                  <property name="text">
-                  <string>256 (Surface)</string>
+                  <string>256 (地表)</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>128 (Nether Roof)</string>
+                  <string>128 (下界基岩顶)</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>62 (Sea Level)</string>
+                  <string>62 (海平面)</string>
                  </property>
                 </item>
                 <item>
@@ -661,7 +661,7 @@
                 </item>
                 <item>
                  <property name="text">
-                  <string>-64 (Bedrock)</string>
+                  <string>-64 (主世界基岩层)</string>
                  </property>
                 </item>
                </widget>
@@ -671,21 +671,21 @@
                 <item>
                  <widget class="QPushButton" name="buttonUncheck">
                   <property name="text">
-                   <string>uncheck all</string>
+                   <string>取消勾选全部群系</string>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QPushButton" name="buttonInclude">
                   <property name="text">
-                   <string>include all</string>
+                   <string>包含所有群系</string>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QPushButton" name="buttonExclude">
                   <property name="text">
-                   <string>exclude all</string>
+                   <string>排除所有群系</string>
                   </property>
                  </widget>
                 </item>
@@ -701,8 +701,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>60</width>
-                   <height>20</height>
+                   <width>53</width>
+                   <height>24</height>
                   </rect>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -741,7 +741,7 @@
            <item row="0" column="0">
             <widget class="QGroupBox" name="groupBox_5">
              <property name="title">
-              <string>Locate boime center</string>
+              <string>定位群系中心</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_19">
               <item row="3" column="1">
@@ -776,7 +776,7 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>(? sq. chunks)</string>
+                 <string>(平方区块)</string>
                 </property>
                </widget>
               </item>
@@ -790,21 +790,21 @@
               <item row="1" column="0" colspan="2">
                <widget class="QLabel" name="label_5">
                 <property name="text">
-                 <string>Minimum area:</string>
+                 <string>最小范围:</string>
                 </property>
                </widget>
               </item>
               <item row="2" column="0">
                <widget class="QLabel" name="label_4">
                 <property name="text">
-                 <string>Border tollerance:</string>
+                 <string>边界容错:</string>
                 </property>
                </widget>
               </item>
               <item row="0" column="0">
                <widget class="QLabel" name="label_6">
                 <property name="text">
-                 <string>Biome:</string>
+                 <string>群系:</string>
                 </property>
                </widget>
               </item>
@@ -840,13 +840,13 @@
            <item>
             <widget class="QGroupBox" name="groupBox_8">
              <property name="title">
-              <string>Temperature categories</string>
+              <string>温度类别</string>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout">
               <item>
                <widget class="QLabel" name="label">
                 <property name="text">
-                 <string>Select how many entries of each temperature category are required.</string>
+                 <string>选择每个温度类别包含群系种类的数量</string>
                 </property>
                </widget>
               </item>
@@ -891,13 +891,13 @@
            <item row="0" column="0">
             <widget class="QGroupBox" name="groupBox">
              <property name="title">
-              <string>Climate parameters</string>
+              <string>群系气候参数</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_15">
               <item row="0" column="0">
                <widget class="QGroupBox" name="groupBox_2">
                 <property name="title">
-                 <string>Select the minimum required and maximum allowed climate parameters:</string>
+                 <string>选择以下群系气候参数的最小值和最大值:</string>
                 </property>
                 <layout class="QGridLayout" name="gridLayout_6">
                  <property name="spacing">
@@ -906,10 +906,10 @@
                  <item row="0" column="1" colspan="3">
                   <widget class="QGroupBox" name="groupBox_3">
                    <property name="toolTip">
-                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The climate has to enter the required range&lt;/p&gt;&lt;p&gt;With the &lt;span style=&quot; font-style:italic;&quot;&gt;complete&lt;/span&gt; modifier, the entire range must be covered&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    <string>参数必须在范围内且必须包含全部区间</string>
                    </property>
                    <property name="title">
-                    <string>Required:</string>
+                    <string>需要包含的群系条件:</string>
                    </property>
                    <layout class="QGridLayout" name="gridLayout_11">
                     <property name="leftMargin">
@@ -937,7 +937,7 @@
                  <item row="0" column="0">
                   <widget class="QGroupBox" name="groupBox_4">
                    <property name="title">
-                    <string>Climate</string>
+                    <string>气候条件</string>
                    </property>
                    <layout class="QGridLayout" name="gridLayout_14">
                     <property name="leftMargin">
@@ -965,10 +965,10 @@
                  <item row="0" column="4" colspan="3">
                   <widget class="QGroupBox" name="groupBox_9">
                    <property name="toolTip">
-                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The climate must remain inside the confinement range&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    <string>参数必须在范围内</string>
                    </property>
                    <property name="title">
-                    <string>Confined:</string>
+                    <string>需要排除的群系条件:</string>
                    </property>
                    <layout class="QGridLayout" name="gridLayout_12">
                     <property name="leftMargin">
@@ -999,7 +999,7 @@
               <item row="1" column="0">
                <widget class="QLabel" name="label_10">
                 <property name="text">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Resulting biomes (&lt;span style=&quot; font-weight:600;&quot;&gt;at least one&lt;/span&gt; with &lt;img src=&quot;:/icons/check_include.png&quot;/&gt;, &lt;span style=&quot; font-weight:600;&quot;&gt;any&lt;/span&gt; with &lt;img src=&quot;:/icons/check_unchecked.png&quot;/&gt;, &lt;span style=&quot; font-weight:600;&quot;&gt;none&lt;/span&gt; with &lt;img src=&quot;:/icons/check_exclude.png&quot;/&gt;):&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;筛选结构 (包含至少一个 &lt;img src=&quot;:/icons/check_include.png&quot;/&gt;, 无限制 &lt;img src=&quot;:/icons/check_unchecked.png&quot;/&gt;, 不包含 &lt;img src=&quot;:/icons/check_exclude.png&quot;/&gt;):&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                </widget>
               </item>
@@ -1013,8 +1013,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>60</width>
-                   <height>20</height>
+                   <width>53</width>
+                   <height>24</height>
                   </rect>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1050,13 +1050,13 @@
            <item row="0" column="0">
             <widget class="QGroupBox" name="groupBox_10">
              <property name="title">
-              <string>Locate climate minimum/maximum</string>
+              <string>定位气候参数的极值</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_24">
               <item row="0" column="0">
                <widget class="QLabel" name="label_8">
                 <property name="text">
-                 <string>Climate parameter: </string>
+                 <string>气候参数: </string>
                 </property>
                </widget>
               </item>
@@ -1071,22 +1071,22 @@
                <widget class="QComboBox" name="comboMinMax">
                 <item>
                  <property name="text">
-                  <string>Minimum	 &lt;=</string>
+                  <string>最小 &lt;=</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Maximum	 &gt;=</string>
+                  <string>最大 &gt;=</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Minimum	 &gt;=</string>
+                  <string>最小 &gt;=</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Maximum	 &lt;=</string>
+                  <string>最大 &lt;=</string>
                  </property>
                 </item>
                </widget>
@@ -1094,7 +1094,7 @@
               <item row="2" column="0">
                <widget class="QLabel" name="label_9">
                 <property name="text">
-                 <string>Locate value:</string>
+                 <string>条件:</string>
                 </property>
                </widget>
               </item>
@@ -1126,7 +1126,7 @@
               <item row="1" column="0">
                <widget class="QLabel" name="label_12">
                 <property name="text">
-                 <string>Octaves:</string>
+                 <string>精度:</string>
                 </property>
                </widget>
               </item>
@@ -1152,13 +1152,13 @@
            <item row="0" column="0">
             <widget class="QGroupBox" name="groupBox_11">
              <property name="title">
-              <string>Approximate surface height</string>
+              <string>地表大致高度</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_26">
               <item row="0" column="0">
                <widget class="QLabel" name="label_11">
                 <property name="text">
-                 <string>Height (Y-level)</string>
+                 <string>高度(Y)</string>
                 </property>
                </widget>
               </item>
@@ -1166,12 +1166,12 @@
                <widget class="QComboBox" name="comboHeightRange">
                 <item>
                  <property name="text">
-                  <string>Inside range:</string>
+                  <string>内部范围:</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Outside range:</string>
+                  <string>外部范围:</string>
                  </property>
                 </item>
                </widget>
@@ -1220,7 +1220,7 @@
              </property>
              <widget class="QWidget" name="tabLuaText">
               <attribute name="title">
-               <string>Edit</string>
+               <string>编辑</string>
               </attribute>
               <layout class="QGridLayout" name="gridLayout_21">
                <property name="leftMargin">
@@ -1238,21 +1238,21 @@
                <item row="1" column="4">
                 <widget class="QPushButton" name="pushLuaSaveAs">
                  <property name="text">
-                  <string>Save as...</string>
+                  <string>保存到...</string>
                  </property>
                 </widget>
                </item>
                <item row="1" column="3">
                 <widget class="QPushButton" name="pushLuaExample">
                  <property name="text">
-                  <string>Examples...</string>
+                  <string>示例</string>
                  </property>
                 </widget>
                </item>
                <item row="1" column="5">
                 <widget class="QPushButton" name="pushLuaSave">
                  <property name="text">
-                  <string>Save</string>
+                  <string>保存</string>
                  </property>
                 </widget>
                </item>
@@ -1315,14 +1315,14 @@
            <item row="0" column="0">
             <widget class="QLabel" name="label_7">
              <property name="text">
-              <string>Lua script:</string>
+              <string>Lua脚本:</string>
              </property>
             </widget>
            </item>
            <item row="0" column="4">
             <widget class="QPushButton" name="pushLuaOpen">
              <property name="text">
-              <string>Open directory...</string>
+              <string>打开文件</string>
              </property>
             </widget>
            </item>
@@ -1371,23 +1371,23 @@
            <item row="0" column="0">
             <widget class="QGroupBox" name="groupBoxVillage">
              <property name="title">
-              <string>Village variants</string>
+              <string>村庄变种</string>
              </property>
              <layout class="QGridLayout" name="gridLayoutVillage2">
               <item row="0" column="0">
                <widget class="QCheckBox" name="checkStartPieces">
                 <property name="toolTip">
-                 <string>Allow only structures that start with one of the selected pieces</string>
+                 <string>筛选村庄种类</string>
                 </property>
                 <property name="text">
-                 <string>Filter starting piece</string>
+                 <string>选择村庄种类</string>
                 </property>
                </widget>
               </item>
               <item row="0" column="1">
                <widget class="QCheckBox" name="checkAbandoned">
                 <property name="text">
-                 <string>Abandoned</string>
+                 <string>废弃村庄</string>
                 </property>
                 <property name="tristate">
                  <bool>true</bool>
@@ -1404,8 +1404,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>60</width>
-                   <height>20</height>
+                   <width>53</width>
+                   <height>24</height>
                   </rect>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_3_1">
@@ -1438,16 +1438,16 @@
            <item row="0" column="0">
             <widget class="QGroupBox" name="groupBoxBastion">
              <property name="title">
-              <string>Bastion variants</string>
+              <string>堡垒遗迹类型</string>
              </property>
              <layout class="QGridLayout" name="gridLayoutBastion2">
               <item row="0" column="0">
                <widget class="QCheckBox" name="checkStartBastion">
                 <property name="toolTip">
-                 <string>Allow only structures that start with one of the selected pieces</string>
+                 <string>筛选堡垒遗迹的类型</string>
                 </property>
                 <property name="text">
-                 <string>Filter starting piece</string>
+                 <string>选择堡垒遗迹类型</string>
                 </property>
                </widget>
               </item>
@@ -1461,8 +1461,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>60</width>
-                   <height>20</height>
+                   <width>53</width>
+                   <height>24</height>
                   </rect>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_3_2">
@@ -1495,16 +1495,16 @@
            <item row="0" column="0">
             <widget class="QGroupBox" name="groupBoxFortress">
              <property name="title">
-              <string>Fortress pieces</string>
+              <string>下界要塞结构</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_17">
               <item row="0" column="0">
                <widget class="QCheckBox" name="checkDenseBB">
                 <property name="toolTip">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximum continuous square bounding box&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 <string>指2*2排布的十字路口结构</string>
                 </property>
                 <property name="text">
-                 <string>With 2x2 arrangement of bridge crossings or start piece</string>
+                 <string>拥有四联十字路口</string>
                 </property>
                </widget>
               </item>
@@ -1543,16 +1543,16 @@
            <item row="0" column="0">
             <widget class="QGroupBox" name="groupBoxPortal">
              <property name="title">
-              <string>Ruined portal variants</string>
+              <string>废弃传送门传送门种类</string>
              </property>
              <layout class="QGridLayout" name="gridLayoutPortal2">
               <item row="0" column="0">
                <widget class="QCheckBox" name="checkStartPortal">
                 <property name="toolTip">
-                 <string>Allow only structures that start with one of the selected pieces</string>
+                 <string>筛选废弃传送门种类</string>
                 </property>
                 <property name="text">
-                 <string>Filter starting piece</string>
+                 <string>选择废弃传送门种类</string>
                 </property>
                </widget>
               </item>
@@ -1566,8 +1566,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>60</width>
-                   <height>20</height>
+                   <width>53</width>
+                   <height>24</height>
                   </rect>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_3_3">
@@ -1600,13 +1600,13 @@
            <item row="0" column="0">
             <widget class="QGroupBox" name="groupBoxEndCity">
              <property name="title">
-              <string>End city variants</string>
+              <string>末地城种类</string>
              </property>
              <layout class="QGridLayout" name="gridLayoutEndCity2">
               <item row="0" column="0">
                <widget class="QCheckBox" name="checkEndShip">
                 <property name="text">
-                 <string>End ship</string>
+                 <string>包含末地船</string>
                 </property>
                 <property name="tristate">
                  <bool>true</bool>
@@ -1655,7 +1655,7 @@
      <item>
       <widget class="QPushButton" name="buttonCancel">
        <property name="text">
-        <string>Cancel</string>
+        <string>取消</string>
        </property>
        <property name="icon">
         <iconset theme="dialog-cancel">
@@ -1666,7 +1666,7 @@
      <item>
       <widget class="QPushButton" name="buttonOk">
        <property name="text">
-        <string>Ok</string>
+        <string>确认</string>
        </property>
        <property name="icon">
         <iconset theme="dialog-ok">

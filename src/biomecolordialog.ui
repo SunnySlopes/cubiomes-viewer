@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Biome Color Editor</string>
+   <string>群系颜色编辑器</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../rc/icons.qrc">
@@ -24,7 +24,7 @@
    <item row="0" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Biome color map:</string>
+      <string>群系颜色图:</string>
      </property>
     </widget>
    </item>
@@ -33,21 +33,21 @@
      <item>
       <widget class="QPushButton" name="buttonSaveAs">
        <property name="text">
-        <string>Save as...</string>
+        <string>保存</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="buttonRemove">
        <property name="text">
-        <string>Remove</string>
+        <string>删除</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="buttonOk">
        <property name="text">
-        <string>Ok</string>
+        <string>确定</string>
        </property>
       </widget>
      </item>
@@ -68,7 +68,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">text-align: left; padding: 2px;</string>
+       <string notr="true">文字对齐方式: 左; 步长: 2像素;</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="0">

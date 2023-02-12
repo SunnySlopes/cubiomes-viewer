@@ -46,11 +46,11 @@ QVariant SeedTableModel::headerData(int section, Qt::Orientation orientation, in
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
         if (section == COL_SEED)
-            return QVariant::fromValue(tr("seed"));
+            return QVariant::fromValue(tr("种子"));
         if (section == COL_TOP16)
-            return QVariant::fromValue(tr("top 16"));
+            return QVariant::fromValue(tr("高16位"));
         if (section == COL_HEX48)
-            return QVariant::fromValue(tr("lower 48 bit"));
+            return QVariant::fromValue(tr("低48二进制位"));
     }
     if (role == Qt::DisplayRole && orientation == Qt::Vertical)
         return QVariant::fromValue(section + 1);
@@ -236,8 +236,8 @@ bool FormSearchControl::setList64(QString path, bool quiet)
         else if (!quiet)
         {
             int button = QMessageBox::warning(
-                this, tr("Warning"),
-                tr("Failed to load 64-bit seed list from file:\n\"%1\"").arg(path),
+                this, tr("警告"),
+                tr("无法从以下文件读取种子列表:\n\"%1\"").arg(path),
                 QMessageBox::Reset, QMessageBox::Ignore);
             if (button == QMessageBox::Reset)
             {
@@ -260,7 +260,7 @@ void FormSearchControl::searchLockUi(bool lock)
     }
     else
     {
-        ui->buttonStart->setText(tr("Start search"));
+        ui->buttonStart->setText(tr("开始搜索"));
         ui->buttonStart->setIcon(QIcon(":/icons/search.png"));
         ui->buttonStart->setChecked(false);
         ui->buttonStart->setEnabled(true);
@@ -290,7 +290,7 @@ void FormSearchControl::setSearchMode(int mode)
 
 int FormSearchControl::warning(QString text, QMessageBox::StandardButtons buttons)
 {
-    return QMessageBox::warning(this, tr("Warning"), text, buttons);
+    return QMessageBox::warning(this, tr("警告"), text, buttons);
 }
 
 void FormSearchControl::openProtobaseMsg(QString path)
@@ -325,17 +325,17 @@ void FormSearchControl::on_buttonStart_clicked()
 
         if (condvec.empty())
         {
-            QMessageBox::warning(this, tr("Warning"), tr("Please define some constraints using the \"Add\" button."), QMessageBox::Ok);
+            QMessageBox::warning(this, tr("警告"), tr("请使用“添加”按钮增加一些筛选条件再开始搜索！"), QMessageBox::Ok);
             ok = false;
         }
         if (sc.searchtype == SEARCH_LIST && slist64.empty())
         {
-            QMessageBox::warning(this, tr("Warning"), tr("No seed list file selected."), QMessageBox::Ok);
+            QMessageBox::warning(this, tr("警告"), tr("未选择种子列表文件"), QMessageBox::Ok);
             ok = false;
         }
         if (sthread.isRunning())
         {
-            QMessageBox::warning(this, tr("Warning"), tr("Search is still running."), QMessageBox::Ok);
+            QMessageBox::warning(this, tr("警告"), tr("搜索仍在进行"), QMessageBox::Ok);
             ok = false;
         }
 
@@ -356,7 +356,7 @@ void FormSearchControl::on_buttonStart_clicked()
         if (ok)
         {
             ui->lineStart->setText(QString::asprintf("%" PRId64, (int64_t)sc.startseed));
-            ui->buttonStart->setText(tr("Abort search"));
+            ui->buttonStart->setText(tr("暂停搜索"));
             ui->buttonStart->setIcon(QIcon(":/icons/cancel.png"));
             searchLockUi(true);
             nextupdate = 0;
@@ -372,7 +372,7 @@ void FormSearchControl::on_buttonStart_clicked()
     }
     else
     {
-        ui->buttonStart->setText(tr("Start search"));
+        ui->buttonStart->setText(tr("开始搜索"));
         ui->buttonStart->setIcon(QIcon(":/icons/search.png"));
         ui->buttonStart->setChecked(false);
 
@@ -390,7 +390,7 @@ void FormSearchControl::on_buttonMore_clicked()
     if (type == SEARCH_LIST)
     {
         QString fnam = QFileDialog::getOpenFileName(
-            this, tr("Load seed list"), parent->prevdir, tr("Text files (*.txt);;Any files (*)"));
+            this, tr("导入种子列表"), parent->prevdir, tr("文本文件(*.txt);;任意文件(*)"));
         setList64(fnam, false);
     }
     else if (type == SEARCH_INC)
@@ -429,18 +429,18 @@ void FormSearchControl::on_results_customContextMenuRequested(const QPoint &pos)
     // but will not function - see keyReleaseEvent() for shortcut implementation
 
     QAction *actremove = menu.addAction(QIcon::fromTheme("list-remove"),
-        tr("Remove selected seed"), this,
+        tr("删除选定的种子"), this,
         &FormSearchControl::removeCurrent, QKeySequence::Delete);
     actremove->setEnabled(!ui->results->selectionModel()->hasSelection());
 
     QAction *actcopy = menu.addAction(QIcon::fromTheme("edit-copy"),
-        tr("Copy list to clipboard"), this,
+        tr("复制列表到剪贴板"), this,
         &FormSearchControl::copyResults, QKeySequence::Copy);
     actcopy->setEnabled(ui->results->model()->rowCount() > 0);
 
     int n = pasteList(true);
     QAction *actpaste = menu.addAction(QIcon::fromTheme("edit-paste"),
-        tr("Paste %n seed(s) from clipboard", "", n), this,
+        tr("从剪贴板粘贴 %n 个种子", "", n), this,
         &FormSearchControl::pasteResults, QKeySequence::Paste);
     actpaste->setEnabled(n > 0);
     menu.exec(ui->results->mapToGlobal(pos));
@@ -604,8 +604,8 @@ int FormSearchControl::searchResultsAdd(QVector<uint64_t> seeds, bool countonly)
     if (countonly == false && n >= config.maxMatching)
     {
         sthread.stop();
-        QString msg = tr("Maximum number of results reached (%1).").arg(config.maxMatching);
-        QMessageBox::warning(this, tr("Warning"), msg, QMessageBox::Ok);
+        QString msg = tr("已达到最大结果数 (%1).").arg(config.maxMatching);
+        QMessageBox::warning(this, tr("警告"), msg, QMessageBox::Ok);
     }
 
     int addcnt = n - ns;
@@ -694,9 +694,9 @@ void FormSearchControl::searchFinish(bool done)
     {
         ui->lineStart->setText(QString::asprintf("%" PRId64, sthread.smax));
         ui->progressBar->setValue(10000);
-        ui->progressBar->setFormat(tr("Done", "Progressbar when finished"));
+        ui->progressBar->setFormat(tr("已完成", "完成时的进度条"));
     }
-    ui->labelStatus->setText("Idle");
+    ui->labelStatus->setText("空闲");
     proghist.clear();
     searchLockUi(false);
 }
@@ -769,7 +769,7 @@ void FormSearchControl::resultTimeout()
     while (proghist.size() > 1 && proghist.back().ns < tp.ns - SAMPLE_SEC*1e9)
         proghist.pop_back();
 
-    QString status = tr("Running...");
+    QString status = tr("正在运行");
     if (proghist.size() > 1 && proghist.front().ns > proghist.back().ns)
     {
         double min, avg, max;
@@ -788,7 +788,7 @@ void FormSearchControl::resultTimeout()
             else
                 eta = QString("%1:%2").arg(s / 60).arg(s % 60, 2, 10, QLatin1Char('0'));
         }
-        status = tr("seeds/sec: %1 min: %2 max: %3 isize: %4 eta: %5")
+        status = tr("种子/秒: %1 最小值: %2 最大值: %3 单线程单次搜索种子数: %4 剩余时间估计: %5")
             .arg(getAbbrNum(avg), -8)
             .arg(getAbbrNum(min), -8)
             .arg(getAbbrNum(max), -8)

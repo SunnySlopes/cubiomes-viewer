@@ -2,8 +2,16 @@
 <ui version="4.0">
  <class>LayerDialog</class>
  <widget class="QDialog" name="LayerDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>474</width>
+    <height>426</height>
+   </rect>
+  </property>
   <property name="windowTitle">
-   <string>Layer Display Options</string>
+   <string>图层展示选项</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../rc/icons.qrc">
@@ -16,7 +24,7 @@
    <item row="0" column="0">
     <widget class="QRadioButton" name="radioBiomes">
      <property name="text">
-      <string>Biome scale:</string>
+      <string>群系图缩放大小:</string>
      </property>
     </widget>
    </item>
@@ -26,21 +34,21 @@
    <item row="10" column="0">
     <widget class="QRadioButton" name="radioHeight">
      <property name="text">
-      <string>Approx. surface height:</string>
+      <string>近似地表高度:</string>
      </property>
     </widget>
    </item>
    <item row="6" column="0">
     <widget class="QRadioButton" name="radioNoiseE">
      <property name="text">
-      <string>Erosion octaves:</string>
+      <string>侵蚀度精度:</string>
      </property>
     </widget>
    </item>
    <item row="3" column="0">
     <widget class="QRadioButton" name="radioNoiseT">
      <property name="text">
-      <string>Temperature octaves:</string>
+      <string>温度精度:</string>
      </property>
     </widget>
    </item>
@@ -50,7 +58,7 @@
    <item row="2" column="0">
     <widget class="QRadioButton" name="radioOcean">
      <property name="text">
-      <string>Ocean layer</string>
+      <string>海洋层</string>
      </property>
     </widget>
    </item>
@@ -75,7 +83,7 @@
    <item row="4" column="0">
     <widget class="QRadioButton" name="radioNoiseH">
      <property name="text">
-      <string>Humidity octaves:</string>
+      <string>湿度精度:</string>
      </property>
     </widget>
    </item>
@@ -85,21 +93,21 @@
    <item row="5" column="0">
     <widget class="QRadioButton" name="radioNoiseC">
      <property name="text">
-      <string>Contnentalness octaves:</string>
+      <string>海陆精度:</string>
      </property>
     </widget>
    </item>
    <item row="1" column="0">
     <widget class="QRadioButton" name="radioRiver">
      <property name="text">
-      <string>River layer</string>
+      <string>河流层</string>
      </property>
     </widget>
    </item>
    <item row="8" column="0">
     <widget class="QRadioButton" name="radioNoiseW">
      <property name="text">
-      <string>Weirdness octaves</string>
+      <string>稀有度精度:</string>
      </property>
     </widget>
    </item>
@@ -119,14 +127,14 @@
    <item row="11" column="0">
     <widget class="QRadioButton" name="radioStruct">
      <property name="text">
-      <string>Structure potential</string>
+      <string>结构潜在生成位置</string>
      </property>
     </widget>
    </item>
    <item row="7" column="0">
     <widget class="QRadioButton" name="radioNoiseD">
      <property name="text">
-      <string>Depth</string>
+      <string>深度</string>
      </property>
     </widget>
    </item>

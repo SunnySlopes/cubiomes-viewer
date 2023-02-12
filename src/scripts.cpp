@@ -222,7 +222,7 @@ lua_State *loadScript(QString path, QString *err)
         }
         if (lua_getglobal(L, "check") != LUA_TFUNCTION)
         {
-            if (err) *err = QApplication::tr("function check() was not defined");
+            if (err) *err = QApplication::tr("check() 函数未定义");
             break;
         }
         lua_pop(L, 1);
@@ -379,7 +379,7 @@ int runCheckScript(
             lua_settop(L, top);
             if (x != x || z != z || fabs(x) > 30e6 || fabs(z) > 30e6)
             {
-                QString err = QString::asprintf("Output is invalid or out of range: {%g, %g}", x, z);
+                QString err = QString::asprintf("输出无效或越界: {%g, %g}", x, z);
                 g_lua_output[cond->save].set(cond->hash, env->seed, func, at, err);
                 return COND_FAILED;
             }

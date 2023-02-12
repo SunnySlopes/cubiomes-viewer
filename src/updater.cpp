@@ -2,8 +2,8 @@
 
 #include "aboutdialog.h"
 
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkReply>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
@@ -18,23 +18,23 @@ void replyFinished(QNetworkReply *reply, bool quiet)
     {
         if (!quiet)
         {
-            QString msg = QObject::tr("Failed to check for updates:\n");
+            QString msg = QObject::tr("检查更新失败:\n");
             switch (reply->error())
             {
             case QNetworkReply::ConnectionRefusedError:
-                msg += QObject::tr("Connection refused.");
+                msg += QObject::tr("拒绝连接");
                 break;
             case QNetworkReply::HostNotFoundError:
-                msg += QObject::tr("Host not found.");
+                msg += QObject::tr("未找到主机");
                 break;
             case QNetworkReply::TimeoutError:
-                msg += QObject::tr("Connection timed out.");
+                msg += QObject::tr("连接超时");
                 break;
             default:
-                msg += QObject::tr("Network error (%1).").arg(reply->error());
+                msg += QObject::tr("网络错误(%1).").arg(reply->error());
                 break;
             }
-            QMessageBox::warning(NULL, QObject::tr("Connection Error"), msg, QMessageBox::Ok);
+            QMessageBox::warning(NULL, QObject::tr("连接错误"), msg, QMessageBox::Ok);
         }
         return;
     }
@@ -45,8 +45,8 @@ void replyFinished(QNetworkReply *reply, bool quiet)
     if (jerr.error != QJsonParseError::NoError)
     {
         QMessageBox::warning(
-            NULL, QObject::tr("Json Error"),
-            QObject::tr("Failed to parse Json reply with:\n%1").arg(jerr.errorString()),
+            NULL, QObject::tr("Json错误"),
+            QObject::tr("解析Json失败:\n%1").arg(jerr.errorString()),
             QMessageBox::Ok);
         return;
     }
@@ -75,15 +75,15 @@ void replyFinished(QNetworkReply *reply, bool quiet)
         if (!quiet)
         {
             QMessageBox::information(
-                NULL, QObject::tr("No Updates"),
-                QObject::tr("You using the latest version of Cubiomes-Viewer."));
+                NULL, QObject::tr("没有更新"),
+                QObject::tr("你使用的Cubiomes Viewer是最新版"));
         }
         return;
     }
 
     QMessageBox::StandardButton answer = QMessageBox::question(
-        NULL, QObject::tr("New Version"),
-        QObject::tr("<p>A new version: <b>%1</b> is aviable.</p><p>Open the download page in browser?</p>").arg(newest),
+        NULL, QObject::tr("发现新版本"),
+        QObject::tr("<p>发现新版本: <b>%1</b></p><p>是否在浏览器中打开下载链接？</p>").arg(newest),
         QMessageBox::Yes|QMessageBox::No);
 
     if (answer == QMessageBox::Yes)

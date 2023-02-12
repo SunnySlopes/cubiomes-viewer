@@ -1,3 +1,10 @@
+汉化说明：本仓库为原项目的汉化版
+汉化作者：SunnySloeps
+汉化项目地址：https://github.com/SunnySlopes/cubiomes-viewer
+以下为原ReadMe
+
+==================================
+
 # Cubiomes Viewer
 
 Cubiomes Viewer provides a graphical interface for the efficient and flexible
@@ -82,5 +89,4 @@ expect some inaccurate results.
 
 The World Spawn point for pre-1.18 versions can sometimes be off because it
 depends on the presence of a grass block, that cubiomes cannot test for.
-
 

@@ -115,8 +115,8 @@ bool FormGen48::setList48(QString path, bool quiet)
         else if (!quiet)
         {
             int button = QMessageBox::warning(
-                    this, tr("Warning"),
-                    tr("Failed to load 48-bit seed list from file:\n\"%1\"").arg(path),
+                    this, tr("警告"),
+                    tr("无法从该文件中读取低48二进制位的种子列表:\n\"%1\"").arg(path),
                     QMessageBox::Reset, QMessageBox::Ignore);
             if (button == QMessageBox::Reset)
             {
@@ -133,15 +133,15 @@ bool FormGen48::setList48(QString path, bool quiet)
 
     if (slist48path.isEmpty())
     {
-        ui->lineList48->setText(tr("[none]"));
+        ui->lineList48->setText(tr("[无]"));
     }
     else
     {
         QString fname = QFileInfo(path).baseName();
         if (slist48.empty())
-            ui->lineList48->setText(tr("[no seeds!] %1").arg(fname));
+            ui->lineList48->setText(tr("[没有种子!] %1").arg(fname));
         else
-            ui->lineList48->setText(tr("[%n seed(s)] %1", "", slist48.size()).arg(fname));
+            ui->lineList48->setText(tr("[%n 个种子] %1", "", slist48.size()).arg(fname));
     }
 
     emit changed();
@@ -255,7 +255,7 @@ void FormGen48::updateCount()
 
     if (cnt >= MASK48+1)
     {
-        ui->labelCount->setText(tr("all", "Checking all 64-bit seeds"));
+        ui->labelCount->setText(tr("完整的种子域", "搜索所有种子"));
     }
     else
     {
@@ -286,11 +286,11 @@ void FormGen48::updateAutoUi()
     bool isqh = cond.type >= F_QH_IDEAL && cond.type <= F_QH_BARELY;
     bool isqm = cond.type >= F_QM_95 && cond.type <= F_QM_90;
     if (isqh)
-        modestr = tr("[Quad-hut]");
+        modestr = tr("[四联女巫小屋]");
     else if (isqm)
-        modestr = tr("[Quad-monument]");
+        modestr = tr("[四联海底神殿]");
     else
-        modestr = tr("[None]");
+        modestr = tr("[无]");
 
     ui->labelAuto->setText(modestr);
 
@@ -380,7 +380,7 @@ void FormGen48::on_comboLow20_currentIndexChanged(int)
 void FormGen48::on_buttonBrowse_clicked()
 {
     QString fnam = QFileDialog::getOpenFileName(
-        this, tr("Load seed list"), parent->prevdir, tr("Text files (*.txt);;Any files (*)"));
+        this, tr("导入种子列表"), parent->prevdir, tr("文本文件(*.txt);;任意文件(*)"));
     if (!fnam.isEmpty())
         setList48(fnam, false);
 }

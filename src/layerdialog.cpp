@@ -50,7 +50,7 @@ const char *getLayerOptionText(int mode, int disp)
         }
     case LOPT_NOISE_T_4:
         switch (disp) {
-        case 0: return "All";
+        case 0: return "最精确";
         case 1: return "+A[0] 1:4096 x0.952381";
         case 2: return "+B[0] 1:4023 x0.952381";
         case 3: return "+A[1] 1:1024 x0.158730";
@@ -59,7 +59,7 @@ const char *getLayerOptionText(int mode, int disp)
         }
     case LOPT_NOISE_H_4:
         switch (disp) {
-        case 0: return "All";
+        case 0: return "最精确";
         case 1: return "+A[0] 1:1024 x0.564374";
         case 2: return "+B[0] 1:1005 x0.564374";
         case 3: return "+A[1] 1:512  x0.282187";
@@ -68,7 +68,7 @@ const char *getLayerOptionText(int mode, int disp)
         }
     case LOPT_NOISE_C_4:
         switch (disp) {
-        case 0: return "All";
+        case 0: return "最精确";
         case 1: return "+A[0] 1:2048 x0.751468";
         case 2: return "+B[0] 1:2011 x0.751468";
         case 3: return "+A[1] 1:1024 x0.375734";
@@ -87,7 +87,7 @@ const char *getLayerOptionText(int mode, int disp)
         }
     case LOPT_NOISE_E_4:
         switch (disp) {
-        case 0: return "All";
+        case 0: return "最精确";
         case 1: return "+A[0] 1:2048 x0.716846";
         case 2: return "+B[0] 1:2011 x0.716846";
         case 3: return "+A[1] 1:1024 x0.358423";
@@ -100,7 +100,7 @@ const char *getLayerOptionText(int mode, int disp)
         }
     case LOPT_NOISE_W_4:
         switch (disp) {
-        case 0: return "All";
+        case 0: return "最精确";
         case 1: return "+A[0] 1:512 x0.634921";
         case 2: return "+B[0] 1:502 x0.634921";
         case 3: return "+A[1] 1:256 x0.634921";
@@ -111,10 +111,10 @@ const char *getLayerOptionText(int mode, int disp)
         }
     case LOPT_HEIGHT_4:
         switch (disp) {
-        case 0: return "Grayscale";
-        case 1: return "Shaded biome map";
-        case 2: return "Contours on biomes";
-        case 3: return "Shaded with contours";
+        case 0: return "灰度";
+        case 1: return "阴影";
+        case 2: return "等高线";
+        case 3: return "阴影+等高线";
         default: return nullptr;
         }
     default:

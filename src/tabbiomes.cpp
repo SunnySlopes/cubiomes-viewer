@@ -517,7 +517,7 @@ void TabBiomes::onAnalysisFinished()
     onBufferTimeout();
     on_tabWidget_currentChanged(-1);
     ui->pushStart->setChecked(false);
-    ui->pushStart->setText(tr("Analyze"));
+    ui->pushStart->setText(tr("统计"));
 }
 
 void TabBiomes::onBufferTimeout()
@@ -588,7 +588,7 @@ void TabBiomes::onBufferTimeout()
     }
 
     QString progress = QString::asprintf(" (%d/%d)", thread.idx.load(), thread.seeds.size());
-    ui->pushStart->setText(tr("Stop") + progress);
+    ui->pushStart->setText(tr("停止") + progress);
 
     QApplication::processEvents(); // force processing of events so we can time correctly
 
@@ -687,7 +687,7 @@ void TabBiomes::on_pushStart_clicked()
     ui->pushExport->setEnabled(false);
     ui->pushStart->setChecked(true);
     QString progress = QString::asprintf(" (0/%d)", thread.seeds.size());
-    ui->pushStart->setText(tr("Stop") + progress);
+    ui->pushStart->setText(tr("停止") + progress);
     thread.start();
 }
 
@@ -706,7 +706,7 @@ void csvline(QTextStream& stream, const QString& qte, const QString& sep, QStrin
 void TabBiomes::on_pushExport_clicked()
 {
     QString fnam = QFileDialog::getSaveFileName(
-        this, tr("Export biome analysis"), parent->prevdir, tr("Text files (*.txt *csv);;Any files (*)"));
+        this, tr("导出群系统计结果"), parent->prevdir, tr("文本文件(*.txt *csv);;任意文件(*)"));
     if (fnam.isEmpty())
         return;
 
@@ -716,7 +716,7 @@ void TabBiomes::on_pushExport_clicked()
 
     if (!file.open(QIODevice::WriteOnly))
     {
-        parent->warning(tr("Failed to open file for export:\n\"%1\"").arg(fnam));
+        parent->warning(tr("未能打开导出文件:\n\"%1\"").arg(fnam));
         return;
     }
 
@@ -737,7 +737,7 @@ void TabBiomes::on_pushExport_clicked()
         if (dats.samples != ~0ULL)
             stream << qte << "#samples" << sep << dats.samples << qte << "\n";
 
-        QStringList header = { tr("seed") };
+        QStringList header = { tr("种子") };
         for (int col = 0, ncol = proxy->columnCount(); col < ncol; col++)
             header.append(proxy->headerData(col, Qt::Horizontal).toString());
         csvline(stream, qte, sep, header);
@@ -763,7 +763,7 @@ void TabBiomes::on_pushExport_clicked()
         stream << qte << "#scale" << sep << "1:" << datl.scale << qte << "\n";
         stream << qte << "#biome" << sep << biome2str(MC_NEWEST, datl.locate) << qte << "\n";
 
-        QStringList header = { tr("seed"), tr("area"), tr("x"), tr("z") };
+        QStringList header = { tr("种子"), tr("区域"), tr("x"), tr("z") };
         csvline(stream, qte, sep, header);
 
         QTreeWidgetItemIterator it(ui->treeLocate);
@@ -821,7 +821,7 @@ void TabBiomes::on_radioFullSample_toggled(bool checked)
 void TabBiomes::on_lineBiomeSize_textChanged(const QString &text)
 {
     double area = text.toInt();
-    ui->labelBiomeSize->setText(QString::asprintf("(%g sq. chunks)", area / 16));
+    ui->labelBiomeSize->setText(QString::asprintf("(%g 平方区块)", area / 16));
 }
 
 void TabBiomes::on_treeLocate_itemClicked(QTreeWidgetItem *item, int column)

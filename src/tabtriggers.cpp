@@ -93,7 +93,7 @@ void AnalysisTriggers::run()
             continue;
         }
         if (stop)
-            seeditem->setText(0, QString::asprintf("%" PRId64, seed) + " " + tr("(incomplete)"));
+            seeditem->setText(0, QString::asprintf("%" PRId64, seed) + " " + tr("(不完整)"));
         emit itemDone(seeditem);
     }
 }
@@ -152,7 +152,7 @@ void TabTriggers::onAnalysisFinished()
     onBufferTimeout();
     ui->pushExport->setEnabled(ui->treeWidget->topLevelItemCount() > 0);
     ui->pushStart->setChecked(false);
-    ui->pushStart->setText(tr("Analyze"));
+    ui->pushStart->setText(tr("统计"));
 }
 
 void TabTriggers::onBufferTimeout()
@@ -166,7 +166,7 @@ void TabTriggers::onBufferTimeout()
         ui->treeWidget->setUpdatesEnabled(true);
 
         QString progress = QString::asprintf(" (%d/%d)", thread.idx.load(), thread.seeds.size());
-        ui->pushStart->setText(tr("Stop") + progress);
+        ui->pushStart->setText(tr("停止") + progress);
 
         qbuf.clear();
     }
@@ -205,7 +205,7 @@ void TabTriggers::on_pushStart_clicked()
     ui->pushExport->setEnabled(false);
     ui->pushStart->setChecked(true);
     QString progress = QString::asprintf(" (0/%d)", thread.seeds.size());
-    ui->pushStart->setText(tr("Stop") + progress);
+    ui->pushStart->setText(tr("停止") + progress);
     thread.start();
 }
 
@@ -253,7 +253,7 @@ void csvline(QTextStream& stream, const QString& qte, const QString& sep, QStrin
 void TabTriggers::on_pushExport_clicked()
 {
     QString fnam = QFileDialog::getSaveFileName(
-        this, tr("Export trigger analysis"), parent->prevdir, tr("Text files (*.txt *csv);;Any files (*)"));
+        this, tr("导出触发器统计结果"), parent->prevdir, tr("文本文件(*.txt *csv);;任意文件(*)"));
     if (fnam.isEmpty())
         return;
 
@@ -263,7 +263,7 @@ void TabTriggers::on_pushExport_clicked()
 
     if (!file.open(QIODevice::WriteOnly))
     {
-        parent->warning(tr("Failed to open file for export:\n\"%1\"").arg(fnam));
+        parent->warning(tr("无法打开以下导出文件:\n\"%1\"").arg(fnam));
         return;
     }
 
@@ -274,7 +274,7 @@ void TabTriggers::on_pushExport_clicked()
     stream << "Sep=" + sep + "\n";
     sep = qte + sep + qte;
 
-    QStringList header = { tr("seed"), tr("condition"), tr("x"), tr("z") };
+    QStringList header = { tr("种子"), tr("条件"), tr("x"), tr("z") };
     csvline(stream, qte, sep, header);
 
     QTreeWidgetItemIterator it(ui->treeWidget);

@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include <QTranslator>
 #include <QFontDatabase>
 
 #include "world.h"
@@ -42,16 +41,11 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     QCoreApplication::setApplicationName("cubiomes-viewer");
 
-    QTranslator translator;
-    translator.load("en_US", ":/lang");
-    app.installTranslator(&translator);
-
-    //int fontid = QFontDatabase::addApplicationFont(":/fonts/test.ttf");
-    int fontid = QFontDatabase::addApplicationFont(":/fonts/DejaVuSans.ttf");
+    int fontid = QFontDatabase::addApplicationFont(":/fonts/AlibabaPuHuiTi-2-55-Regular.ttf");
     if (fontid >= 0)
     {
-        QFontDatabase::addApplicationFont(":/fonts/DejaVuSans-Bold.ttf");
-        int fontid_mono = QFontDatabase::addApplicationFont(":/fonts/DejaVuSansMono.ttf");
+        QFontDatabase::addApplicationFont(":/fonts/AlibabaPuHuiTi-2-105-Heavy.ttf");
+        int fontid_mono = QFontDatabase::addApplicationFont(":/fonts/JetBrainsMono-Regular.ttf");
 
         static QFont font_default = QFontDatabase::applicationFontFamilies(fontid).at(0);
         font_default.setPointSize(10);

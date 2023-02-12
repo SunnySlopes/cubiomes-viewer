@@ -19,7 +19,7 @@ StructureDialog::StructureDialog(QWidget *parent)
 
     loadStructVis(structvis);
 
-    grid->addWidget(new QLabel(tr("blocks per pixel")), 0, 2);
+    grid->addWidget(new QLabel(tr("方块/像素")), 0, 2);
 
     int i = 1;
     for (auto it : structvis)

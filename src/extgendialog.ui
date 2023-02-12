@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>383</width>
-    <height>144</height>
+    <height>165</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>World Settings</string>
+   <string>高级世界生成选项</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../rc/icons.qrc">
@@ -21,7 +21,7 @@
    <item row="3" column="0" colspan="2">
     <widget class="QGroupBox" name="groupSalts">
      <property name="title">
-      <string>Override structure salt</string>
+      <string>修改原版结构生成随机数</string>
      </property>
      <property name="checkable">
       <bool>true</bool>
@@ -44,14 +44,14 @@
    <item row="2" column="0" colspan="2">
     <widget class="QCheckBox" name="checkEstimate">
      <property name="text">
-      <string>Estimate terrain (1.18+)</string>
+      <string>模拟生成地形(1.18+)</string>
      </property>
     </widget>
    </item>
    <item row="1" column="0" colspan="2">
     <widget class="QCheckBox" name="checkExperimental">
      <property name="text">
-      <string>Enable experimentally supported versions</string>
+      <string>启用实验性支持版本</string>
      </property>
     </widget>
    </item>

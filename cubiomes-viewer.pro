@@ -194,37 +194,10 @@ FORMS += \
         src/tabtriggers.ui \
         src/structuredialog.ui
 
-
-TRANSLATIONS += \
-        rc/lang/en_US.ts
-
 RESOURCES += \
         rc/icons.qrc \
         rc/style.qrc \
-        rc/examples.qrc \
-        rc/lang.qrc
-
-
-# ----- translations -----
-
-translations: {
-    # automatically run lupdate for pluralization default translation
-    THIS_FILE           = cubiomes-viewer.pro
-    lupdate.input       = THIS_FILE
-    lupdate.output      = output.dummy.1 # removed by clean
-    lupdate.commands    = $$[QT_INSTALL_BINS]/lupdate -pluralonly -noobsolete ${QMAKE_FILE_IN}
-    lupdate.CONFIG     += no_link target_predeps
-
-    lrelease.input      = TRANSLATIONS
-    lrelease.output     = output.dummy.2 # removed by clean
-    lrelease.commands   = $$[QT_INSTALL_BINS]/lrelease ${QMAKE_FILE_IN} \
-                            -qm ${QMAKE_FILE_PATH}/${QMAKE_FILE_IN_BASE}.qm
-    lrelease.CONFIG    += no_link target_predeps
-
-    QMAKE_EXTRA_COMPILERS += lupdate lrelease
-    #CONFIG += lrelease embed_translations # does this do anything?
-}
-
+        rc/examples.qrc
 
 # enable network features with: qmake CONFIG+=with_network
 with_network: {
@@ -233,6 +206,3 @@ with_network: {
     SOURCES += src/updater.cpp
     HEADERS += src/updater.h
 }
-
-
-

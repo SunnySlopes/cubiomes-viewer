@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>540</width>
-    <height>496</height>
+    <height>567</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Biome Image Export</string>
+   <string>导出群系图</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../rc/icons.qrc">
@@ -28,14 +28,14 @@
    <item row="7" column="4" colspan="2">
     <widget class="QPushButton" name="buttonFromVisible">
      <property name="text">
-      <string>From visible</string>
+      <string>使用可见范围</string>
      </property>
     </widget>
    </item>
    <item row="5" column="1" colspan="5">
     <widget class="QLabel" name="label_9">
      <property name="text">
-      <string>%S - seed; %x, %z - tile coordinates</string>
+      <string>%S - 种子; %x, %z - 分区坐标</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -45,14 +45,14 @@
    <item row="3" column="1">
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Export directory:</string>
+      <string>导出目录:</string>
      </property>
     </widget>
    </item>
    <item row="9" column="1" colspan="5">
     <widget class="QGroupBox" name="groupSummary">
      <property name="title">
-      <string>Overview</string>
+      <string>总览</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_4">
       <item row="1" column="3">
@@ -65,14 +65,14 @@
       <item row="0" column="1" colspan="3">
        <widget class="QLabel" name="labelWorldGen">
         <property name="text">
-         <string>1.x Overworld</string>
+         <string>主世界</string>
         </property>
        </widget>
       </item>
       <item row="1" column="2">
        <widget class="QLabel" name="label_8">
         <property name="text">
-         <string>Number of images:</string>
+         <string>图片数量:</string>
         </property>
        </widget>
       </item>
@@ -93,21 +93,21 @@
       <item row="2" column="2">
        <widget class="QLabel" name="label_11">
         <property name="text">
-         <string>Size of each image:</string>
+         <string>单张图片大小:</string>
         </property>
        </widget>
       </item>
       <item row="0" column="0">
        <widget class="QLabel" name="label_12">
         <property name="text">
-         <string>World generator:</string>
+         <string>世界生成器:</string>
         </property>
        </widget>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="label_1">
         <property name="text">
-         <string>Number of seeds:</string>
+         <string>种子数量:</string>
         </property>
        </widget>
       </item>
@@ -121,7 +121,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="label_10">
         <property name="text">
-         <string>Height (Y):</string>
+         <string>高度(Y):</string>
         </property>
        </widget>
       </item>
@@ -132,12 +132,12 @@
     <widget class="QComboBox" name="comboSeed">
      <item>
       <property name="text">
-       <string>Current seed</string>
+       <string>当前种子</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>From matching seeds list</string>
+       <string>符合条件的种子列表</string>
       </property>
      </item>
     </widget>
@@ -161,7 +161,7 @@
    <item row="0" column="1">
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Seed(s):</string>
+      <string>种子:</string>
      </property>
     </widget>
    </item>
@@ -180,7 +180,7 @@
      <item>
       <widget class="QLabel" name="labelX1">
        <property name="toolTip">
-        <string>Lower bound (inclusive)</string>
+        <string>最小值(含)</string>
        </property>
        <property name="text">
         <string>X&lt;sub&gt;1&lt;/sub&gt;=</string>
@@ -190,7 +190,7 @@
      <item>
       <widget class="QLineEdit" name="lineEditX1">
        <property name="toolTip">
-        <string>Lower bound (inclusive)</string>
+        <string>最小值(含)</string>
        </property>
        <property name="text">
         <string>0</string>
@@ -200,7 +200,7 @@
      <item>
       <widget class="QLabel" name="labelZ1">
        <property name="toolTip">
-        <string>Lower bound (inclusive)</string>
+        <string>最小值(含)</string>
        </property>
        <property name="text">
         <string>Z&lt;sub&gt;1&lt;/sub&gt;=</string>
@@ -210,7 +210,7 @@
      <item>
       <widget class="QLineEdit" name="lineEditZ1">
        <property name="toolTip">
-        <string>Lower bound (inclusive)</string>
+        <string>最小值(含)</string>
        </property>
        <property name="text">
         <string>0</string>
@@ -233,7 +233,7 @@
      <item>
       <widget class="QLabel" name="labelX2">
        <property name="toolTip">
-        <string>Upper bound (inclusive)</string>
+        <string>最大值(含)</string>
        </property>
        <property name="text">
         <string>X&lt;sub&gt;2&lt;/sub&gt;=</string>
@@ -243,7 +243,7 @@
      <item>
       <widget class="QLineEdit" name="lineEditX2">
        <property name="toolTip">
-        <string>Upper bound (inclusive)</string>
+        <string>最大值(含)</string>
        </property>
        <property name="text">
         <string>0</string>
@@ -253,7 +253,7 @@
      <item>
       <widget class="QLabel" name="labelZ2">
        <property name="toolTip">
-        <string>Upper bound (inclusive)</string>
+        <string>最大值(含)</string>
        </property>
        <property name="text">
         <string>Z&lt;sub&gt;2&lt;/sub&gt;=</string>
@@ -263,7 +263,7 @@
      <item>
       <widget class="QLineEdit" name="lineEditZ2">
        <property name="toolTip">
-        <string>Upper bound (inclusive)</string>
+        <string>最大值(含)</string>
        </property>
        <property name="text">
         <string>0</string>
@@ -304,21 +304,21 @@
    <item row="4" column="1">
     <widget class="QLabel" name="label_7">
      <property name="text">
-      <string>File pattern:</string>
+      <string>文件命名格式:</string>
      </property>
     </widget>
    </item>
    <item row="6" column="1" colspan="2">
     <widget class="QLabel" name="label_4">
      <property name="text">
-      <string>Area in blocks (bounds are included):</string>
+      <string>导出区域(以方块为单位，包括边界):</string>
      </property>
     </widget>
    </item>
    <item row="8" column="1" colspan="5">
     <widget class="QGroupBox" name="groupTiled">
      <property name="title">
-      <string>Split image into tiles</string>
+      <string>分割图片</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -333,14 +333,14 @@
       <item row="0" column="0">
        <widget class="QLabel" name="label_6">
         <property name="text">
-         <string>Size of image tiles:</string>
+         <string>图片分割尺寸:</string>
         </property>
        </widget>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label_5">
         <property name="text">
-         <string>Background color:</string>
+         <string>背景色:</string>
         </property>
        </widget>
       </item>
@@ -348,17 +348,17 @@
        <widget class="QComboBox" name="comboBackground">
         <item>
          <property name="text">
-          <string>Fill background by expanding area</string>
+          <string>区域扩展</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Transparent</string>
+          <string>透明底</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Black</string>
+          <string>黑底</string>
          </property>
         </item>
        </widget>
@@ -421,14 +421,14 @@
    <item row="1" column="1">
     <widget class="QLabel" name="label_3">
      <property name="text">
-      <string>Scale (pixel:blocks):</string>
+      <string>地图尺寸(像素:方块):</string>
      </property>
     </widget>
    </item>
    <item row="2" column="1">
     <widget class="QLabel" name="label_13">
      <property name="text">
-      <string>Heightmap:</string>
+      <string>地表高度展示方法:</string>
      </property>
     </widget>
    </item>
@@ -436,27 +436,27 @@
     <widget class="QComboBox" name="comboHeightVis">
      <item>
       <property name="text">
-       <string>None</string>
+       <string>无</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Grayscale</string>
+       <string>灰度</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Shading</string>
+       <string>阴影</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Contours</string>
+       <string>等高线</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Shading with contours</string>
+       <string>阴影+等高线</string>
       </property>
      </item>
     </widget>

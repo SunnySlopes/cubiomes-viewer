@@ -3,7 +3,7 @@
  <class>ConfigDialog</class>
  <widget class="QDialog" name="ConfigDialog">
   <property name="windowTitle">
-   <string>Preferences</string>
+   <string>偏好设置</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../rc/icons.qrc">
@@ -13,27 +13,27 @@
    <item row="2" column="0">
     <widget class="QGroupBox" name="groupSession">
      <property name="title">
-      <string>Session</string>
+      <string>会话</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_4">
       <item row="0" column="0" rowspan="2" colspan="2">
        <widget class="QCheckBox" name="checkRestore">
         <property name="text">
-         <string>Restore previous session at launch</string>
+         <string>启动自动加载上一次的进度</string>
         </property>
        </widget>
       </item>
       <item row="2" column="0">
        <widget class="QCheckBox" name="checkAutosave">
         <property name="text">
-         <string>Autosave every:</string>
+         <string>自动保存间隔:</string>
         </property>
        </widget>
       </item>
       <item row="2" column="1">
        <widget class="QSpinBox" name="spinAutosave">
         <property name="suffix">
-         <string> min</string>
+         <string> 分钟</string>
         </property>
         <property name="minimum">
          <number>1</number>
@@ -62,7 +62,7 @@
    <item row="3" column="0">
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Export</string>
+      <string>导出</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_6">
       <item row="1" column="1">
@@ -71,14 +71,14 @@
       <item row="2" column="0">
        <widget class="QLabel" name="label_8">
         <property name="text">
-         <string>CSV cell quotation:</string>
+         <string>CSV引用方式:</string>
         </property>
        </widget>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>CSV column separator:</string>
+         <string>CSV列分隔符:</string>
         </property>
        </widget>
       </item>
@@ -86,17 +86,17 @@
        <widget class="QComboBox" name="comboQuote">
         <item>
          <property name="text">
-          <string>Where necessary</string>
+          <string>根据需要</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Single quotes (')</string>
+          <string>单引号(')</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Double quotes (&quot;)</string>
+          <string>双引号(&quot;)</string>
          </property>
         </item>
        </widget>
@@ -107,13 +107,13 @@
    <item row="1" column="0">
     <widget class="QGroupBox" name="groupSearch">
      <property name="title">
-      <string>Search</string>
+      <string>搜索</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
       <item row="0" column="0">
        <widget class="QLabel" name="label_3">
         <property name="text">
-         <string>Maximum number of matching seeds:</string>
+         <string>最大保留结果数:</string>
         </property>
        </widget>
       </item>
@@ -126,13 +126,13 @@
    <item row="4" column="0">
     <widget class="QGroupBox" name="groupMisc">
      <property name="title">
-      <string>Miscellaneous</string>
+      <string>杂项</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_5">
       <item row="0" column="0">
        <widget class="QCheckBox" name="checkUpdates">
         <property name="text">
-         <string>Check GitHub for updates at startup</string>
+         <string>启动时检查更新</string>
         </property>
        </widget>
       </item>
@@ -142,13 +142,13 @@
    <item row="0" column="0" colspan="2">
     <widget class="QGroupBox" name="groupInterface">
      <property name="title">
-      <string>Interface</string>
+      <string>交互界面</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="1" column="0" colspan="2">
        <widget class="QLabel" name="label_5">
         <property name="text">
-         <string>Biome color customization:</string>
+         <string>自定义群系颜色:</string>
         </property>
        </widget>
       </item>
@@ -169,28 +169,27 @@
       <item row="2" column="2" colspan="2">
        <widget class="QPushButton" name="buttonBiomeColor">
         <property name="text">
-         <string>[none]</string>
+         <string>上传文件</string>
         </property>
        </widget>
       </item>
       <item row="9" column="0" colspan="5">
        <widget class="QCheckBox" name="checkSmooth">
         <property name="toolTip">
-         <string>Simulate innertia for the map view</string>
+         <string>模拟地图移动惯性</string>
         </property>
         <property name="text">
-         <string>Smooth map motion</string>
+         <string>地图移动动画</string>
         </property>
        </widget>
       </item>
       <item row="4" column="0" colspan="2">
        <widget class="QLabel" name="label_6">
         <property name="toolTip">
-         <string>Use a fixed grid in blocks instead of outlining the generated map tiles
-Leave blank for the default behaviour</string>
+         <string>使用固定的网格宽度，留空代表默认</string>
         </property>
         <property name="text">
-         <string>Custom grid spacing:</string>
+         <string>自定义网格密度:</string>
         </property>
        </widget>
       </item>
@@ -204,12 +203,12 @@ Leave blank for the default behaviour</string>
         </property>
         <item>
          <property name="text">
-          <string>System</string>
+          <string>系统默认</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Dark</string>
+          <string>暗色风格</string>
          </property>
         </item>
        </widget>
@@ -217,42 +216,42 @@ Leave blank for the default behaviour</string>
       <item row="8" column="0" colspan="5">
        <widget class="QCheckBox" name="checkBBoxes">
         <property name="text">
-         <string>Outline known bounding boxes</string>
+         <string>显示可见的结构外围</string>
         </property>
        </widget>
       </item>
       <item row="3" column="0" colspan="2">
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>Maximum structure zoom:</string>
+         <string>结构可见最小缩放等级:</string>
         </property>
        </widget>
       </item>
       <item row="5" column="0">
        <widget class="QLabel" name="label_10">
         <property name="text">
-         <string>Custom grid multiplier:</string>
+         <string>自定义网格乘数:</string>
         </property>
        </widget>
       </item>
       <item row="0" column="0" colspan="2">
        <widget class="QLabel" name="label_4">
         <property name="text">
-         <string>GUI style:</string>
+         <string>界面风格:</string>
         </property>
        </widget>
       </item>
       <item row="1" column="2" colspan="3">
        <widget class="QPushButton" name="buttonBiomeColorEditor">
         <property name="text">
-         <string>Edit biome colors...</string>
+         <string>群系颜色</string>
         </property>
        </widget>
       </item>
       <item row="3" column="2" colspan="3">
        <widget class="QPushButton" name="buttonStructVisEdit">
         <property name="text">
-         <string>Edit map visibility limits...</string>
+         <string>不同结构可见的最小缩放等级</string>
         </property>
        </widget>
       </item>
@@ -262,7 +261,7 @@ Leave blank for the default behaviour</string>
       <item row="6" column="0" colspan="2">
        <widget class="QLabel" name="label_7">
         <property name="text">
-         <string>Map cache size:</string>
+         <string>地图缓存大小:</string>
         </property>
        </widget>
       </item>
@@ -299,7 +298,7 @@ Leave blank for the default behaviour</string>
         </property>
         <item>
          <property name="text">
-          <string>None</string>
+          <string>1</string>
          </property>
         </item>
         <item>

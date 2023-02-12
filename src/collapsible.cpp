@@ -130,7 +130,7 @@ void Collapsible::setInfo(const QString& title, const QString& text)
     QPushButton *button = new QPushButton(pixmap, "", this);
     button->setStyleSheet("border: none;");
     button->setIconSize(pixmap.rect().size());
-    button->setToolTip(tr("Show help"));
+    button->setToolTip(tr("显示帮助"));
     button->setMaximumSize(14, 14);
 
     connect(button, SIGNAL(clicked()), this, SLOT(showInfo()));

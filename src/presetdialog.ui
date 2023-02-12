@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Filter Presets</string>
+   <string>示例筛选条件</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../rc/icons.qrc">
@@ -38,20 +38,20 @@
          </property>
          <widget class="QWidget" name="tabFilters">
           <attribute name="title">
-           <string>Saved Filters</string>
+           <string>保存筛选</string>
           </attribute>
           <layout class="QGridLayout" name="gridLayout">
            <item row="1" column="0">
             <widget class="QPushButton" name="buttonDelete">
              <property name="text">
-              <string>Delete</string>
+              <string>删除</string>
              </property>
             </widget>
            </item>
            <item row="1" column="1">
             <widget class="QPushButton" name="buttonSave">
              <property name="text">
-              <string>Save Current Filter</string>
+              <string>保存当前条件</string>
              </property>
             </widget>
            </item>
@@ -75,7 +75,7 @@
          </widget>
          <widget class="QWidget" name="tabExamples">
           <attribute name="title">
-           <string>Examples Filters</string>
+           <string>示例筛选条件</string>
           </attribute>
           <layout class="QGridLayout" name="gridLayout_2">
            <item row="0" column="0">
@@ -114,7 +114,7 @@
        <item row="0" column="0">
         <widget class="QLabel" name="labelMC">
          <property name="text">
-          <string>MC 1.X</string>
+          <string>MC版本</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -146,14 +146,14 @@
         <bool>false</bool>
        </property>
        <property name="text">
-        <string>Ok</string>
+        <string>保存</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="buttonCancel">
        <property name="text">
-        <string>Cancel</string>
+        <string>取消</string>
        </property>
        <property name="default">
         <bool>true</bool>
