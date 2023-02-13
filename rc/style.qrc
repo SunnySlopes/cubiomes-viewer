@@ -211,6 +211,6 @@
         <file>dark.qss</file>
         <file>fonts/AlibabaPuHuiTi-2-55-Regular.ttf</file>
         <file>fonts/AlibabaPuHuiTi-2-105-Heavy.ttf</file>
-        <file>fonts/JetBrainsMono-Regular.ttf</file>
+        <file>fonts/JetBrainsMonoNL-Regular.ttf</file>
     </qresource>
 </RCC>

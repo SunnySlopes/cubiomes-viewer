@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     if (fontid >= 0)
     {
         QFontDatabase::addApplicationFont(":/fonts/AlibabaPuHuiTi-2-105-Heavy.ttf");
-        int fontid_mono = QFontDatabase::addApplicationFont(":/fonts/JetBrainsMono-Regular.ttf");
+        int fontid_mono = QFontDatabase::addApplicationFont(":/fonts/JetBrainsMonoNL-Regular.ttf");
 
         static QFont font_default = QFontDatabase::applicationFontFamilies(fontid).at(0);
         font_default.setPointSize(10);
