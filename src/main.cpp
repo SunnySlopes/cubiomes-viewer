@@ -41,10 +41,10 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     QCoreApplication::setApplicationName("cubiomes-viewer");
 
-    int fontid = QFontDatabase::addApplicationFont(":/fonts/AlibabaPuHuiTi-2-55-Regular.ttf");
+    int fontid = QFontDatabase::addApplicationFont(":/fonts/jiangchengheiti-400W.ttf");
     if (fontid >= 0)
     {
-        QFontDatabase::addApplicationFont(":/fonts/AlibabaPuHuiTi-2-105-Heavy.ttf");
+        QFontDatabase::addApplicationFont(":/fonts/jiangchengheiti-700W.ttf");
         int fontid_mono = QFontDatabase::addApplicationFont(":/fonts/JetBrainsMonoNL-Regular.ttf");
 
         static QFont font_default = QFontDatabase::applicationFontFamilies(fontid).at(0);
