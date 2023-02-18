@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>LayerDialog</class>
  <widget class="QDialog" name="LayerDialog">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>474</width>
-    <height>426</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>图层展示选项</string>
   </property>
@@ -18,8 +10,32 @@
     <normaloff>:/icons/logo.png</normaloff>:/icons/logo.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
+   <item row="5" column="1">
+    <widget class="QComboBox" name="comboNoiseC"/>
+   </item>
    <item row="6" column="1">
     <widget class="QComboBox" name="comboNoiseE"/>
+   </item>
+   <item row="13" column="0">
+    <widget class="QRadioButton" name="radioStruct">
+     <property name="text">
+      <string>结构潜在生成位置</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0">
+    <widget class="QRadioButton" name="radioNoiseW">
+     <property name="text">
+      <string>侵蚀度精度:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="0">
+    <widget class="QRadioButton" name="radioRiver">
+     <property name="text">
+      <string>河流层</string>
+     </property>
+    </widget>
    </item>
    <item row="0" column="0">
     <widget class="QRadioButton" name="radioBiomes">
@@ -28,13 +44,10 @@
      </property>
     </widget>
    </item>
-   <item row="4" column="1">
-    <widget class="QComboBox" name="comboNoiseH"/>
-   </item>
-   <item row="10" column="0">
-    <widget class="QRadioButton" name="radioHeight">
+   <item row="4" column="0">
+    <widget class="QRadioButton" name="radioNoiseH">
      <property name="text">
-      <string>近似地表高度:</string>
+      <string>湿度精度:</string>
      </property>
     </widget>
    </item>
@@ -45,6 +58,13 @@
      </property>
     </widget>
    </item>
+   <item row="12" column="0">
+    <widget class="QRadioButton" name="radioHeight">
+     <property name="text">
+      <string>近似地表高度:</string>
+     </property>
+    </widget>
+   </item>
    <item row="3" column="0">
     <widget class="QRadioButton" name="radioNoiseT">
      <property name="text">
@@ -52,18 +72,21 @@
      </property>
     </widget>
    </item>
-   <item row="5" column="1">
-    <widget class="QComboBox" name="comboNoiseC"/>
+   <item row="4" column="1">
+    <widget class="QComboBox" name="comboNoiseH"/>
    </item>
-   <item row="2" column="0">
-    <widget class="QRadioButton" name="radioOcean">
-     <property name="text">
-      <string>海洋层</string>
+   <item row="14" column="0" colspan="2">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
     </widget>
    </item>
-   <item row="8" column="1">
-    <widget class="QComboBox" name="comboNoiseW"/>
+   <item row="12" column="1">
+    <widget class="QComboBox" name="comboHeight"/>
    </item>
    <item row="0" column="1">
     <widget class="QComboBox" name="comboBiomes">
@@ -80,15 +103,8 @@
      </property>
     </widget>
    </item>
-   <item row="4" column="0">
-    <widget class="QRadioButton" name="radioNoiseH">
-     <property name="text">
-      <string>湿度精度:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="10" column="1">
-    <widget class="QComboBox" name="comboHeight"/>
+   <item row="8" column="1">
+    <widget class="QComboBox" name="comboNoiseW"/>
    </item>
    <item row="5" column="0">
     <widget class="QRadioButton" name="radioNoiseC">
@@ -97,44 +113,27 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QRadioButton" name="radioRiver">
-     <property name="text">
-      <string>河流层</string>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="0">
-    <widget class="QRadioButton" name="radioNoiseW">
-     <property name="text">
-      <string>稀有度精度:</string>
-     </property>
-    </widget>
-   </item>
    <item row="3" column="1">
     <widget class="QComboBox" name="comboNoiseT"/>
-   </item>
-   <item row="12" column="0" colspan="2">
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
-    </widget>
-   </item>
-   <item row="11" column="0">
-    <widget class="QRadioButton" name="radioStruct">
-     <property name="text">
-      <string>结构潜在生成位置</string>
-     </property>
-    </widget>
    </item>
    <item row="7" column="0">
     <widget class="QRadioButton" name="radioNoiseD">
      <property name="text">
       <string>深度</string>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="0">
+    <widget class="QRadioButton" name="radioOcean">
+     <property name="text">
+      <string>海洋层</string>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="0">
+    <widget class="QRadioButton" name="radioNoOcean">
+     <property name="text">
+      <string>不显示beta版本的海洋</string>
      </property>
     </widget>
    </item>
