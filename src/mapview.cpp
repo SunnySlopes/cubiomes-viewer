@@ -334,12 +334,14 @@ void MapView::showContextMenu(const QPoint &pos)
     QString tp     = QString::asprintf("/tp @p %d ~ %d", p.x, p.z);
     QString coords = QString::asprintf("%d %d", p.x, p.z);
     QString chunk  = QString::asprintf("%d %d", p.x >> 4, p.z >> 4);
+    QString region = QString::asprintf("%d %d", p.x >> 9, p.z >> 9);
 
-    menu.addAction(tr("复制种子:    ")+seed, this, &MapView::copySeed, QKeySequence::Copy);
-    menu.addAction(tr("复制tp指令:  ")+tp, [=](){ this->copyText(tp); });
-    menu.addAction(tr("复制方块位置:")+coords, [=](){ this->copyText(coords); });
-    menu.addAction(tr("复制坐标位置:")+chunk, [=](){ this->copyText(chunk); });
-    menu.addAction(tr("前往坐标:    "), this, &MapView::onGoto, QKeySequence(Qt::CTRL + Qt::Key_G));
+    menu.addAction(tr("前往坐标:     "), this, &MapView::onGoto, QKeySequence(Qt::CTRL + Qt::Key_G));
+    menu.addAction(tr("复制种子:     ")+seed, this, &MapView::copySeed, QKeySequence::Copy);
+    menu.addAction(tr("复制tp指令:   ")+tp, [=](){ this->copyText(tp); });
+    menu.addAction(tr("复制方块位置: ")+coords, [=](){ this->copyText(coords); });
+    menu.addAction(tr("复制区块位置: ")+chunk, [=](){ this->copyText(chunk); });
+    menu.addAction(tr("复制区域位置: ")+region, [=](){ this->copyText(region); });
    // menu.addAction(tr("动画:        "), this, &MapView::runAni);
     menu.exec(mapToGlobal(pos));
 }
