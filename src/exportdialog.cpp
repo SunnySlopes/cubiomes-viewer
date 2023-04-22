@@ -255,7 +255,7 @@ void ExportDialog::update()
     wgen += ", ";
     if (dim == 0) {
         wgen += tr("主世界");
-        if (wi.large) wgen += tr("/放大化");
+        if (wi.large) wgen += tr("/巨型群系");
     } else if (dim == -1) {
         wgen += tr("下界");
     } else if (dim == +1) {
