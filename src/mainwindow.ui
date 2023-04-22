@@ -87,7 +87,7 @@
           <item row="1" column="0" colspan="2">
            <widget class="QCheckBox" name="checkLarge">
             <property name="text">
-             <string>放大化群系</string>
+             <string>巨型生物群系</string>
             </property>
            </widget>
           </item>
