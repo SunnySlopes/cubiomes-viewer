@@ -57,7 +57,7 @@ MainWindow::MainWindow(QWidget *parent)
     QSettings settings(APP_STRING, APP_STRING);
     QString lang = settings.value("config/lang", QLocale().name()).toString();
     if (!loadTranslation(lang))
-        loadTranslation("en_US");
+        loadTranslation("zh_CN");
 
     ui = new Ui::MainWindow;
     dock = new QDockWidget(tr("Map"), this);

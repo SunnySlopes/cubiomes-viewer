@@ -138,49 +138,35 @@ static const struct FilterList
             CAT_HELPER, 0, 0, 0, 0, 0, 0, 1, 0, 0, MC_UNDEF, MC_NEWEST, DIM_UNDEF, 0, disp++,
             ":icons/helper.png",
             QT_TRANSLATE_NOOP("Filter", "OR logic gate"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Evaluates as true when any of the conditions that reference it "
-            "(by relative location) are met. When no referencing conditions are "
-            "defined, it defaults to true.")
+            "符合其中任一条件即返回true, 没有条件时默认为true"
         };
         list[F_LOGIC_NOT] = FilterInfo{
             CAT_HELPER, 0, 0, 0, 0, 0, 0, 1, 0, 0, MC_UNDEF, MC_NEWEST, DIM_UNDEF, 0, disp++,
             ":icons/helper.png",
             QT_TRANSLATE_NOOP("Filter", "NOT logic gate"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Evaluates as true when none of the conditions that reference it "
-            "(by relative location) are met. When no referencing conditions are "
-            "defined, it defaults to true.")
+            "没有任何符合的条件才返回true, 没有条件时默认为true"
         };
         list[F_LUA] = FilterInfo{
             CAT_HELPER, 0, 0, 0, 0, 0, 0, 1, 0, 0, MC_UNDEF, MC_NEWEST, DIM_UNDEF, 0, disp++,
             ":icons/helper.png",
             QT_TRANSLATE_NOOP("Filter", "Lua"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Define custom conditions using Lua scripts.")
+            "使用Lua脚本自定义条件"
         };
         list[F_SCALE_TO_NETHER] = FilterInfo{
             CAT_HELPER, 0, 0, 0, 0, 0, 0, 1, 0, 0, MC_UNDEF, MC_NEWEST, DIM_UNDEF, 0, disp++,
             ":icons/portal_lit.png",
             QT_TRANSLATE_NOOP("Filter", "Coordinate factor x/8"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Divides relative location by 8, from Overworld to Nether.")
+            "将坐标除以8, 用作主世界到地狱的坐标转换"
         };
         list[F_SCALE_TO_OVERWORLD] = FilterInfo{
             CAT_HELPER, 0, 0, 0, 0, 0, 0, 1, 0, 0, MC_UNDEF, MC_NEWEST, DIM_UNDEF, 0, disp++,
             ":icons/portal_lit.png",
             QT_TRANSLATE_NOOP("Filter", "Coordinate factor x*8"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Multiplies relative location by 8, from Nether to Overworld.")
+            "将坐标乘以8, 用作地狱到主世界的坐标转换"
         };
-        const char *spiral_desc = QT_TRANSLATE_NOOP("Filter",
-            "<html><head/><body>"
-            "Spiral iterator conditions can be used to move a testing position across "
-            "a given area using a certain step size. Other conditions that refer to it "
-            "as a relative location will be checked at each step. The iteration is "
-            "performed in a spiral, so positions closer to the center get priority."
-            "</body></html>"
-        );
+        const char *spiral_desc = "螺旋迭代器可以让其连带的搜索条件以固定步长遍历整片区域, 每一步所有条件都会重新检查一遍。\n"
+                                  "迭代器会以螺旋状路径状遍历整片区域, 所以靠近区域中心的地方会被优先遍历到。"
+        ;
         list[F_SPIRAL_1] = FilterInfo{
             CAT_HELPER, 0, 1, 1, 0, 0, 0, 1, 0, 0, MC_UNDEF, MC_NEWEST, DIM_UNDEF, 0, disp++,
             ":icons/reference.png",
@@ -228,225 +214,179 @@ static const struct FilterList
             CAT_QUAD, 0, 1, 1, 0, 0, Swamp_Hut, 512, 9, 0, MC_1_4, MC_NEWEST, 0, 0, disp++,
             ":icons/quad.png",
             QT_TRANSLATE_NOOP("Filter", "Quad-hut (ideal)"),
-            QT_TRANSLATE_NOOP("Filter",
-            "The lower 48-bits provide potential for four swamp huts in "
-            "spawning range, in one of the best configurations that exist.")
+            "种子的低48位(二进制)决定了该种子具有成为最佳配置的四联女巫小屋的可能性"
         };
 
         list[F_QH_CLASSIC] = FilterInfo{
             CAT_QUAD, 0, 1, 1, 0, 0, Swamp_Hut, 512, 9, 0, MC_1_4, MC_NEWEST, 0, 0, disp++,
             ":icons/quad.png",
             QT_TRANSLATE_NOOP("Filter", "Quad-hut (classic)"),
-            QT_TRANSLATE_NOOP("Filter",
-            "The lower 48-bits provide potential for four swamp huts in "
-            "spawning range, in one of the \"classic\" configurations. "
-            "(Checks for huts in the nearest 2x2 chunk corners of each "
-            "region.)")
+            "种子的低48位(二进制)决定了该种子具有成为经典配置的四联女巫小屋的可能性"
         };
 
         list[F_QH_NORMAL] = FilterInfo{
             CAT_QUAD, 0, 1, 1, 0, 0, Swamp_Hut, 512, 9, 0, MC_1_4, MC_NEWEST, 0, 0, disp++,
             ":icons/quad.png",
             QT_TRANSLATE_NOOP("Filter", "Quad-hut (normal)"),
-            QT_TRANSLATE_NOOP("Filter",
-            "The lower 48-bits provide potential for four swamp huts in "
-            "spawning range, such that all of them are within 128 blocks "
-            "of a single AFK location, including a vertical tolerance "
-            "for a fall damage chute.")
+            "种子的低48位(二进制)决定了该种子具有成为普通配置的四联女巫小屋的可能性\n"
+            "(保证四个小屋都在单人挂机距离内并且都有足够的垂直空间来摔死女巫)"
         };
 
         list[F_QH_BARELY] = FilterInfo{
             CAT_QUAD, 0, 1, 1, 0, 0, Swamp_Hut, 512, 9, 0, MC_1_4, MC_NEWEST, 0, 0, disp++,
             ":icons/quad.png",
             QT_TRANSLATE_NOOP("Filter", "Quad-hut (barely)"),
-            QT_TRANSLATE_NOOP("Filter",
-            "The lower 48-bits provide potential for four swamp huts in "
-            "spawning range, in any configuration, such that the bounding "
-            "boxes are within 128 blocks of a single AFK location.")
+            "种子的低48位(二进制)决定了该种子具有成为最差配置的四联女巫小屋的可能性\n"
+            "(只能保证四个小屋都在单人挂机距离内)"
         };
 
         list[F_QM_95] = FilterInfo{
             CAT_QUAD, 0, 1, 1, 0, 0, Monument, 512, 9, 0, MC_1_8, MC_NEWEST, 0, 0, disp++,
             ":icons/quad.png",
             QT_TRANSLATE_NOOP("Filter", "Quad-ocean-monument (>95%)"),
-            QT_TRANSLATE_NOOP("Filter",
-            "The lower 48-bits provide potential for 95% of the area of "
-            "four ocean monuments to be within 128 blocks of an AFK "
-            "location.")
+            "种子的低48位(二进制)决定了该种子具有成为四联海底神殿的可能性, 并且有超过95%的面积落在单人挂机距离内"
         };
 
         list[F_QM_90] = FilterInfo{
             CAT_QUAD, 0, 1, 1, 0, 0, Monument, 512, 9, 0, MC_1_8, MC_NEWEST, 0, 0, disp++,
             ":icons/quad.png",
             QT_TRANSLATE_NOOP("Filter", "Quad-ocean-monument (>90%)"),
-            QT_TRANSLATE_NOOP("Filter",
-            "The lower 48-bits provide potential for 90% of the area of "
-            "four ocean monuments to be within 128 blocks of an AFK "
-            "location.")
+            "种子的低48位(二进制)决定了该种子具有成为四联海底神殿的可能性, 并且有超过90%的面积落在单人挂机距离内"
         };
 
         list[F_BIOME] = FilterInfo{
             CAT_BIOMES, 1, 1, 1, 0, L_VORONOI_1, 0, 1, 0, 0, MC_B1_7, MC_1_17, 0, 1, disp++, // disable for 1.18
             ":icons/map.png",
             QT_TRANSLATE_NOOP("Filter", "Biomes 1:1"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Allows only seeds with the included (+) biomes in the specified area and "
-            "discard those that have biomes that are explicitly excluded (-).")
+            "在指定范围内包括所有你想要的(+)群系并排除所有你不要的(-)"
         };
 
         list[F_BIOME_4] = FilterInfo{
             CAT_BIOMES, 1, 1, 1, 0, 0, 0, 4, 2, 0, MC_B1_7, MC_NEWEST, 0, 1, disp++,
             ":icons/map.png",
             QT_TRANSLATE_NOOP("Filter", "Biomes 1:4"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Allows only seeds with the included (+) biomes in the specified area and "
-            "discard those that have biomes that are explicitly excluded (-).")
+            "在指定范围内包括所有你想要的(+)群系并排除所有你不要的(-)"
         };
         list[F_BIOME_16] = FilterInfo{
             CAT_BIOMES, 1, 1, 1, 0, 0, 0, 16, 4, 0, MC_B1_7, MC_NEWEST, 0, 1, disp++,
             ":icons/map.png",
             QT_TRANSLATE_NOOP("Filter", "Biomes 1:16"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Allows only seeds with the included (+) biomes in the specified area and "
-            "discard those that have biomes that are explicitly excluded (-).")
+            "在指定范围内包括所有你想要的(+)群系并排除所有你不要的(-)"
         };
         list[F_BIOME_64] = FilterInfo{
             CAT_BIOMES, 1, 1, 1, 0, 0, 0, 64, 6, 0, MC_B1_7, MC_NEWEST, 0, 1, disp++,
             ":icons/map.png",
             QT_TRANSLATE_NOOP("Filter", "Biomes 1:64"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Allows only seeds with the included (+) biomes in the specified area and "
-            "discard those that have biomes that are explicitly excluded (-).")
+            "在指定范围内包括所有你想要的(+)群系并排除所有你不要的(-)"
         };
         list[F_BIOME_256] = FilterInfo{
             CAT_BIOMES, 1, 1, 1, 0, 0, 0, 256, 8, 0, MC_B1_7, MC_NEWEST, 0, 1, disp++,
             ":icons/map.png",
             QT_TRANSLATE_NOOP("Filter", "Biomes 1:256"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Allows only seeds with the included (+) biomes in the specified area and "
-            "discard those that have biomes that are explicitly excluded (-).")
+            "在指定范围内包括所有你想要的(+)群系并排除所有你不要的(-)"
         };
 
         list[F_BIOME_4_RIVER] = FilterInfo{
             CAT_BIOMES, 1, 1, 1, 0, L_RIVER_MIX_4, 0, 4, 2, 0, MC_1_13, MC_1_17, 0, 0, disp++,
             ":icons/map.png",
             QT_TRANSLATE_NOOP("Filter", "Biomes 1:4 RIVER"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Allows only seeds with the included (+) biomes in the specified area and "
-            "discard those that have biomes that are explicitly excluded (-) "
-            "at layer RIVER with scale 1:4. "
-            "This layer does not generate ocean variants.")
+            "在指定范围内包括所有你想要的(+)群系并排除所有你不要的(-)\n"
+            "但是只生成到1:4层的河流为止, 不生成海洋变种"
         };
         list[F_BIOME_256_OTEMP] = FilterInfo{
             CAT_BIOMES, 0, 1, 1, 0, L_OCEAN_TEMP_256, 0, 256, 8, 0, MC_1_13, MC_1_17, 0, 0, disp++,
             ":icons/map.png",
             QT_TRANSLATE_NOOP("Filter", "Biomes 1:256 O.TEMP"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Allows only seeds with the included (+) biomes in the specified area and "
-            "discard those that have biomes that are explicitly excluded (-) "
-            "at layer OCEAN TEMPERATURE with scale 1:256. "
-            "This generation layer depends only on the lower 48-bits of the seed.")
+            "在指定范围内包括所有你想要的(+)群系并排除所有你不要的(-)\n"
+            "仅生成到决定海洋温度的1:256\n"
+            "这部分群系生成仅由种子低48位决定"
         };
         list[F_CLIMATE_NOISE] = FilterInfo{
             CAT_BIOMES, 0, 1, 1, 0, 0, 0, 4, 2, 0, MC_1_18, MC_NEWEST, 0, 0, disp++,
             ":icons/map.png",
             QT_TRANSLATE_NOOP("Filter", "Climate parameters 1:4"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Custom limits for the required and allowed climate noise parameters that "
-            "the specified area should cover.")
+            "自定义指定区域内的群系的气候参数限制"
         };
         list[F_CLIMATE_MINMAX] = FilterInfo{
             CAT_BIOMES, 0, 1, 1, 0, 0, 0, 4, 2, 0, MC_1_18, MC_NEWEST, 0, 0, disp++,
             ":icons/map.png",
             QT_TRANSLATE_NOOP("Filter", "Locate climate extreme 1:4"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Finds the location where a climate parameter reaches its minimum or maximum.")
+            "找到该区域中气候参数的极值"
         };
         list[F_BIOME_CENTER] = FilterInfo{
             CAT_BIOMES, 1, 1, 1, 0, 0, 0, 4, 2, 1, MC_B1_7, MC_NEWEST, 0, 1, disp++,
             ":icons/map.png",
             QT_TRANSLATE_NOOP("Filter", "Locate biome center 1:4"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Finds the center position of a given biome.")
+            "找到给定群系的中心点"
         };
         list[F_BIOME_CENTER_256] = FilterInfo{
             CAT_BIOMES, 1, 1, 1, 0, 0, 0, 256, 8, 1, MC_B1_7, MC_1_17, 0, 1, disp++,
             ":icons/map.png",
             QT_TRANSLATE_NOOP("Filter", "Locate biome center 1:256"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Finds the center position of a given biome. Based on the 1:256 biome layer.")
+            "基于1:256群系层找到给定群系的中心点"
         };
         list[F_TEMPS] = FilterInfo{
             CAT_BIOMES, 1, 1, 1, 0, 0, 0, 1024, 10, 0, MC_1_7, MC_1_17, 0, 0, disp++,
             ":icons/tempcat.png",
             QT_TRANSLATE_NOOP("Filter", "Temperature categories"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Checks that the area has a minimum of all the required temperature categories.")
+            "检查这块区域是否包含大于等于你所指定的数目的温度群系"
         };
 
         list[F_BIOME_NETHER_1] = FilterInfo{
             CAT_NETHER, 1, 1, 1, 0, 0, 0, 1, 0, 0, MC_1_16_1, 0, -1, 1, disp++, // disabled
             ":icons/nether.png",
             QT_TRANSLATE_NOOP("Filter", "Nether biomes 1:1 (disabled)"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Nether biomes after voronoi scaling to 1:1.")
+            "通过泰森多边形法算到 1:1 的下界群系"
         };
         list[F_BIOME_NETHER_4] = FilterInfo{
             CAT_NETHER, 0, 1, 1, 0, 0, 0, 4, 2, 0, MC_1_16_1, MC_NEWEST, -1, 0, disp++,
             ":icons/nether.png",
             QT_TRANSLATE_NOOP("Filter", "Nether biomes 1:4"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Nether biomes with normal noise sampling at scale 1:4.")
+            "使用正常噪声生成后在 1:4 的尺度下取样的下界群系"
         };
         list[F_BIOME_NETHER_16] = FilterInfo{
             CAT_NETHER, 0, 1, 1, 0, 0, 0, 16, 4, 0, MC_1_16_1, MC_NEWEST, -1, 0, disp++,
             ":icons/nether.png",
             QT_TRANSLATE_NOOP("Filter", "Nether biomes 1:16"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Nether biomes, but only sampled at scale 1:16.")
+            "使用正常噪声生成后在 1:16 的尺度下取样的下界群系"
         };
         list[F_BIOME_NETHER_64] = FilterInfo{
             CAT_NETHER, 0, 1, 1, 0, 0, 0, 64, 6, 0, MC_1_16_1, MC_NEWEST, -1, 0, disp++,
             ":icons/nether.png",
             QT_TRANSLATE_NOOP("Filter", "Nether biomes 1:64"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Nether biomes, but only sampled at scale 1:64.")
+            "使用正常噪声生成后在 1:64 的尺度下取样的下界群系"
         };
         list[F_BIOME_NETHER_256] = FilterInfo{
             CAT_NETHER, 0, 1, 1, 0, 0, 0, 256, 8, 0, MC_1_16_1, MC_NEWEST, -1, 0, disp++,
             ":icons/nether.png",
             QT_TRANSLATE_NOOP("Filter", "Nether biomes 1:256"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Nether biomes, but only sampled at scale 1:256.")
+            "使用正常噪声生成后在 1:256 的尺度下取样的下界群系"
         };
 
         list[F_BIOME_END_1] = FilterInfo{
             CAT_END, 1, 1, 1, 0, 0, 0, 1, 0, 0, MC_1_9, 0, +1, 1, disp++, // disabled
             ":icons/the_end.png",
             QT_TRANSLATE_NOOP("Filter", "End biomes 1:1 (disabled)"),
-            QT_TRANSLATE_NOOP("Filter",
-            "End biomes after voronoi scaling to 1:1.")
+            "通过泰森多边形法算到 1:1 的末地群系"
         };
         list[F_BIOME_END_4] = FilterInfo{
             CAT_END, 0, 1, 1, 0, 0, 0, 4, 2, 0, MC_1_9, MC_NEWEST, +1, 0, disp++,
             ":icons/the_end.png",
             QT_TRANSLATE_NOOP("Filter", "End biomes 1:4"),
-            QT_TRANSLATE_NOOP("Filter",
-            "End biomes sampled at scale 1:4. Note this is just a simple upscale of 1:16.")
+            "在 1:4 尺度下取样的末地群系生成\n"
+            "注意其只是 1:16 的放大"
         };
         list[F_BIOME_END_16] = FilterInfo{
             CAT_END, 0, 1, 1, 0, 0, 0, 16, 4, 0, MC_1_9, MC_NEWEST, +1, 0, disp++,
             ":icons/the_end.png",
             QT_TRANSLATE_NOOP("Filter", "End biomes 1:16"),
-            QT_TRANSLATE_NOOP("Filter",
-            "End biomes with normal sampling at scale 1:16. ")
+            "在 1:16 尺度下正常取样的末地群系生成"
         };
         list[F_BIOME_END_64] = FilterInfo{
             CAT_END, 0, 1, 1, 0, 0, 0, 64, 6, 0, MC_1_9, MC_NEWEST, +1, 0, disp++,
             ":icons/the_end.png",
             QT_TRANSLATE_NOOP("Filter", "End biomes 1:64"),
-            QT_TRANSLATE_NOOP("Filter",
-            "End biomes with lossy sampling at scale 1:64. ")
+            "在 1:64 尺度下松散取样的末地群系生成"
         };
 
         list[F_SPAWN] = FilterInfo{
@@ -466,17 +406,14 @@ static const struct FilterList
             CAT_OTHER, 0, 1, 0, 0, 0, 0, 4, 2, 0, MC_1_1, MC_NEWEST, 0, 0, disp++,
             ":icons/height.png",
             QT_TRANSLATE_NOOP("Filter", "Surface height"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Check the approximate surface height at scale 1:4 at a single coordinate.")
+            "以1:4的比例在某个坐标检查大致地表高度"
         };
 
         list[F_FIRST_STRONGHOLD] = FilterInfo{
             CAT_OTHER, 0, 1, 1, 1, 0, 0, 1, 0, 0, MC_B1_8, MC_NEWEST, 0, 0, disp++,
             ":icons/stronghold.png",
             QT_TRANSLATE_NOOP("Filter", "First stronghold"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Finds the approxmiate location of the first stronghold "
-            "(+/-112 blocks). Depends only on the 48-bit seed.")
+            "仅依靠低48位(二进制)找到第一个要塞的大致位置(+/-112格)"
         };
 
         list[F_STRONGHOLD] = FilterInfo{
@@ -504,18 +441,16 @@ static const struct FilterList
             CAT_STRUCT, 1, 1, 1, 1, 0, Desert_Pyramid, 1, 0, 1, MC_1_3, MC_NEWEST, 0, 0, disp++,
             ":icons/desert.png",
             QT_TRANSLATE_NOOP("Filter", "Desert pyramid"),
-            QT_TRANSLATE_NOOP("Filter",
-            "In version 1.18+, desert pyramids depend on surface height and may fail to "
-            "generate near caves/aquifers, rivers and oceans.")
+            "注意, 在1.18中, 林地府邸、沙漠神殿和丛林神殿的生成还会考虑其表面的高度, \n"
+            "所以其在（含水）洞穴、河流或者海洋群系（甚至是较高的沙丘）周围可能会生成失败"
         };
 
         list[F_JUNGLE] = FilterInfo{
             CAT_STRUCT, 1, 1, 1, 1, 0, Jungle_Temple, 1, 0, 1, MC_1_3, MC_NEWEST, 0, 0, disp++,
             ":icons/jungle.png",
             QT_TRANSLATE_NOOP("Filter", "Jungle temple"),
-            QT_TRANSLATE_NOOP("Filter",
-            "In version 1.18+, jungle temples depend on surface height and may fail to "
-            "generate near caves/aquifers, rivers and oceans.")
+            "注意, 在1.18中, 林地府邸、沙漠神殿和丛林神殿的生成还会考虑其表面的高度, \n"
+            "所以其在（含水）洞穴、河流或者海洋群系（甚至是较高的沙丘）周围可能会生成失败"
         };
 
         list[F_HUT] = FilterInfo{
@@ -543,9 +478,8 @@ static const struct FilterList
             CAT_STRUCT, 1, 1, 1, 1, 0, Mansion, 1, 0, 1, MC_1_11, MC_NEWEST, 0, 0, disp++,
             ":icons/mansion.png",
             QT_TRANSLATE_NOOP("Filter", "Woodland mansion"),
-            QT_TRANSLATE_NOOP("Filter",
-            "In version 1.18+, mansions depend on surface height and may fail to "
-            "generate near caves/aquifers, rivers and oceans.")
+            "注意, 在1.18中, 林地府邸、沙漠神殿和丛林神殿的生成还会考虑其表面的高度, \n"
+            "所以其在（含水）洞穴、河流或者海洋群系（甚至是较高的沙丘）周围可能会生成失败"
         };
 
         list[F_RUINS] = FilterInfo{
@@ -566,10 +500,7 @@ static const struct FilterList
             CAT_STRUCT, 1, 1, 1, 1, 0, Treasure, 1, 0, 1, MC_1_13, MC_NEWEST, 0, 0, disp++,
             ":icons/treasure.png",
             QT_TRANSLATE_NOOP("Filter", "Buried treasure"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Buried treasures are always positioned near the center of a chunk "
-            "rather than a chunk boarder. Make sure the testing area is set "
-            "accordingly.")
+            "宝藏总是出现在区块中心附近而不是区块边界附近, 请合理划定查找范围"
         };
 
         list[F_WELL] = FilterInfo{
@@ -639,9 +570,7 @@ static const struct FilterList
             CAT_STRUCT, 0, 1, 1, 1, 0, End_Gateway, 1, 0, 1, MC_1_13, MC_NEWEST, +1, 0, disp++,
             ":icons/gateway.png",
             QT_TRANSLATE_NOOP("Filter", "End gateway"),
-            QT_TRANSLATE_NOOP("Filter",
-            "Checks only scattered return gateways. Does not include those generated "
-            "when defeating the dragon.")
+            "特指返程折跃门, 而非那些你打龙开的折跃门"
         };
     }
 }

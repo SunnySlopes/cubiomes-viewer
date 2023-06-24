@@ -283,7 +283,7 @@ void Config::reset()
     gridMultiplier = 0;
     mapCacheSize = 256;
     mapThreads = 0;
-    lang = "en_US";
+    lang = "zh_CN";
     biomeColorPath = "";
     separator = ";";
     quote = "";
