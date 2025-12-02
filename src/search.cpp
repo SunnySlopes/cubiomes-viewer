@@ -1258,6 +1258,198 @@ L_qm_any:
             return COND_OK;
         return COND_FAILED;
 
+    case F_DM:  // Double Monument
+        {
+            // Find all monuments in the search area
+            rx1 = x1 >> 9;
+            rz1 = z1 >> 9;
+            rx2 = x2 >> 9;
+            rz2 = z2 >> 9;
+            
+            Pos monuments[MAX_INSTANCES];
+            int mcnt = 0;
+            
+            // Collect all monument positions in the area
+            for (rz = rz1; rz <= rz2 && !*env->stop && mcnt < MAX_INSTANCES; rz++)
+            {
+                for (rx = rx1; rx <= rx2; rx++)
+                {
+                    if (!getStructurePos(Monument, env->mc, env->seed, rx, rz, &pc))
+                        continue;
+                    
+                    // Check if monument is within search area
+                    if (rmax)
+                    {
+                        int dx = pc.x - at.x;
+                        int dz = pc.z - at.z;
+                        int64_t rsq = dx*(int64_t)dx + dz*(int64_t)dz;
+                        if (rsq >= rmax)
+                            continue;
+                    }
+                    else if (pc.x < x1 || pc.x > x2 || pc.z < z1 || pc.z > z2)
+                    {
+                        continue;
+                    }
+                    
+                    // Check viability if needed
+                    if ((env->searchpass == PASS_FULL_64) ||
+                        (env->searchpass == PASS_FULL_48 && !finfo.dep64))
+                    {
+                        if (*env->stop) return COND_FAILED;
+                        env->init4Dim(finfo.dim);
+                        int id = isViableStructurePos(Monument, &env->g, pc.x, pc.z, 0);
+                        if (!id)
+                            continue;
+                    }
+                    
+                    monuments[mcnt++] = pc;
+                }
+            }
+            
+            // Need at least 2 monuments to form a pair
+            if (mcnt < 2)
+            {
+                // In fast pass, if we can't find enough monuments, fail immediately
+                if (env->searchpass == PASS_FAST_48)
+                    return COND_FAILED;
+                // In full passes, we need to check viability first
+                if (env->searchpass == PASS_FULL_64)
+                    return COND_FAILED;
+                if (env->searchpass == PASS_FULL_48 && !finfo.dep64)
+                    return COND_FAILED;
+                return COND_MAYBE_POS_INVAL;
+            }
+            
+            // Check all pairs of monuments
+            const int64_t max_radius_sq = 180LL * 180LL;
+            bool found = false;
+            Pos best_center = {0, 0};
+            
+            for (int i = 0; i < mcnt && !found; i++)
+            {
+                for (int j = i + 1; j < mcnt; j++)
+                {
+                    Pos p1 = monuments[i];
+                    Pos p2 = monuments[j];
+                    
+                    // Check if x and z differences are NOT 160 and 80 (quad configuration)
+                    int dx = p2.x - p1.x;
+                    int dz = p2.z - p1.z;
+                    if (dx < 0) dx = -dx;
+                    if (dz < 0) dz = -dz;
+                    
+                    // Skip if this is a standard quad configuration (160, 80)
+                    if ((dx == 160 && dz == 80) || (dx == 80 && dz == 160))
+                        continue;
+                    
+                    // Check if one monument is within 180 blocks of the other
+                    // Check both directions: p2 within circle centered at p1, or p1 within circle centered at p2
+                    int64_t dx12 = p2.x - p1.x;
+                    int64_t dz12 = p2.z - p1.z;
+                    int64_t dist12_sq = dx12*dx12 + dz12*dz12;
+                    
+                    int64_t dx21 = p1.x - p2.x;
+                    int64_t dz21 = p1.z - p2.z;
+                    int64_t dist21_sq = dx21*dx21 + dz21*dz21;
+                    
+                    // Check if either monument is within 180 blocks of the other
+                    bool p2_in_circle_of_p1 = (dist12_sq < max_radius_sq);
+                    bool p1_in_circle_of_p2 = (dist21_sq < max_radius_sq);
+                    
+                    if (!p2_in_circle_of_p1 && !p1_in_circle_of_p2)
+                        continue;
+                    
+                    // Determine which monument is the center (the one that contains the other)
+                    Pos center;
+                    if (p2_in_circle_of_p1)
+                    {
+                        // p1 is center, p2 is within 180 blocks of p1
+                        center = p1;
+                    }
+                    else
+                    {
+                        // p2 is center, p1 is within 180 blocks of p2
+                        center = p2;
+                    }
+                    
+                    // Check if at least one monument is within the specified range
+                    bool p1_in_range = false;
+                    bool p2_in_range = false;
+                    
+                    if (rmax)
+                    {
+                        // Circular range check
+                        int64_t dp1x = p1.x - at.x;
+                        int64_t dp1z = p1.z - at.z;
+                        int64_t dp1_sq = dp1x*dp1x + dp1z*dp1z;
+                        p1_in_range = (dp1_sq < rmax);
+                        
+                        int64_t dp2x = p2.x - at.x;
+                        int64_t dp2z = p2.z - at.z;
+                        int64_t dp2_sq = dp2x*dp2x + dp2z*dp2z;
+                        p2_in_range = (dp2_sq < rmax);
+                    }
+                    else
+                    {
+                        // Rectangular range check
+                        p1_in_range = (p1.x >= x1 && p1.x <= x2 && p1.z >= z1 && p1.z <= z2);
+                        p2_in_range = (p2.x >= x1 && p2.x <= x2 && p2.z >= z1 && p2.z <= z2);
+                    }
+                    
+                    // At least one monument must be in range
+                    if (!p1_in_range && !p2_in_range)
+                        continue;
+                    
+                    // In fast pass, we found a valid pair (but haven't checked viability)
+                    // In full passes, we need to verify both monuments are viable
+                    if ((env->searchpass == PASS_FULL_64) ||
+                        (env->searchpass == PASS_FULL_48 && !finfo.dep64))
+                    {
+                        if (*env->stop) return COND_FAILED;
+                        env->init4Dim(finfo.dim);
+                        int id1 = isViableStructurePos(Monument, &env->g, p1.x, p1.z, 0);
+                        int id2 = isViableStructurePos(Monument, &env->g, p2.x, p2.z, 0);
+                        if (!id1 || !id2)
+                            continue;
+                    }
+                    
+                    // Found a valid pair
+                    found = true;
+                    best_center = center;
+                    break;
+                }
+            }
+            
+            if (found)
+            {
+                if (imax == NULL)
+                {
+                    cent[0] = best_center;
+                }
+                else if (*imax > 0)
+                {
+                    cent[0] = best_center;
+                    *imax = 1;
+                }
+                // In fast pass, return MAYBE_VALID since we haven't checked viability
+                // This allows the seed to proceed to full pass for verification
+                if (env->searchpass == PASS_FAST_48)
+                    return COND_MAYBE_POS_VALID;
+                // In full passes, we've already checked viability above
+                return COND_OK;
+            }
+            
+            // No valid pair found
+            // In fast pass, if we found monuments but no valid pair, fail immediately
+            // This is because we've already checked all geometric constraints
+            if (env->searchpass == PASS_FAST_48)
+            {
+                // We found monuments but none form a valid pair - fail
+                return COND_FAILED;
+            }
+            // In full passes, we've checked viability, so if no valid pair, fail
+            return COND_FAILED;
+        }
 
     case F_DESERT:
     case F_HUT:

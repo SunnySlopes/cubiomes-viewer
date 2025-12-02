@@ -92,6 +92,7 @@ enum
     F_BIOME_SAMPLE,
     F_NOISE_SAMPLE,
     F_CHAMBERS,
+    F_DM,  // Double Monument - added at end for backwards compatibility
     // new filters should be added here at the end to keep some downwards compatibility
     FILTER_MAX,
 };
@@ -254,6 +255,18 @@ static const struct FilterList : private FilterInfo
             "The lower 48-bits provide potential for 90% of the area of "
             "four ocean monuments to be within 128 blocks of an AFK "
             "location.")
+        };
+
+        list[F_DM] = FilterInfo{
+            CAT_STRUCT, 0, LOC_RAD, Monument, 512, BR_FIRST, MC_1_8, MC_NEWEST, 0, 0, disp++,
+            "monument",
+            QT_TRANSLATE_NOOP("Filter", "Double Ocean Monument"),
+            QT_TRANSLATE_NOOP("Filter",
+            "Requires two ocean monuments where one monument is within 180 blocks "
+            "of the other (forming a circle centered at one monument). At least one "
+            "monument must be within the specified search range. The x and z differences "
+            "between the two monuments must not be 160 and 80 respectively "
+            "(i.e., this is the only invalid configuration but still valid for the filter).")
         };
 
         list[F_BIOME_SAMPLE] = FilterInfo{
