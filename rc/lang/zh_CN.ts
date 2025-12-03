@@ -693,34 +693,34 @@
         <translation>MC版本: 1.X</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="125"/>
+        <location filename="../../src/conditiondialog.cpp" line="124"/>
         <source>Select category</source>
         <translation>选择目录</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="130"/>
+        <location filename="../../src/conditiondialog.cpp" line="129"/>
         <source>Algorithm helpers</source>
         <translation>算法辅助</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="129"/>
+        <location filename="../../src/conditiondialog.cpp" line="128"/>
         <source>Quad-structure</source>
         <translation>四联结构</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="128"/>
+        <location filename="../../src/conditiondialog.cpp" line="127"/>
         <source>Structures</source>
         <translation>普通结构</translation>
     </message>
     <message>
         <location filename="../../src/conditiondialog.ui" line="464"/>
-        <location filename="../../src/conditiondialog.cpp" line="127"/>
+        <location filename="../../src/conditiondialog.cpp" line="126"/>
         <source>Biomes</source>
         <translation>群系</translation>
     </message>
     <message>
         <location filename="../../src/conditiondialog.ui" line="47"/>
-        <location filename="../../src/conditiondialog.cpp" line="1178"/>
+        <location filename="../../src/conditiondialog.cpp" line="1177"/>
         <source>Select type</source>
         <translation>选择种类</translation>
     </message>
@@ -746,7 +746,7 @@
     </message>
     <message>
         <location filename="../../src/conditiondialog.ui" line="164"/>
-        <location filename="../../src/conditiondialog.cpp" line="669"/>
+        <location filename="../../src/conditiondialog.cpp" line="668"/>
         <source>Location</source>
         <translation>范围</translation>
     </message>
@@ -755,7 +755,7 @@
         <location filename="../../src/conditiondialog.ui" line="182"/>
         <location filename="../../src/conditiondialog.ui" line="192"/>
         <location filename="../../src/conditiondialog.ui" line="202"/>
-        <location filename="../../src/conditiondialog.cpp" line="671"/>
+        <location filename="../../src/conditiondialog.cpp" line="670"/>
         <source>Lower bound (inclusive)</source>
         <translation>最小值(含)</translation>
     </message>
@@ -787,7 +787,7 @@
         <location filename="../../src/conditiondialog.ui" line="229"/>
         <location filename="../../src/conditiondialog.ui" line="239"/>
         <location filename="../../src/conditiondialog.ui" line="249"/>
-        <location filename="../../src/conditiondialog.cpp" line="672"/>
+        <location filename="../../src/conditiondialog.cpp" line="671"/>
         <source>Upper bound (inclusive)</source>
         <translation>最大值(含)</translation>
     </message>
@@ -1300,8 +1300,8 @@ yield each sampled position individually</source>
         <translation>包含地下室</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="478"/>
-        <location filename="../../src/conditiondialog.cpp" line="786"/>
+        <location filename="../../src/conditiondialog.cpp" line="477"/>
+        <location filename="../../src/conditiondialog.cpp" line="785"/>
         <source>Generates any of:</source>
         <translation>生成以下任意一个:</translation>
     </message>
@@ -1311,121 +1311,121 @@ yield each sampled position individually</source>
         <translation>条件描述</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="46"/>
+        <location filename="../../src/conditiondialog.cpp" line="45"/>
         <source>MC %1</source>
         <comment>Minecraft version</comment>
         <translatorcomment>MC版本</translatorcomment>
         <translation>MC版本 %1</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="131"/>
+        <location filename="../../src/conditiondialog.cpp" line="130"/>
         <source>Other</source>
         <translation>其他</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="158"/>
+        <location filename="../../src/conditiondialog.cpp" line="157"/>
         <source>Oceanic</source>
         <translation>海洋类</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="159"/>
+        <location filename="../../src/conditiondialog.cpp" line="158"/>
         <source>Warm</source>
         <translation>温带类</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="160"/>
+        <location filename="../../src/conditiondialog.cpp" line="159"/>
         <source>Lush</source>
         <translation>繁茂类</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="161"/>
+        <location filename="../../src/conditiondialog.cpp" line="160"/>
         <source>Cold</source>
         <translation>寒冷类</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="162"/>
+        <location filename="../../src/conditiondialog.cpp" line="161"/>
         <source>Freezing</source>
         <translation>冰冻类</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="163"/>
+        <location filename="../../src/conditiondialog.cpp" line="162"/>
         <source>Special Warm</source>
         <translation>特殊温带类</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="164"/>
+        <location filename="../../src/conditiondialog.cpp" line="163"/>
         <source>Special Lush</source>
         <translation>特殊繁茂类</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="165"/>
+        <location filename="../../src/conditiondialog.cpp" line="164"/>
         <source>Special Cold</source>
         <translation>特殊寒冷类</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="204"/>
+        <location filename="../../src/conditiondialog.cpp" line="203"/>
         <source>Temperature</source>
         <translation>温度</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="204"/>
+        <location filename="../../src/conditiondialog.cpp" line="203"/>
         <source>Humidity</source>
         <translation>湿度</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="204"/>
+        <location filename="../../src/conditiondialog.cpp" line="203"/>
         <source>Continentalness</source>
         <translation>海陆分布</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="205"/>
+        <location filename="../../src/conditiondialog.cpp" line="204"/>
         <source>Erosion</source>
         <translation>侵蚀度</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="205"/>
+        <location filename="../../src/conditiondialog.cpp" line="204"/>
         <source>Depth</source>
         <translation>高度/深度</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="205"/>
+        <location filename="../../src/conditiondialog.cpp" line="204"/>
         <source>Weirdness</source>
         <translation>稀有程度</translation>
     </message>
     <message>
+        <location filename="../../src/conditiondialog.cpp" line="226"/>
         <location filename="../../src/conditiondialog.cpp" line="227"/>
-        <location filename="../../src/conditiondialog.cpp" line="228"/>
         <source>-Inf</source>
         <translation>无下限</translation>
     </message>
     <message>
+        <location filename="../../src/conditiondialog.cpp" line="226"/>
         <location filename="../../src/conditiondialog.cpp" line="227"/>
-        <location filename="../../src/conditiondialog.cpp" line="228"/>
         <source>+Inf</source>
         <translation>无上限</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="237"/>
+        <location filename="../../src/conditiondialog.cpp" line="236"/>
         <source>Require full range instead of intersection</source>
         <translation>全范围而非交叉</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="267"/>
+        <location filename="../../src/conditiondialog.cpp" line="266"/>
         <source>  -Inf</source>
         <translation>  无下限</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="269"/>
+        <location filename="../../src/conditiondialog.cpp" line="268"/>
         <source>  +Inf</source>
         <translation>  无上限</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="326"/>
+        <location filename="../../src/conditiondialog.cpp" line="325"/>
         <source>[script not found]</source>
         <translation>[未找到脚本]</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/conditiondialog.cpp" line="927"/>
+        <location filename="../../src/conditiondialog.cpp" line="926"/>
         <source>The biome locator checks for %n instance(s), each of size %1, which cannot be satisfied by an area of size
 %2%3%4 = %5 &lt; %6 @ scale 1:%7.</source>
         <translation>
@@ -1433,149 +1433,149 @@ yield each sampled position individually</source>
         </translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="950"/>
+        <location filename="../../src/conditiondialog.cpp" line="949"/>
         <source>Cave biomes do not generate above Y = 246.
 The sampling height should be lowered.</source>
         <translation>洞穴群系无法生成在 Y &gt;= 246 的地方, 请考虑降低采样高度。</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="951"/>
-        <location filename="../../src/conditiondialog.cpp" line="983"/>
+        <location filename="../../src/conditiondialog.cpp" line="950"/>
+        <location filename="../../src/conditiondialog.cpp" line="982"/>
         <source>Continue anyway?</source>
         <translation>是否继续?</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="982"/>
+        <location filename="../../src/conditiondialog.cpp" line="981"/>
         <source>The selected area does not contain a range where a quad-structure can generate.</source>
         <translation>这片区域无法生成任何四联结构。</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="1257"/>
+        <location filename="../../src/conditiondialog.cpp" line="1256"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The area can be entered via &lt;b&gt;custom&lt;/b&gt; rectangle, that is defined by its two opposing corners, relative to a center point. These bounds are inclusive.&lt;/p&gt;&lt;p&gt;Alternatively, the area can be defined as a &lt;b&gt;centered square&lt;/b&gt; with a certain side length. In this case the area has the bounds: [-X/2, +X/2] on both axes, rounding down and bounds included. For example a centered square with side 3 will go from -2 to 1 for both the X and Z axes.&lt;/p&gt;&lt;p&gt;Some filters have a scaling associated with them. This means the condition only checks on a grid with that spacing. An area with a range from -21 to 21 at scale 1:16 may effectively be expanded to -32 to 31, and get sampled at -32, -16, 0 and 16.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="670"/>
+        <location filename="../../src/conditiondialog.cpp" line="669"/>
         <source>From floor(-x/2) to floor(x/2) on both axes (inclusive)</source>
         <translation>X、Z坐标从 floor(-x/2) (含)到 floor(x/2) (含)</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="719"/>
+        <location filename="../../src/conditiondialog.cpp" line="718"/>
         <source>Sampling scale:</source>
         <translation>取样密度:</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="756"/>
+        <location filename="../../src/conditiondialog.cpp" line="755"/>
         <source>Generation layer:</source>
         <translation>生成精度:</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="900"/>
+        <location filename="../../src/conditiondialog.cpp" line="899"/>
         <source>No allowed start pieces specified. Condition can never be true.</source>
         <translation>该结构不会生成该子类别, 该条件将无法满足！</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="901"/>
+        <location filename="../../src/conditiondialog.cpp" line="900"/>
         <source>Missing Start Piece</source>
         <translation>错误的子类别</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="911"/>
+        <location filename="../../src/conditiondialog.cpp" line="910"/>
         <source>The condition contains a climate range which is unbounded with the full range required, which can never be satisfied.</source>
         <translation>该条件包含了越界的气候条件范围, 该条件将无法满足！</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="915"/>
+        <location filename="../../src/conditiondialog.cpp" line="914"/>
         <source>Bad Climate Range</source>
         <translation>错误的气候条件范围</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="934"/>
+        <location filename="../../src/conditiondialog.cpp" line="933"/>
         <source>Area Insufficient</source>
         <translation>区域不够大</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="949"/>
+        <location filename="../../src/conditiondialog.cpp" line="948"/>
         <source>Bad Surface Height</source>
         <translation>采样高度过高</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="962"/>
+        <location filename="../../src/conditiondialog.cpp" line="961"/>
         <source>No Allowed Biomes</source>
         <translation>未选择允许生成的群系</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="959"/>
+        <location filename="../../src/conditiondialog.cpp" line="958"/>
         <source>The set of allowed biomes is empty, which can never be satisfied. Please include some biomes for the required proportion.</source>
         <translation>未选择允许生成的群系，条件无法满足。请增加一些允许生成的群系！</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="981"/>
+        <location filename="../../src/conditiondialog.cpp" line="980"/>
         <source>Bad Area for Quad-Structure</source>
         <translation>无法生成四联结构</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="1256"/>
+        <location filename="../../src/conditiondialog.cpp" line="1255"/>
         <source>Help: area entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="1435"/>
+        <location filename="../../src/conditiondialog.cpp" line="1434"/>
         <source>(~%1 sq. chunks)</source>
         <translation>(~%1 平方区块)</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="1437"/>
+        <location filename="../../src/conditiondialog.cpp" line="1436"/>
         <source>(%1 sq. chunks)</source>
         <translation>(%1 平方区块)</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="1445"/>
+        <location filename="../../src/conditiondialog.cpp" line="1444"/>
         <source>Unsaved changes</source>
         <translation>更改未保存</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="1446"/>
+        <location filename="../../src/conditiondialog.cpp" line="1445"/>
         <source>Discard unsaved changes?</source>
         <translation>确认丢弃所有未保存的更改?</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="1535"/>
+        <location filename="../../src/conditiondialog.cpp" line="1534"/>
         <source>Save lua script</source>
         <translation>保存Lua脚本</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="1535"/>
+        <location filename="../../src/conditiondialog.cpp" line="1534"/>
         <source>Lua script (*.lua)</source>
         <translation>Lua脚本 (*.lua)</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="1550"/>
+        <location filename="../../src/conditiondialog.cpp" line="1549"/>
         <source>Empty check functions</source>
         <translation>检查函数为空</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="1551"/>
+        <location filename="../../src/conditiondialog.cpp" line="1550"/>
         <source>Village along the way from A to B</source>
         <translation>从A到B沿路上的村庄</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="1592"/>
+        <location filename="../../src/conditiondialog.cpp" line="1591"/>
         <source>Lua examples</source>
         <translation>Lua 脚本示例</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="1593"/>
+        <location filename="../../src/conditiondialog.cpp" line="1592"/>
         <source>Replace editor content with example:</source>
         <translation>将编辑器内容替换为示例</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="1619"/>
+        <location filename="../../src/conditiondialog.cpp" line="1618"/>
         <source>Help: Lua script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="1620"/>
+        <location filename="../../src/conditiondialog.cpp" line="1619"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Lua scripts allow the user to write custom filters. A valid Lua filtering script has to define a&lt;/p&gt;&lt;p&gt;&lt;b&gt;check(seed, at, deps)&lt;/b&gt;&lt;/p&gt;&lt;p&gt;function, that evaluates when a seed satisfies the condition. It should return a &lt;b&gt;x, z&lt;/b&gt; value pair that is the block position for other conditions to reference as the relative location. If the condition fails, the function can return &lt;b&gt;nil&lt;/b&gt; instead.&lt;/p&gt;&lt;p&gt;The arguments of &lt;b&gt;check()&lt;/b&gt; are in order:&lt;/p&gt;&lt;p&gt;&lt;dl&gt;&lt;dt&gt;&lt;b&gt;seed&lt;/b&gt;&lt;dd&gt;the current world seed&lt;dt&gt;&lt;b&gt;at&lt;/b&gt; = {x, z}&lt;dd&gt;the relative location of the parent condition&lt;dt&gt;&lt;b&gt;deps&lt;/b&gt; = [..]{x, z, id, parent}&lt;dd&gt;a list of tables with information on the dependent conditions (i.e. those later in the conditions list)&lt;/dl&gt;&lt;/p&gt;&lt;p&gt;Optionally, the script can also define a &lt;b&gt;check48()&lt;/b&gt; function, with a similar prototype, that tests whether a given 48-bit seed base is worth investigating further.&lt;/p&gt;&lt;p&gt;A few global symbols are predefined. These include the biome ID and structure type enums from cubiomes, which means they can be referred to by their names (such as &lt;b&gt;flower_forest&lt;/b&gt; or &lt;b&gt;Village&lt;/b&gt;). Furthermore, the following functions are available:&lt;/p&gt;&lt;p&gt;&lt;dl&gt;&lt;dt&gt;&lt;b&gt;getBiomeAt(x, z)&lt;/b&gt;&lt;dt&gt;&lt;b&gt;getBiomeAt(x, y, z)&lt;/b&gt;&lt;dd&gt;returns the overworld biome at the given block coordinates&lt;/p&gt;&lt;p&gt;&lt;dt&gt;&lt;b&gt;getStructures(type, x1, z1, x2, z2)&lt;/b&gt;&lt;dd&gt;returns a list of &lt;b&gt;{x, z}&lt;/b&gt; structure positions for the specified structure &lt;b&gt;type&lt;/b&gt; within the area spanning the block positions &lt;b&gt;x1, z1&lt;/b&gt; to &lt;b&gt;x2, z2&lt;/b&gt;, or &lt;b&gt;nil&lt;/b&gt; upon failure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2194,429 +2194,441 @@ Leave blank for the default behaviour</source>
 </translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="149"/>
+        <location filename="../../src/search.h" line="150"/>
         <source>OR logic gate</source>
         <translation>逻辑或</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="150"/>
+        <location filename="../../src/search.h" line="151"/>
         <source>Evaluates as true when any of the conditions that reference it (by relative location) are met. When no referencing conditions are defined, it defaults to true.</source>
         <translation>符合其中任一条件即返回true, 没有条件时默认为true</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="158"/>
+        <location filename="../../src/search.h" line="159"/>
         <source>NOT logic gate</source>
         <translation>逻辑否</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="159"/>
+        <location filename="../../src/search.h" line="160"/>
         <source>Evaluates as true when none of the conditions that reference it (by relative location) are met. When no referencing conditions are defined, it defaults to true.</source>
         <translation>没有任何符合的条件才返回true, 没有条件时默认为true</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="167"/>
+        <location filename="../../src/search.h" line="168"/>
         <source>Lua</source>
         <translation>Lua</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="168"/>
+        <location filename="../../src/search.h" line="169"/>
         <source>Define custom conditions using Lua scripts.</source>
         <translation>使用Lua脚本自定义条件</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="174"/>
+        <location filename="../../src/search.h" line="175"/>
         <source>Coordinate factor x/8</source>
         <translation>坐标系数 X/8</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="175"/>
+        <location filename="../../src/search.h" line="176"/>
         <source>Divides relative location by 8, from Overworld to Nether.</source>
         <translation>将坐标除以8, 用作主世界到地狱的坐标转换</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="181"/>
+        <location filename="../../src/search.h" line="182"/>
         <source>Coordinate factor x*8</source>
         <translation>坐标系数 X*8</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="182"/>
+        <location filename="../../src/search.h" line="183"/>
         <source>Multiplies relative location by 8, from Nether to Overworld.</source>
         <translation>将坐标乘以8, 用作地狱到主世界的坐标转换</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="188"/>
+        <location filename="../../src/search.h" line="189"/>
         <source>Spiral iterator</source>
         <translation>螺旋迭代器</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="189"/>
+        <location filename="../../src/search.h" line="190"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;Spiral iterator conditions can be used to move a testing position across a given area using a certain step size. Other conditions that refer to it as a relative location will be checked at each step. The iteration is performed in a spiral, so positions closer to the center get priority.&lt;/body&gt;&lt;/html&gt;</source>
         <translation>螺旋迭代器可以让其连带的搜索条件以固定步长遍历整片区域, 每一步所有条件都会重新检查一遍。
 迭代器会以螺旋状路径状遍历整片区域, 所以靠近区域中心的地方会被优先遍历到。</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="201"/>
+        <location filename="../../src/search.h" line="202"/>
         <source>Quad-hut (ideal)</source>
         <translation>四联女巫小屋(理想型)</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="202"/>
+        <location filename="../../src/search.h" line="203"/>
         <source>The lower 48-bits provide potential for four swamp huts in spawning range, in one of the best configurations that exist.</source>
         <translation>种子的低48位(二进制)决定了该种子具有成为最佳配置的四联女巫小屋的可能性</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="210"/>
+        <location filename="../../src/search.h" line="211"/>
         <source>Quad-hut (classic)</source>
         <translation>四联女巫小屋(经典型)</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="211"/>
+        <location filename="../../src/search.h" line="212"/>
         <source>The lower 48-bits provide potential for four swamp huts in spawning range, in one of the &quot;classic&quot; configurations. (Checks for huts in the nearest 2x2 chunk corners of each region.)</source>
         <translation>种子的低48位(二进制)决定了该种子具有成为经典配置的四联女巫小屋的可能性</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="221"/>
+        <location filename="../../src/search.h" line="222"/>
         <source>Quad-hut (normal)</source>
         <translation>四联女巫小屋(普通型)</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="222"/>
+        <location filename="../../src/search.h" line="223"/>
         <source>The lower 48-bits provide potential for four swamp huts in spawning range, such that all of them are within 128 blocks of a single AFK location, including a vertical tolerance for a fall damage chute.</source>
         <translation>种子的低48位(二进制)决定了该种子具有成为普通配置的四联女巫小屋的可能性
 (保证四个小屋都在单人挂机距离内并且都有足够的垂直空间来摔死女巫)</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="232"/>
+        <location filename="../../src/search.h" line="233"/>
         <source>Quad-hut (barely)</source>
         <translation>四联女巫小屋(勉强型)</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="233"/>
+        <location filename="../../src/search.h" line="234"/>
         <source>The lower 48-bits provide potential for four swamp huts in spawning range, in any configuration, such that the bounding boxes are within 128 blocks of a single AFK location.</source>
         <translation>种子的低48位(二进制)决定了该种子具有成为最差配置的四联女巫小屋的可能性
 (只能保证四个小屋都在单人挂机距离内)</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="242"/>
+        <location filename="../../src/search.h" line="243"/>
         <source>Quad-ocean-monument (&gt;95%)</source>
         <translation>四联海底神殿(&gt;95%)</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="243"/>
+        <location filename="../../src/search.h" line="244"/>
         <source>The lower 48-bits provide potential for 95% of the area of four ocean monuments to be within 128 blocks of an AFK location.</source>
         <translation>种子的低48位(二进制)决定了该种子具有成为四联海底神殿的可能性, 并且有超过95%的面积落在单人挂机距离内</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="252"/>
+        <location filename="../../src/search.h" line="253"/>
         <source>Quad-ocean-monument (&gt;90%)</source>
         <translation>四联海底神殿(&gt;90%)</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="253"/>
+        <location filename="../../src/search.h" line="254"/>
         <source>The lower 48-bits provide potential for 90% of the area of four ocean monuments to be within 128 blocks of an AFK location.</source>
         <translation>种子的低48位(二进制)决定了该种子具有成为四联海底神殿的可能性, 并且有超过90%的面积落在单人挂机距离内</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="272"/>
+        <location filename="../../src/search.h" line="285"/>
         <source>Allows only seeds with the included (+) biomes in the specified area and discard those that have biomes that are explicitly excluded (-).</source>
         <translation>在指定范围内包括所有你想要的(+)群系并排除所有你不要的(-)</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="295"/>
+        <location filename="../../src/search.h" line="308"/>
         <source>Allows only seeds with the included (+) biomes in the specified area and discard those that have biomes that are explicitly excluded (-) at layer RIVER with scale 1:4. This layer does not generate ocean variants.</source>
         <translation>在指定范围内包括所有你想要的(+)群系并排除所有你不要的(-)
 但是只生成到1:4层的河流为止, 不生成海洋变种</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="305"/>
+        <location filename="../../src/search.h" line="318"/>
         <source>Allows only seeds with the included (+) biomes in the specified area and discard those that have biomes that are explicitly excluded (-) at layer OCEAN TEMPERATURE with scale 1:256. This generation layer depends only on the lower 48-bits of the seed.</source>
         <translation>在指定范围内包括所有你想要的(+)群系并排除所有你不要的(-)
 仅生成到决定海洋温度的1:256
 这部分群系生成仅由种子低48位决定</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="316"/>
+        <location filename="../../src/search.h" line="329"/>
         <source>Custom limits for the required and allowed climate noise parameters that the specified area should cover.</source>
         <translation>自定义指定区域内的群系的气候参数限制</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="597"/>
+        <location filename="../../src/conditiondialog.cpp" line="596"/>
         <source>Locate climate minimum/maximum</source>
         <translation>定位气候参数的极值</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="603"/>
-        <location filename="../../src/search.h" line="323"/>
+        <location filename="../../src/conditiondialog.cpp" line="602"/>
+        <location filename="../../src/search.h" line="336"/>
         <source>Climate noise samples</source>
         <translation>气候参数噪声采样</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="324"/>
+        <location filename="../../src/search.h" line="337"/>
         <source>Samples climate noise in a given area to find if a proportion of the biomes match a set of allowed biomes.</source>
         <translation>判断指定区域内的气候参数是否有指定的比例满足要求</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="332"/>
+        <location filename="../../src/search.h" line="345"/>
         <source>Finds the location where a climate parameter reaches its minimum or maximum.</source>
         <translation>找到该区域中气候参数的极值</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="339"/>
+        <location filename="../../src/search.h" line="352"/>
         <source>Finds the center position of a given biome.</source>
         <translation>找到给定群系的中心点</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="345"/>
+        <location filename="../../src/search.h" line="358"/>
         <source>Locate biome center 1:256</source>
         <translation>群系中心定位器 1:256</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="346"/>
+        <location filename="../../src/search.h" line="359"/>
         <source>Finds the center position of a given biome. Based on the 1:256 biome layer.</source>
         <translation>基于1:256群系层找到给定群系的中心点</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="352"/>
+        <location filename="../../src/search.h" line="365"/>
         <source>Temperature categories</source>
         <translation>温度类别</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="353"/>
+        <location filename="../../src/search.h" line="366"/>
         <source>Checks that the area has a minimum of all the required temperature categories.</source>
         <translation>检查这块区域是否包含大于等于你所指定的数目的温度群系</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="459"/>
+        <location filename="../../src/search.h" line="472"/>
         <source>Ocean ruin</source>
         <translation>海底遗迹</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="262"/>
+        <location filename="../../src/search.h" line="275"/>
         <source>Biome samples</source>
         <translation>群系比例</translation>
     </message>
     <message>
         <location filename="../../src/search.h" line="263"/>
+        <source>Double Ocean Monument</source>
+        <translation>二联海底神殿</translation>
+    </message>
+    <message>
+        <location filename="../../src/search.h" line="264"/>
+        <source>Requires two ocean monuments where one monument is within 180 blocks of the other (forming a circle centered at one monument). At least one monument must be within the specified search range. The x and z differences between the two monuments must not be 160 and 80 respectively (i.e., this is the only invalid configuration but still valid for the filter).</source>
+        <translatorcomment>简而言之：在给定的范围内存在可以同时被单人刷怪范围完全覆盖的两个海底神殿</translatorcomment>
+        <translation>要求以其中一个海底神殿为圆心半径180内存在另一个海底神殿的中心(且其xz差值不为160,80或80,160)
+任意一个海底神殿的中心位于给定范围内条件即可成立</translation>
+    </message>
+    <message>
+        <location filename="../../src/search.h" line="276"/>
         <source>Samples biomes in a given area to find if a proportion of the biomes match a set of allowed biomes.</source>
         <translation>判断指定区域内的群系比例是否满足指定的群系比例</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="271"/>
+        <location filename="../../src/search.h" line="284"/>
         <source>Overworld at scale</source>
         <translation>主世界群系</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="279"/>
+        <location filename="../../src/search.h" line="292"/>
         <source>Nether at scale</source>
         <translation>下界群系</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="280"/>
+        <location filename="../../src/search.h" line="293"/>
         <source>Nether biomes sampled on a scaled grid.</source>
         <translation>以一定比例取样的下界群系</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="286"/>
+        <location filename="../../src/search.h" line="299"/>
         <source>End at scale</source>
         <translation>末地群系</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="287"/>
+        <location filename="../../src/search.h" line="300"/>
         <source>End biomes sampled on a scaled grid.</source>
         <translation>以一定比例取样的末地群系</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="294"/>
+        <location filename="../../src/search.h" line="307"/>
         <source>Biome layer 1:4 RIVER</source>
         <translation>群系筛选 1:4 河流</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="304"/>
+        <location filename="../../src/search.h" line="317"/>
         <source>Biome layer 1:256 O.TEMP</source>
         <translation>群系筛选 1:256 海洋温度</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="315"/>
+        <location filename="../../src/search.h" line="328"/>
         <source>Climate parameters</source>
         <translation>群系气候参数</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="331"/>
+        <location filename="../../src/search.h" line="344"/>
         <source>Locate climate extreme</source>
         <translation>定位群系参数极值</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="338"/>
+        <location filename="../../src/search.h" line="351"/>
         <source>Locate biome center</source>
         <translation>定位群系中心</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="360"/>
+        <location filename="../../src/search.h" line="373"/>
         <source>Spawn</source>
         <translation>出生点</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="367"/>
+        <location filename="../../src/search.h" line="380"/>
         <source>Slime chunk</source>
         <translation>史莱姆区块</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="373"/>
+        <location filename="../../src/search.h" line="386"/>
         <source>Surface height</source>
         <translation>地表高度</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="374"/>
+        <location filename="../../src/search.h" line="387"/>
         <source>Check the approximate surface height at scale 1:4 at a single coordinate.</source>
         <translation>以1:4的比例在某个坐标检查大致地表高度</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="381"/>
+        <location filename="../../src/search.h" line="394"/>
         <source>First stronghold</source>
         <translation>首个要塞</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="382"/>
+        <location filename="../../src/search.h" line="395"/>
         <source>Finds the approxmiate location of the first stronghold (+/-112 blocks). Depends only on the 48-bit seed.</source>
         <translation>仅依靠低48位(二进制)找到第一个要塞的大致位置(+/-112格)</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="390"/>
+        <location filename="../../src/search.h" line="403"/>
         <source>Stronghold</source>
         <translation>要塞</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="397"/>
+        <location filename="../../src/search.h" line="410"/>
         <source>Village</source>
         <translation>村庄</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="404"/>
+        <location filename="../../src/search.h" line="417"/>
         <source>Abandoned mineshaft</source>
         <translation>废弃矿井</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="411"/>
+        <location filename="../../src/search.h" line="424"/>
         <source>Desert pyramid</source>
         <translation>沙漠神殿</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="412"/>
+        <location filename="../../src/search.h" line="425"/>
         <source>In version 1.18+, desert pyramids depend on surface height and may fail to generate near caves/aquifers, rivers and oceans.</source>
         <translation>注意, 在1.18中, 林地府邸、沙漠神殿和丛林神殿的生成还会考虑其表面的高度, 所以其在（含水）洞穴、河流或者海洋群系（甚至是较高的沙丘）周围可能会生成失败</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="420"/>
+        <location filename="../../src/search.h" line="433"/>
         <source>Jungle temple</source>
         <translation>丛林神殿</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="421"/>
+        <location filename="../../src/search.h" line="434"/>
         <source>In version 1.18+, jungle temples depend on surface height and may fail to generate near caves/aquifers, rivers and oceans.</source>
         <translation>注意, 在1.18中, 林地府邸、沙漠神殿和丛林神殿的生成还会考虑其表面的高度, 所以其在（含水）洞穴、河流或者海洋群系（甚至是较高的沙丘）周围可能会生成失败</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="429"/>
+        <location filename="../../src/search.h" line="442"/>
         <source>Swamp hut</source>
         <translation>女巫小屋</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="436"/>
+        <location filename="../../src/search.h" line="449"/>
         <source>Ocean monument</source>
         <translation>海底神殿</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="443"/>
+        <location filename="../../src/search.h" line="456"/>
         <source>Igloo</source>
         <translation>冰屋</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="450"/>
+        <location filename="../../src/search.h" line="463"/>
         <source>Woodland mansion</source>
         <translation>林地府邸</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="451"/>
+        <location filename="../../src/search.h" line="464"/>
         <source>In version 1.18+, mansions depend on surface height and may fail to generate near caves/aquifers, rivers and oceans.</source>
         <translation>注意, 在1.18中, 林地府邸、沙漠神殿和丛林神殿的生成还会考虑其表面的高度, 所以其在（含水）洞穴、河流或者海洋群系（甚至是较高的沙丘）周围可能会生成失败</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="466"/>
+        <location filename="../../src/search.h" line="479"/>
         <source>Shipwreck</source>
         <translation>沉船</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="473"/>
+        <location filename="../../src/search.h" line="486"/>
         <source>Buried treasure</source>
         <translation>宝藏</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="474"/>
+        <location filename="../../src/search.h" line="487"/>
         <source>Buried treasures are always positioned near the center of a chunk rather than a chunk boarder. Make sure the testing area is set accordingly.</source>
         <translation>宝藏总是出现在区块中心附近而不是区块边界附近, 请合理划定查找范围</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="483"/>
+        <location filename="../../src/search.h" line="496"/>
         <source>Desert well</source>
         <translation>沙漠水井</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="490"/>
+        <location filename="../../src/search.h" line="503"/>
         <source>Pillager outpost</source>
         <translation>掠夺者前哨站</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="497"/>
+        <location filename="../../src/search.h" line="510"/>
         <source>Ancient city</source>
         <translation>远古城市</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="504"/>
+        <location filename="../../src/search.h" line="517"/>
         <source>Trail ruins</source>
         <translation>古迹废墟</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="511"/>
+        <location filename="../../src/search.h" line="524"/>
         <source>Trial chambers</source>
         <translation>试炼密室</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="518"/>
+        <location filename="../../src/search.h" line="531"/>
         <source>Ruined portal (overworld)</source>
         <translation>废弃传送门(主世界)</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="525"/>
+        <location filename="../../src/search.h" line="538"/>
         <source>Ruined portal (nether)</source>
         <translation>废弃传送门(下界)</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="532"/>
+        <location filename="../../src/search.h" line="545"/>
         <source>Nether fortress</source>
         <translation>下界要塞</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="539"/>
+        <location filename="../../src/search.h" line="552"/>
         <source>Bastion remnant</source>
         <translation>堡垒遗迹</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="546"/>
+        <location filename="../../src/search.h" line="559"/>
         <source>End city</source>
         <translation>末地城</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="553"/>
+        <location filename="../../src/search.h" line="566"/>
         <source>End gateway</source>
         <translation>末地(返程)折跃门</translation>
     </message>
     <message>
-        <location filename="../../src/search.h" line="554"/>
+        <location filename="../../src/search.h" line="567"/>
         <source>Checks only scattered return gateways. Does not include those generated when defeating the dragon.</source>
         <translation>特指返程折跃门, 而非那些你打龙开的折跃门</translation>
     </message>
     <message>
-        <location filename="../../src/scripts.cpp" line="225"/>
+        <location filename="../../src/scripts.cpp" line="219"/>
         <source>function check() was not defined</source>
         <translation>未定义check()函数！</translation>
     </message>
@@ -3196,52 +3208,52 @@ Applies only to feature-structures of region-size = 32 and chunk-gap = 8, in par
 <context>
     <name>Layer</name>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="695"/>
+        <location filename="../../src/conditiondialog.cpp" line="694"/>
         <source>1:1 Voronoi</source>
         <translation>1:1 泰森多边形</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="696"/>
+        <location filename="../../src/conditiondialog.cpp" line="695"/>
         <source>1:4 River Mix</source>
         <translation>1:4 河流</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="697"/>
+        <location filename="../../src/conditiondialog.cpp" line="696"/>
         <source>1:4 Ocean Mix</source>
         <translation>1:4 海洋</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="698"/>
+        <location filename="../../src/conditiondialog.cpp" line="697"/>
         <source>1:4 Zoom</source>
         <translation>1:4 缩放</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="699"/>
+        <location filename="../../src/conditiondialog.cpp" line="698"/>
         <source>1:16 Swamp River</source>
         <translation>1:16 沼泽河流</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="700"/>
+        <location filename="../../src/conditiondialog.cpp" line="699"/>
         <source>1:16 Shore</source>
         <translation>1:16 海岸</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="701"/>
+        <location filename="../../src/conditiondialog.cpp" line="700"/>
         <source>1:64 Hills</source>
         <translation>1:64 丘陵</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="702"/>
+        <location filename="../../src/conditiondialog.cpp" line="701"/>
         <source>1:64 Sunflower</source>
         <translation>1:64 向日葵平原</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="703"/>
+        <location filename="../../src/conditiondialog.cpp" line="702"/>
         <source>1:256 Biome</source>
         <translation>1:256 群系</translation>
     </message>
     <message>
-        <location filename="../../src/conditiondialog.cpp" line="704"/>
+        <location filename="../../src/conditiondialog.cpp" line="703"/>
         <source>1:256 Bamboo</source>
         <translation>1:256 竹林</translation>
     </message>
@@ -3497,7 +3509,7 @@ Applies only to feature-structures of region-size = 32 and chunk-gap = 8, in par
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="395"/>
-        <location filename="../../src/mainwindow.cpp" line="76"/>
+        <location filename="../../src/mainwindow.cpp" line="77"/>
         <source>Map</source>
         <translation>地图</translation>
     </message>
@@ -3758,8 +3770,8 @@ Applies only to feature-structures of region-size = 32 and chunk-gap = 8, in par
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="716"/>
-        <location filename="../../src/mainwindow.cpp" line="1027"/>
-        <location filename="../../src/mainwindow.cpp" line="1337"/>
+        <location filename="../../src/mainwindow.cpp" line="1047"/>
+        <location filename="../../src/mainwindow.cpp" line="1357"/>
         <source>Undock map</source>
         <translation>开启地图小窗</translation>
     </message>
@@ -3794,154 +3806,154 @@ Applies only to feature-structures of region-size = 32 and chunk-gap = 8, in par
         <translation>(Beta 1.7) 湿度分布图</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="98"/>
+        <location filename="../../src/mainwindow.cpp" line="99"/>
         <source>Biomes</source>
         <translation>群系</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="99"/>
+        <location filename="../../src/mainwindow.cpp" line="100"/>
         <source>Structures</source>
         <translation>结构</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="140"/>
+        <location filename="../../src/mainwindow.cpp" line="141"/>
         <source>Zoom In</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="141"/>
+        <location filename="../../src/mainwindow.cpp" line="142"/>
         <source>Zoom Out</source>
         <translation>缩小</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="151"/>
+        <location filename="../../src/mainwindow.cpp" line="152"/>
         <source>Overworld</source>
         <translation>主世界</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="152"/>
+        <location filename="../../src/mainwindow.cpp" line="153"/>
         <source>Nether</source>
         <translation>下界</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="153"/>
+        <location filename="../../src/mainwindow.cpp" line="154"/>
         <source>End</source>
         <translation>末地</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="336"/>
+        <location filename="../../src/mainwindow.cpp" line="337"/>
         <source>Show %1</source>
         <translation>显示 %1</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="213"/>
+        <location filename="../../src/mainwindow.cpp" line="214"/>
         <source>Conditions</source>
         <translation>条件</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="97"/>
+        <location filename="../../src/mainwindow.cpp" line="98"/>
         <source>Locations</source>
         <translation>结构坐标</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="139"/>
+        <location filename="../../src/mainwindow.cpp" line="140"/>
         <source>Go to Origin</source>
         <translation>前往坐标原点并重置缩放比例</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="217"/>
+        <location filename="../../src/mainwindow.cpp" line="218"/>
         <source>Help: Conditions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="218"/>
+        <location filename="../../src/mainwindow.cpp" line="219"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The search conditions define the properties by which potential seeds are filtered.&lt;/p&gt;&lt;p&gt;Conditions can reference each other to produce relative positional dependencies (indicated with the ID in square brackets [XY]). When a condition passes its check, it usually yields just one location that other conditions can reference. An exception to this are structure conditions with exactly one required instance. In this case, each found structure occurence is examined separately instead. On the other hand, a condition that checks for a structure cluster, will average the position of all occurences and yield a single position.&lt;/p&gt;&lt;p&gt;Standard biome conditions yield the center of the testing area as they evaluate the area as a whole. To locate the position of a given biome you can use the designated &lt;b&gt;locate&lt;/b&gt; filters, or use a spiral iterator to scan an area with a localized condition.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="242"/>
+        <location filename="../../src/mainwindow.cpp" line="243"/>
         <source>Seed generator (48-bit)</source>
         <translation>种子生成器(低48二进制位)</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="245"/>
+        <location filename="../../src/mainwindow.cpp" line="246"/>
         <source>Help: Seed generator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="246"/>
+        <location filename="../../src/mainwindow.cpp" line="247"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;For some searches, the 48-bit structure seed candidates can be generated without searching, which can vastly reduce the search space that has to be checked.&lt;/p&gt;&lt;p&gt;The generator mode &lt;b&gt;Auto&lt;/b&gt; is recommended for general use, which automatically selects suitable options based on the conditions list.&lt;/p&gt;&lt;p&gt;The &lt;b&gt;Quad-feature&lt;/b&gt; mode produces candidates for quad&amp;#8209;structures that have a uniform distribution of region&amp;#8209;size=32 and chunk&amp;#8209;gap=8, such as swamp huts.&lt;/p&gt;&lt;p&gt;A perfect &lt;b&gt;Quad-monument&lt;/b&gt; structure constellation does not actually exist, but some extremely rare structure seed bases get close, with over 90&amp;#37; of the area within 128 blocks. The generator uses a precomputed list of these seed bases.&lt;/p&gt;&lt;p&gt;Using a &lt;b&gt;Seed list&lt;/b&gt; you can provide a custom set of 48-bit candidates. Optionally, a salt value can be added and the seeds can be region transposed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="270"/>
+        <location filename="../../src/mainwindow.cpp" line="271"/>
         <source>Matching seeds</source>
         <translation>符合条件的种子</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="276"/>
+        <location filename="../../src/mainwindow.cpp" line="277"/>
         <source>Help: Matching seeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="277"/>
+        <location filename="../../src/mainwindow.cpp" line="278"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The list of seeds acts as a buffer onto which suitable seeds are added when they are found. You can also copy the seed list, or paste seeds into the list. Selecting a seed will open it in the map view.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="580"/>
+        <location filename="../../src/mainwindow.cpp" line="574"/>
         <source>Failed to open file:
 &quot;%1&quot;</source>
         <translation>无法打开以下文件:
 &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="822"/>
+        <location filename="../../src/mainwindow.cpp" line="814"/>
         <source>text</source>
         <comment>Seed input type</comment>
         <translatorcomment>种子导入文件类型</translatorcomment>
         <translation>文本文件</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="824"/>
+        <location filename="../../src/mainwindow.cpp" line="816"/>
         <source>random</source>
         <comment>Seed input type</comment>
         <translatorcomment>种子导入文件类型</translatorcomment>
         <translation>任意文件</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="838"/>
+        <location filename="../../src/mainwindow.cpp" line="830"/>
         <source>Save progress</source>
         <translation>导出进度</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="837"/>
-        <location filename="../../src/mainwindow.cpp" line="850"/>
+        <location filename="../../src/mainwindow.cpp" line="829"/>
+        <location filename="../../src/mainwindow.cpp" line="842"/>
         <source>Session files (*.session *.txt);;Any files (*)</source>
         <translation>会话文件 (*.session *.txt);;任意文件 (*)</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="860"/>
+        <location filename="../../src/mainwindow.cpp" line="852"/>
         <source>Load progress</source>
         <translation>导入进度</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="1012"/>
+        <location filename="../../src/mainwindow.cpp" line="1032"/>
         <source>Save screenshot</source>
         <translation>保存截图</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="1011"/>
+        <location filename="../../src/mainwindow.cpp" line="1031"/>
         <source>Images (*.png *.jpg *.ppm)</source>
         <translation>图像文件 (*.png *.jpg *.ppm)</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="1033"/>
+        <location filename="../../src/mainwindow.cpp" line="1053"/>
         <source>Redock map</source>
         <translation>关闭地图小窗</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="1182"/>
+        <location filename="../../src/mainwindow.cpp" line="1202"/>
         <source>The application will need to be restarted before all changes can take effect.</source>
         <translation>Cubiomes Viewer需要重启以应用所有更改</translation>
     </message>
@@ -4298,7 +4310,7 @@ In versions 1.19 - 1.19.2, the world generation can have interesting artifacts a
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="593"/>
+        <location filename="../../src/mainwindow.cpp" line="587"/>
         <source>Failed to open session file:
 &quot;%1&quot;</source>
         <translation>无法打开以下进度文件:
@@ -5023,7 +5035,7 @@ condition missing or out of order.</source>
     </message>
     <message>
         <location filename="../../src/tabstructures.ui" line="58"/>
-        <location filename="../../src/tabstructures.cpp" line="359"/>
+        <location filename="../../src/tabstructures.cpp" line="354"/>
         <source>Analyze</source>
         <translation>统计</translation>
     </message>
@@ -5050,15 +5062,15 @@ condition missing or out of order.</source>
     <message>
         <location filename="../../src/tabstructures.ui" line="123"/>
         <location filename="../../src/tabstructures.ui" line="193"/>
-        <location filename="../../src/tabstructures.cpp" line="517"/>
-        <location filename="../../src/tabstructures.cpp" line="558"/>
-        <location filename="../../src/tabstructures.cpp" line="584"/>
+        <location filename="../../src/tabstructures.cpp" line="512"/>
+        <location filename="../../src/tabstructures.cpp" line="553"/>
+        <location filename="../../src/tabstructures.cpp" line="579"/>
         <source>seed</source>
         <translation>种子</translation>
     </message>
     <message>
         <location filename="../../src/tabstructures.ui" line="128"/>
-        <location filename="../../src/tabstructures.cpp" line="517"/>
+        <location filename="../../src/tabstructures.cpp" line="512"/>
         <source>structure</source>
         <translation>结构</translation>
     </message>
@@ -5070,22 +5082,22 @@ condition missing or out of order.</source>
     <message>
         <location filename="../../src/tabstructures.ui" line="138"/>
         <location filename="../../src/tabstructures.ui" line="208"/>
-        <location filename="../../src/tabstructures.cpp" line="517"/>
-        <location filename="../../src/tabstructures.cpp" line="584"/>
+        <location filename="../../src/tabstructures.cpp" line="512"/>
+        <location filename="../../src/tabstructures.cpp" line="579"/>
         <source>x</source>
         <translation>X</translation>
     </message>
     <message>
         <location filename="../../src/tabstructures.ui" line="143"/>
         <location filename="../../src/tabstructures.ui" line="213"/>
-        <location filename="../../src/tabstructures.cpp" line="517"/>
-        <location filename="../../src/tabstructures.cpp" line="584"/>
+        <location filename="../../src/tabstructures.cpp" line="512"/>
+        <location filename="../../src/tabstructures.cpp" line="579"/>
         <source>z</source>
         <translation>Z</translation>
     </message>
     <message>
         <location filename="../../src/tabstructures.ui" line="148"/>
-        <location filename="../../src/tabstructures.cpp" line="517"/>
+        <location filename="../../src/tabstructures.cpp" line="512"/>
         <source>details</source>
         <translation>详细信息</translation>
     </message>
@@ -5096,25 +5108,25 @@ condition missing or out of order.</source>
     </message>
     <message>
         <location filename="../../src/tabstructures.ui" line="198"/>
-        <location filename="../../src/tabstructures.cpp" line="584"/>
+        <location filename="../../src/tabstructures.cpp" line="579"/>
         <source>type</source>
         <translation>种类</translation>
     </message>
     <message>
         <location filename="../../src/tabstructures.ui" line="203"/>
-        <location filename="../../src/tabstructures.cpp" line="584"/>
+        <location filename="../../src/tabstructures.cpp" line="579"/>
         <source>distance</source>
         <translation>距离</translation>
     </message>
     <message>
         <location filename="../../src/tabstructures.ui" line="218"/>
-        <location filename="../../src/tabstructures.cpp" line="584"/>
+        <location filename="../../src/tabstructures.cpp" line="579"/>
         <source>radius</source>
         <translation>半径</translation>
     </message>
     <message>
         <location filename="../../src/tabstructures.ui" line="223"/>
-        <location filename="../../src/tabstructures.cpp" line="584"/>
+        <location filename="../../src/tabstructures.cpp" line="579"/>
         <source>spawn area</source>
         <translation>有效刷怪面积</translation>
     </message>
@@ -5168,23 +5180,23 @@ condition missing or out of order.</source>
         <translation>使用可见范围</translation>
     </message>
     <message>
-        <location filename="../../src/tabstructures.cpp" line="389"/>
-        <location filename="../../src/tabstructures.cpp" line="485"/>
+        <location filename="../../src/tabstructures.cpp" line="384"/>
+        <location filename="../../src/tabstructures.cpp" line="480"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../../src/tabstructures.cpp" line="613"/>
+        <location filename="../../src/tabstructures.cpp" line="608"/>
         <source>Export structure analysis</source>
         <translation>导出结构统计结果</translation>
     </message>
     <message>
-        <location filename="../../src/tabstructures.cpp" line="613"/>
+        <location filename="../../src/tabstructures.cpp" line="608"/>
         <source>Text files (*.txt *csv);;Any files (*)</source>
         <translation>文本文件 (*.txt *csv);;任意文件 (*)</translation>
     </message>
     <message>
-        <location filename="../../src/tabstructures.cpp" line="623"/>
+        <location filename="../../src/tabstructures.cpp" line="618"/>
         <source>Failed to open file for export:
 &quot;%1&quot;</source>
         <translation>无法打开以下导出文件:
