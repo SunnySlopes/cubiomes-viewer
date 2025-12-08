@@ -6,6 +6,7 @@
 #include <QClipboard>
 #include <QDoubleValidator>
 #include <QKeyEvent>
+#include <QRegularExpression>
 
 static bool g_animate;
 
@@ -34,6 +35,59 @@ GotoDialog::~GotoDialog()
     delete ui;
 }
 
+bool GotoDialog::parseCoordinates(const QString &input, qreal &x, qreal &z)
+{
+    QString text = input.trimmed();
+    if (text.isEmpty())
+        return false;
+
+    // 移除 /tp 命令前缀（如果存在）
+    if (text.startsWith("/tp", Qt::CaseInsensitive))
+    {
+        text = text.mid(3).trimmed();
+    }
+
+    // 使用正则表达式提取所有数字
+    QRegularExpression numberRegex("-?\\d+\\.?\\d*");
+    QRegularExpressionMatchIterator matches = numberRegex.globalMatch(text);
+
+    QList<qreal> numbers;
+    while (matches.hasNext())
+    {
+        QRegularExpressionMatch match = matches.next();
+        bool ok;
+        qreal num = match.captured().toDouble(&ok);
+        if (ok)
+        {
+            numbers.append(num);
+        }
+    }
+
+    // 需要至少2个数字（x和z）
+    if (numbers.size() < 2)
+        return false;
+
+    // 第一个数字是x，最后一个数字是z（忽略中间的y坐标）
+    x = numbers.first();
+    z = numbers.last();
+
+    return true;
+}
+
+void GotoDialog::on_buttonInterpret_clicked()
+{
+    QString coordInput = ui->lineCoordInput->text().trimmed();
+    if (!coordInput.isEmpty())
+    {
+        qreal x, z;
+        if (parseCoordinates(coordInput, x, z))
+        {
+            ui->lineX->setText(QString::asprintf("%.1f", x));
+            ui->lineZ->setText(QString::asprintf("%.1f", z));
+        }
+    }
+}
+
 void GotoDialog::on_buttonBox_clicked(QAbstractButton *button)
 {
     QDialogButtonBox::StandardButton b = ui->buttonBox->standardButton(button);
@@ -57,6 +111,7 @@ void GotoDialog::on_buttonBox_clicked(QAbstractButton *button)
         ui->lineX->setText("0");
         ui->lineZ->setText("0");
         ui->lineScale->setText("16");
+        ui->lineCoordInput->clear();
     }
 }
 

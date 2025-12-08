@@ -667,7 +667,7 @@
 <context>
     <name>BiomeTableModel</name>
     <message>
-        <location filename="../../src/tabbiomes.cpp" line="196"/>
+        <location filename="../../src/tabbiomes.cpp" line="298"/>
         <source>Biomes</source>
         <translation>群系</translation>
     </message>
@@ -3165,42 +3165,52 @@ Applies only to feature-structures of region-size = 32 and chunk-gap = 8, in par
 <context>
     <name>GotoDialog</name>
     <message>
-        <location filename="../../src/gotodialog.ui" line="9"/>
+        <location filename="../../src/gotodialog.ui" line="17"/>
         <source>Coordinates</source>
         <translation>坐标</translation>
     </message>
     <message>
-        <location filename="../../src/gotodialog.ui" line="19"/>
+        <location filename="../../src/gotodialog.ui" line="27"/>
         <source>Coordinates:</source>
         <translation>坐标:</translation>
     </message>
     <message>
-        <location filename="../../src/gotodialog.ui" line="41"/>
+        <location filename="../../src/gotodialog.ui" line="36"/>
+        <source>coord text:</source>
+        <translation>坐标文本：</translation>
+    </message>
+    <message>
+        <location filename="../../src/gotodialog.ui" line="50"/>
+        <source>Interpret</source>
+        <translation>转换坐标</translation>
+    </message>
+    <message>
+        <location filename="../../src/gotodialog.ui" line="74"/>
         <source>X</source>
         <translation>X</translation>
     </message>
     <message>
-        <location filename="../../src/gotodialog.ui" line="55"/>
+        <location filename="../../src/gotodialog.ui" line="88"/>
         <source>Z</source>
         <translation>Z</translation>
     </message>
     <message>
-        <location filename="../../src/gotodialog.ui" line="74"/>
+        <location filename="../../src/gotodialog.ui" line="107"/>
         <source>Scale:</source>
         <translation>缩放等级:</translation>
     </message>
     <message>
-        <location filename="../../src/gotodialog.ui" line="84"/>
+        <location filename="../../src/gotodialog.ui" line="117"/>
         <source>A very large scale may be unsafe</source>
         <translation>缩放比例过大可能导致卡死</translation>
     </message>
     <message>
-        <location filename="../../src/gotodialog.ui" line="91"/>
+        <location filename="../../src/gotodialog.ui" line="124"/>
         <source>blocks per pixel</source>
         <translation>方块/像素</translation>
     </message>
     <message>
-        <location filename="../../src/gotodialog.ui" line="100"/>
+        <location filename="../../src/gotodialog.ui" line="133"/>
         <source>Animate travel</source>
         <translation>播放移动动画</translation>
     </message>
@@ -4628,7 +4638,7 @@ condition missing or out of order.</source>
     </message>
     <message>
         <location filename="../../src/tabbiomes.ui" line="38"/>
-        <location filename="../../src/tabbiomes.cpp" line="566"/>
+        <location filename="../../src/tabbiomes.cpp" line="670"/>
         <source>Analyze</source>
         <translation>统计</translation>
     </message>
@@ -4728,8 +4738,8 @@ condition missing or out of order.</source>
     </message>
     <message>
         <location filename="../../src/tabbiomes.ui" line="247"/>
-        <location filename="../../src/tabbiomes.cpp" line="771"/>
-        <location filename="../../src/tabbiomes.cpp" line="797"/>
+        <location filename="../../src/tabbiomes.cpp" line="877"/>
+        <location filename="../../src/tabbiomes.cpp" line="903"/>
         <source>seed</source>
         <translation>种子</translation>
     </message>
@@ -4740,111 +4750,125 @@ condition missing or out of order.</source>
     </message>
     <message>
         <location filename="../../src/tabbiomes.ui" line="267"/>
-        <location filename="../../src/tabbiomes.cpp" line="797"/>
+        <location filename="../../src/tabbiomes.cpp" line="903"/>
         <source>x</source>
         <translation>X</translation>
     </message>
     <message>
         <location filename="../../src/tabbiomes.ui" line="277"/>
-        <location filename="../../src/tabbiomes.cpp" line="797"/>
+        <location filename="../../src/tabbiomes.cpp" line="903"/>
         <source>z</source>
         <translation>Z</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="308"/>
+        <location filename="../../src/tabbiomes.ui" line="307"/>
+        <source>Circle mode (radius 128)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/tabbiomes.ui" line="310"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;Use circular area detection with radius 128. Calculate total biome area within the circle.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/tabbiomes.ui" line="318"/>
         <source>Statistics</source>
         <translation>数据</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="316"/>
+        <location filename="../../src/tabbiomes.ui" line="326"/>
         <source>Nether</source>
         <translation>下界</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="323"/>
+        <location filename="../../src/tabbiomes.ui" line="333"/>
         <source>End</source>
         <translation>末地</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="330"/>
+        <location filename="../../src/tabbiomes.ui" line="340"/>
         <source>Overworld</source>
         <translation>主世界</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="344"/>
+        <location filename="../../src/tabbiomes.ui" line="354"/>
         <source>Random samples (scale 1:4):</source>
         <translation>随机取样(比例1:4):</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="351"/>
+        <location filename="../../src/tabbiomes.ui" line="361"/>
         <source>Full area sampling with scale:</source>
         <translation>使用以下缩放比例进行全区域采样:</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="365"/>
+        <location filename="../../src/tabbiomes.ui" line="375"/>
         <source>1:1</source>
         <translation>1:1</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="370"/>
+        <location filename="../../src/tabbiomes.ui" line="380"/>
         <source>1:4</source>
         <translation>1:4</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="375"/>
+        <location filename="../../src/tabbiomes.ui" line="385"/>
         <source>1:16</source>
         <translation>1:16</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="380"/>
+        <location filename="../../src/tabbiomes.ui" line="390"/>
         <source>1:64</source>
         <translation>1:64</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="385"/>
+        <location filename="../../src/tabbiomes.ui" line="395"/>
         <source>1:256</source>
         <translation>1:256</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="393"/>
+        <location filename="../../src/tabbiomes.ui" line="403"/>
         <source>10000</source>
         <translation>10000</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.cpp" line="638"/>
-        <location filename="../../src/tabbiomes.cpp" line="737"/>
+        <location filename="../../src/tabbiomes.cpp" line="742"/>
+        <location filename="../../src/tabbiomes.cpp" line="843"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.cpp" line="698"/>
         <source>The locate biome feature is limited to an area size smaller than the integer limit: (%1 x %2) &gt; %3.</source>
-        <translation>群系定位器指定的范围面积过小: (%1 × %2) &gt; %3</translation>
+        <translation type="vanished">群系定位器指定的范围面积过小: (%1 × %2) &gt; %3</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.cpp" line="830"/>
+        <location filename="../../src/tabbiomes.cpp" line="936"/>
         <source>Export biome analysis</source>
         <translation>导出群系统计结果</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.cpp" line="830"/>
+        <location filename="../../src/tabbiomes.cpp" line="936"/>
         <source>Text files (*.txt *csv);;Any files (*)</source>
         <translation>文本文件 (*.txt *csv);;任意文件 (*)</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.cpp" line="840"/>
+        <location filename="../../src/tabbiomes.cpp" line="946"/>
         <source>Failed to open file for export:
 &quot;%1&quot;</source>
         <translation>无法打开以下导出文件:
 &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.cpp" line="797"/>
+        <location filename="../../src/tabbiomes.cpp" line="903"/>
         <source>area</source>
         <translation>区域</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.cpp" line="871"/>
+        <location filename="../../src/tabbiomes.cpp" line="803"/>
+        <source>The locate biome feature is limited to an area size smaller than the maximum: (%1 x %2) &gt; %3.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/tabbiomes.cpp" line="977"/>
         <source>(%1 sq. chunks)</source>
         <translation>(%1 平方区块)</translation>
     </message>

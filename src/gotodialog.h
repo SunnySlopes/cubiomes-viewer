@@ -22,6 +22,10 @@ public:
 private slots:
     void on_lineScale_textChanged(const QString &text);
     void on_buttonBox_clicked(QAbstractButton *button);
+    void on_buttonInterpret_clicked();
+
+private:
+    bool parseCoordinates(const QString &input, qreal &x, qreal &z);
 
 private:
     Ui::GotoDialog *ui;

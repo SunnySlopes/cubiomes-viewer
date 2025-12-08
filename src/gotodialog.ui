@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>GotoDialog</class>
  <widget class="QDialog" name="GotoDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>344</width>
+    <height>149</height>
+   </rect>
+  </property>
   <property name="focusPolicy">
    <enum>Qt::StrongFocus</enum>
   </property>
@@ -19,6 +27,31 @@
       <string>Coordinates:</string>
      </property>
     </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_coordInput">
+     <item>
+      <widget class="QLabel" name="label_coordInput">
+       <property name="text">
+        <string>coord text:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineCoordInput">
+       <property name="focusPolicy">
+        <enum>Qt::StrongFocus</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="buttonInterpret">
+       <property name="text">
+        <string>Interpret</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
     <widget class="QFrame" name="frame">
