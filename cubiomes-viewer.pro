@@ -130,6 +130,7 @@ SOURCES += \
         src/tabbiomes.cpp \
         src/tablocations.cpp \
         src/tabstructures.cpp \
+        src/tabslime.cpp \
         src/mainwindow.cpp \
         src/main.cpp \
         src/util.cpp \
@@ -197,6 +198,7 @@ HEADERS += \
         src/tabbiomes.h \
         src/tablocations.h \
         src/tabstructures.h \
+        src/tabslime.h \
         src/mainwindow.h \
         src/util.h \
         src/widgets.h \
@@ -220,7 +222,8 @@ FORMS += \
         src/rangedialog.ui \
         src/tabbiomes.ui \
         src/tablocations.ui \
-        src/tabstructures.ui
+        src/tabstructures.ui \
+        src/tabslime.ui
 
 RESOURCES += \
         rc/icons.qrc \

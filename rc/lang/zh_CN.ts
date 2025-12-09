@@ -667,7 +667,7 @@
 <context>
     <name>BiomeTableModel</name>
     <message>
-        <location filename="../../src/tabbiomes.cpp" line="298"/>
+        <location filename="../../src/tabbiomes.cpp" line="196"/>
         <source>Biomes</source>
         <translation>群系</translation>
     </message>
@@ -3519,7 +3519,7 @@ Applies only to feature-structures of region-size = 32 and chunk-gap = 8, in par
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="395"/>
-        <location filename="../../src/mainwindow.cpp" line="77"/>
+        <location filename="../../src/mainwindow.cpp" line="78"/>
         <source>Map</source>
         <translation>地图</translation>
     </message>
@@ -3780,8 +3780,8 @@ Applies only to feature-structures of region-size = 32 and chunk-gap = 8, in par
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="716"/>
-        <location filename="../../src/mainwindow.cpp" line="1047"/>
-        <location filename="../../src/mainwindow.cpp" line="1357"/>
+        <location filename="../../src/mainwindow.cpp" line="1049"/>
+        <location filename="../../src/mainwindow.cpp" line="1359"/>
         <source>Undock map</source>
         <translation>开启地图小窗</translation>
     </message>
@@ -3816,154 +3816,159 @@ Applies only to feature-structures of region-size = 32 and chunk-gap = 8, in par
         <translation>(Beta 1.7) 湿度分布图</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="99"/>
+        <location filename="../../src/mainwindow.cpp" line="100"/>
         <source>Biomes</source>
         <translation>群系</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="100"/>
+        <location filename="../../src/mainwindow.cpp" line="101"/>
         <source>Structures</source>
         <translation>结构</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="141"/>
+        <location filename="../../src/mainwindow.cpp" line="143"/>
         <source>Zoom In</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="142"/>
+        <location filename="../../src/mainwindow.cpp" line="144"/>
         <source>Zoom Out</source>
         <translation>缩小</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="152"/>
+        <location filename="../../src/mainwindow.cpp" line="154"/>
         <source>Overworld</source>
         <translation>主世界</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="153"/>
+        <location filename="../../src/mainwindow.cpp" line="155"/>
         <source>Nether</source>
         <translation>下界</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="154"/>
+        <location filename="../../src/mainwindow.cpp" line="156"/>
         <source>End</source>
         <translation>末地</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="337"/>
+        <location filename="../../src/mainwindow.cpp" line="339"/>
         <source>Show %1</source>
         <translation>显示 %1</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="214"/>
+        <location filename="../../src/mainwindow.cpp" line="216"/>
         <source>Conditions</source>
         <translation>条件</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="98"/>
+        <location filename="../../src/mainwindow.cpp" line="99"/>
         <source>Locations</source>
         <translation>结构坐标</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="140"/>
+        <location filename="../../src/mainwindow.cpp" line="102"/>
+        <source>Slime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.cpp" line="142"/>
         <source>Go to Origin</source>
         <translation>前往坐标原点并重置缩放比例</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="218"/>
+        <location filename="../../src/mainwindow.cpp" line="220"/>
         <source>Help: Conditions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="219"/>
+        <location filename="../../src/mainwindow.cpp" line="221"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The search conditions define the properties by which potential seeds are filtered.&lt;/p&gt;&lt;p&gt;Conditions can reference each other to produce relative positional dependencies (indicated with the ID in square brackets [XY]). When a condition passes its check, it usually yields just one location that other conditions can reference. An exception to this are structure conditions with exactly one required instance. In this case, each found structure occurence is examined separately instead. On the other hand, a condition that checks for a structure cluster, will average the position of all occurences and yield a single position.&lt;/p&gt;&lt;p&gt;Standard biome conditions yield the center of the testing area as they evaluate the area as a whole. To locate the position of a given biome you can use the designated &lt;b&gt;locate&lt;/b&gt; filters, or use a spiral iterator to scan an area with a localized condition.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="243"/>
+        <location filename="../../src/mainwindow.cpp" line="245"/>
         <source>Seed generator (48-bit)</source>
         <translation>种子生成器(低48二进制位)</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="246"/>
+        <location filename="../../src/mainwindow.cpp" line="248"/>
         <source>Help: Seed generator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="247"/>
+        <location filename="../../src/mainwindow.cpp" line="249"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;For some searches, the 48-bit structure seed candidates can be generated without searching, which can vastly reduce the search space that has to be checked.&lt;/p&gt;&lt;p&gt;The generator mode &lt;b&gt;Auto&lt;/b&gt; is recommended for general use, which automatically selects suitable options based on the conditions list.&lt;/p&gt;&lt;p&gt;The &lt;b&gt;Quad-feature&lt;/b&gt; mode produces candidates for quad&amp;#8209;structures that have a uniform distribution of region&amp;#8209;size=32 and chunk&amp;#8209;gap=8, such as swamp huts.&lt;/p&gt;&lt;p&gt;A perfect &lt;b&gt;Quad-monument&lt;/b&gt; structure constellation does not actually exist, but some extremely rare structure seed bases get close, with over 90&amp;#37; of the area within 128 blocks. The generator uses a precomputed list of these seed bases.&lt;/p&gt;&lt;p&gt;Using a &lt;b&gt;Seed list&lt;/b&gt; you can provide a custom set of 48-bit candidates. Optionally, a salt value can be added and the seeds can be region transposed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="271"/>
+        <location filename="../../src/mainwindow.cpp" line="273"/>
         <source>Matching seeds</source>
         <translation>符合条件的种子</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="277"/>
+        <location filename="../../src/mainwindow.cpp" line="279"/>
         <source>Help: Matching seeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="278"/>
+        <location filename="../../src/mainwindow.cpp" line="280"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The list of seeds acts as a buffer onto which suitable seeds are added when they are found. You can also copy the seed list, or paste seeds into the list. Selecting a seed will open it in the map view.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="574"/>
+        <location filename="../../src/mainwindow.cpp" line="576"/>
         <source>Failed to open file:
 &quot;%1&quot;</source>
         <translation>无法打开以下文件:
 &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="814"/>
+        <location filename="../../src/mainwindow.cpp" line="816"/>
         <source>text</source>
         <comment>Seed input type</comment>
         <translatorcomment>种子导入文件类型</translatorcomment>
         <translation>文本文件</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="816"/>
+        <location filename="../../src/mainwindow.cpp" line="818"/>
         <source>random</source>
         <comment>Seed input type</comment>
         <translatorcomment>种子导入文件类型</translatorcomment>
         <translation>任意文件</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="830"/>
+        <location filename="../../src/mainwindow.cpp" line="832"/>
         <source>Save progress</source>
         <translation>导出进度</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="829"/>
-        <location filename="../../src/mainwindow.cpp" line="842"/>
+        <location filename="../../src/mainwindow.cpp" line="831"/>
+        <location filename="../../src/mainwindow.cpp" line="844"/>
         <source>Session files (*.session *.txt);;Any files (*)</source>
         <translation>会话文件 (*.session *.txt);;任意文件 (*)</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="852"/>
+        <location filename="../../src/mainwindow.cpp" line="854"/>
         <source>Load progress</source>
         <translation>导入进度</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="1032"/>
+        <location filename="../../src/mainwindow.cpp" line="1034"/>
         <source>Save screenshot</source>
         <translation>保存截图</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="1031"/>
+        <location filename="../../src/mainwindow.cpp" line="1033"/>
         <source>Images (*.png *.jpg *.ppm)</source>
         <translation>图像文件 (*.png *.jpg *.ppm)</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="1053"/>
+        <location filename="../../src/mainwindow.cpp" line="1055"/>
         <source>Redock map</source>
         <translation>关闭地图小窗</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="1202"/>
+        <location filename="../../src/mainwindow.cpp" line="1204"/>
         <source>The application will need to be restarted before all changes can take effect.</source>
         <translation>Cubiomes Viewer需要重启以应用所有更改</translation>
     </message>
@@ -4320,7 +4325,7 @@ In versions 1.19 - 1.19.2, the world generation can have interesting artifacts a
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="587"/>
+        <location filename="../../src/mainwindow.cpp" line="589"/>
         <source>Failed to open session file:
 &quot;%1&quot;</source>
         <translation>无法打开以下进度文件:
@@ -4638,7 +4643,7 @@ condition missing or out of order.</source>
     </message>
     <message>
         <location filename="../../src/tabbiomes.ui" line="38"/>
-        <location filename="../../src/tabbiomes.cpp" line="670"/>
+        <location filename="../../src/tabbiomes.cpp" line="566"/>
         <source>Analyze</source>
         <translation>统计</translation>
     </message>
@@ -4738,8 +4743,8 @@ condition missing or out of order.</source>
     </message>
     <message>
         <location filename="../../src/tabbiomes.ui" line="247"/>
-        <location filename="../../src/tabbiomes.cpp" line="877"/>
-        <location filename="../../src/tabbiomes.cpp" line="903"/>
+        <location filename="../../src/tabbiomes.cpp" line="771"/>
+        <location filename="../../src/tabbiomes.cpp" line="797"/>
         <source>seed</source>
         <translation>种子</translation>
     </message>
@@ -4750,125 +4755,111 @@ condition missing or out of order.</source>
     </message>
     <message>
         <location filename="../../src/tabbiomes.ui" line="267"/>
-        <location filename="../../src/tabbiomes.cpp" line="903"/>
+        <location filename="../../src/tabbiomes.cpp" line="797"/>
         <source>x</source>
         <translation>X</translation>
     </message>
     <message>
         <location filename="../../src/tabbiomes.ui" line="277"/>
-        <location filename="../../src/tabbiomes.cpp" line="903"/>
+        <location filename="../../src/tabbiomes.cpp" line="797"/>
         <source>z</source>
         <translation>Z</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="307"/>
-        <source>Circle mode (radius 128)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/tabbiomes.ui" line="310"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;Use circular area detection with radius 128. Calculate total biome area within the circle.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/tabbiomes.ui" line="318"/>
+        <location filename="../../src/tabbiomes.ui" line="308"/>
         <source>Statistics</source>
         <translation>数据</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="326"/>
+        <location filename="../../src/tabbiomes.ui" line="316"/>
         <source>Nether</source>
         <translation>下界</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="333"/>
+        <location filename="../../src/tabbiomes.ui" line="323"/>
         <source>End</source>
         <translation>末地</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="340"/>
+        <location filename="../../src/tabbiomes.ui" line="330"/>
         <source>Overworld</source>
         <translation>主世界</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="354"/>
+        <location filename="../../src/tabbiomes.ui" line="344"/>
         <source>Random samples (scale 1:4):</source>
         <translation>随机取样(比例1:4):</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="361"/>
+        <location filename="../../src/tabbiomes.ui" line="351"/>
         <source>Full area sampling with scale:</source>
         <translation>使用以下缩放比例进行全区域采样:</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="375"/>
+        <location filename="../../src/tabbiomes.ui" line="365"/>
         <source>1:1</source>
         <translation>1:1</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="380"/>
+        <location filename="../../src/tabbiomes.ui" line="370"/>
         <source>1:4</source>
         <translation>1:4</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="385"/>
+        <location filename="../../src/tabbiomes.ui" line="375"/>
         <source>1:16</source>
         <translation>1:16</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="390"/>
+        <location filename="../../src/tabbiomes.ui" line="380"/>
         <source>1:64</source>
         <translation>1:64</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="395"/>
+        <location filename="../../src/tabbiomes.ui" line="385"/>
         <source>1:256</source>
         <translation>1:256</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.ui" line="403"/>
+        <location filename="../../src/tabbiomes.ui" line="393"/>
         <source>10000</source>
         <translation>10000</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.cpp" line="742"/>
-        <location filename="../../src/tabbiomes.cpp" line="843"/>
+        <location filename="../../src/tabbiomes.cpp" line="638"/>
+        <location filename="../../src/tabbiomes.cpp" line="737"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
+        <location filename="../../src/tabbiomes.cpp" line="698"/>
         <source>The locate biome feature is limited to an area size smaller than the integer limit: (%1 x %2) &gt; %3.</source>
-        <translation type="vanished">群系定位器指定的范围面积过小: (%1 × %2) &gt; %3</translation>
+        <translation>群系定位器指定的范围面积过小: (%1 × %2) &gt; %3</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.cpp" line="936"/>
+        <location filename="../../src/tabbiomes.cpp" line="830"/>
         <source>Export biome analysis</source>
         <translation>导出群系统计结果</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.cpp" line="936"/>
+        <location filename="../../src/tabbiomes.cpp" line="830"/>
         <source>Text files (*.txt *csv);;Any files (*)</source>
         <translation>文本文件 (*.txt *csv);;任意文件 (*)</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.cpp" line="946"/>
+        <location filename="../../src/tabbiomes.cpp" line="840"/>
         <source>Failed to open file for export:
 &quot;%1&quot;</source>
         <translation>无法打开以下导出文件:
 &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.cpp" line="903"/>
+        <location filename="../../src/tabbiomes.cpp" line="797"/>
         <source>area</source>
         <translation>区域</translation>
     </message>
     <message>
-        <location filename="../../src/tabbiomes.cpp" line="803"/>
-        <source>The locate biome feature is limited to an area size smaller than the maximum: (%1 x %2) &gt; %3.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/tabbiomes.cpp" line="977"/>
+        <location filename="../../src/tabbiomes.cpp" line="871"/>
         <source>(%1 sq. chunks)</source>
         <translation>(%1 平方区块)</translation>
     </message>
@@ -5019,6 +5010,184 @@ condition missing or out of order.</source>
     </message>
     <message>
         <location filename="../../src/tablocations.cpp" line="542"/>
+        <source>Failed to open file for export:
+&quot;%1&quot;</source>
+        <translation>无法打开以下导出文件:
+&quot;%1&quot;</translation>
+    </message>
+</context>
+<context>
+    <name>TabSlime</name>
+    <message>
+        <location filename="../../src/tabslime.ui" line="14"/>
+        <source>Form</source>
+        <translation>史莱姆区块</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.ui" line="48"/>
+        <location filename="../../src/tabslime.cpp" line="189"/>
+        <source>Calculate optimal AFK positions for slime chunk coverage (24-128 blocks radius).</source>
+        <translation>计算最佳史莱姆农场挂机位置</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.ui" line="136"/>
+        <location filename="../../src/tabslime.cpp" line="190"/>
+        <source>Seed(s):</source>
+        <translation>种子:</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.ui" line="252"/>
+        <location filename="../../src/tabslime.cpp" line="191"/>
+        <source>Current seed</source>
+        <translation>当前种子</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.ui" line="257"/>
+        <location filename="../../src/tabslime.cpp" line="192"/>
+        <source>From matching seeds list</source>
+        <translation>符合条件的种子列表</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.ui" line="147"/>
+        <location filename="../../src/tabslime.ui" line="157"/>
+        <location filename="../../src/tabslime.ui" line="167"/>
+        <location filename="../../src/tabslime.ui" line="177"/>
+        <source>Lower bound (inclusive)</source>
+        <translation>最小值(含)</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.ui" line="150"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;X&lt;span style=&quot; vertical-align:sub;&quot;&gt;1&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>X&lt;sub&gt;1&lt;/sub&gt;:</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.ui" line="160"/>
+        <location filename="../../src/tabslime.ui" line="180"/>
+        <location filename="../../src/tabslime.ui" line="207"/>
+        <location filename="../../src/tabslime.ui" line="227"/>
+        <source>0</source>
+        <translation>0</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.ui" line="170"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Z&lt;span style=&quot; vertical-align:sub;&quot;&gt;1&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>Z&lt;sub&gt;1&lt;/sub&gt;:</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.ui" line="194"/>
+        <location filename="../../src/tabslime.ui" line="204"/>
+        <location filename="../../src/tabslime.ui" line="214"/>
+        <location filename="../../src/tabslime.ui" line="224"/>
+        <source>Upper bound (inclusive)</source>
+        <translation>最大值(含)</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.ui" line="197"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;X&lt;span style=&quot; vertical-align:sub;&quot;&gt;2&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>X&lt;sub&gt;2&lt;/sub&gt;:</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.ui" line="217"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Z&lt;span style=&quot; vertical-align:sub;&quot;&gt;2&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>Z&lt;sub&gt;2&lt;/sub&gt;:</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.ui" line="236"/>
+        <location filename="../../src/tabslime.cpp" line="197"/>
+        <source>From visible</source>
+        <translation>使用可见范围</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.ui" line="41"/>
+        <location filename="../../src/tabslime.cpp" line="198"/>
+        <source>Minimum area:</source>
+        <translation>最小面积:</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.ui" line="129"/>
+        <source>10000</source>
+        <translation>10000</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.ui" line="122"/>
+        <location filename="../../src/tabslime.cpp" line="199"/>
+        <source>Include biome parameters</source>
+        <translation>增加群系修正</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.ui" line="119"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;Sample biomes at y=-64 (for MC 1.18+). Exclude mushroom fields and deep dark. Apply multipliers for dripstone caves/rivers (5/6) and old growth pine taiga (0.95).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>在y=-64处取值(1.18+)，排除深暗之域和蘑菇岛的史莱姆刷怪面积，河流和溶洞乘以5/6，原始云杉树林乘以0.95</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.ui" line="73"/>
+        <location filename="../../src/tabslime.cpp" line="203"/>
+        <location filename="../../src/tabslime.cpp" line="542"/>
+        <source>seed</source>
+        <translation>种子</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.ui" line="83"/>
+        <location filename="../../src/tabslime.cpp" line="204"/>
+        <location filename="../../src/tabslime.cpp" line="542"/>
+        <source>area</source>
+        <translation>区域</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.ui" line="93"/>
+        <location filename="../../src/tabslime.cpp" line="205"/>
+        <location filename="../../src/tabslime.cpp" line="542"/>
+        <source>x</source>
+        <translation>X</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.ui" line="103"/>
+        <location filename="../../src/tabslime.cpp" line="206"/>
+        <location filename="../../src/tabslime.cpp" line="542"/>
+        <source>z</source>
+        <translation>Z</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.ui" line="25"/>
+        <location filename="../../src/tabslime.cpp" line="208"/>
+        <source>Export...</source>
+        <translation>导出...</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.cpp" line="200"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sample biomes at y=-64 (for MC 1.18+). Exclude mushroom fields and deep dark. Apply multipliers for dripstone caves/rivers (5/6) and old growth pine taiga (0.95).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>在y=-64处取值(1.18+)，排除深暗之域和蘑菇岛的史莱姆刷怪面积，河流和溶洞乘以5/6，原始云杉树林乘以0.95</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.cpp" line="486"/>
+        <source>No seeds to process.</source>
+        <translation>无待搜索的种子</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.cpp" line="455"/>
+        <location filename="../../src/tabslime.cpp" line="519"/>
+        <source>Stop</source>
+        <translation>停止</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.ui" line="32"/>
+        <location filename="../../src/tabslime.cpp" line="209"/>
+        <location filename="../../src/tabslime.cpp" line="437"/>
+        <source>Analyze</source>
+        <translation>统计</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.cpp" line="574"/>
+        <source>Export slime results</source>
+        <translation>导出史莱姆区块统计结果</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.cpp" line="574"/>
+        <source>Text files (*.txt *.csv);;Any files (*)</source>
+        <translation>文本文件 (*.txt *csv);;任意文件 (*)</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabslime.cpp" line="584"/>
         <source>Failed to open file for export:
 &quot;%1&quot;</source>
         <translation>无法打开以下导出文件:
