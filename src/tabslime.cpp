@@ -43,24 +43,73 @@ static int calculateSlimeArea(uint64_t seed, int centerX, int centerZ, bool incl
             if (!isSlimeChunk(seed, chunkX, chunkZ))
                 continue;
             
-            // 计算区块中心坐标
-            int chunkCenterX = (chunkX << 4) + 8;
-            int chunkCenterZ = (chunkZ << 4) + 8;
+            // 计算区块的边界坐标
+            int chunkMinX = chunkX << 4;
+            int chunkMaxX = chunkMinX + 15;
+            int chunkMinZ = chunkZ << 4;
+            int chunkMaxZ = chunkMinZ + 15;
             
-            // 计算到挂机点的距离（使用区块中心）
-            int dx = chunkCenterX - centerX;
-            int dz = chunkCenterZ - centerZ;
-            int dist2 = dx * dx + dz * dz;
+            // 计算区块四个角点到挂机点的距离平方
+            int dx1 = chunkMinX - centerX;
+            int dz1 = chunkMinZ - centerZ;
+            int dist2_1 = dx1 * dx1 + dz1 * dz1;
             
-            // 检查是否在24格之外128格之内
-            if (dist2 < MIN_DIST2 || dist2 > MAX_DIST2)
+            int dx2 = chunkMaxX - centerX;
+            int dz2 = chunkMinZ - centerZ;
+            int dist2_2 = dx2 * dx2 + dz2 * dz2;
+            
+            int dx3 = chunkMinX - centerX;
+            int dz3 = chunkMaxZ - centerZ;
+            int dist2_3 = dx3 * dx3 + dz3 * dz3;
+            
+            int dx4 = chunkMaxX - centerX;
+            int dz4 = chunkMaxZ - centerZ;
+            int dist2_4 = dx4 * dx4 + dz4 * dz4;
+            
+            // 找出区块四个角点的最小和最大距离平方
+            int minDist2 = dist2_1;
+            if (dist2_2 < minDist2) minDist2 = dist2_2;
+            if (dist2_3 < minDist2) minDist2 = dist2_3;
+            if (dist2_4 < minDist2) minDist2 = dist2_4;
+            
+            int maxDist2 = dist2_1;
+            if (dist2_2 > maxDist2) maxDist2 = dist2_2;
+            if (dist2_3 > maxDist2) maxDist2 = dist2_3;
+            if (dist2_4 > maxDist2) maxDist2 = dist2_4;
+            
+            // 如果区块完全在24圆内或完全在128圆外，跳过
+            if (maxDist2 < MIN_DIST2 || minDist2 > MAX_DIST2)
                 continue;
             
-            // 计算该区块的有效面积
-            int chunkArea = 256; // 一个区块是16x16=256方块
+            // 计算区块内实际在24-128范围内的面积
+            // 遍历区块内的每个方块，计算在范围内的面积
+            int chunkArea = 0;
+            for (int z = chunkMinZ; z <= chunkMaxZ; z++)
+            {
+                for (int x = chunkMinX; x <= chunkMaxX; x++)
+                {
+                    int dx = x - centerX;
+                    int dz = z - centerZ;
+                    int dist2 = dx * dx + dz * dz;
+                    
+                    // 只计算在24格之外128格之内的方块
+                    if (dist2 >= MIN_DIST2 && dist2 <= MAX_DIST2)
+                    {
+                        chunkArea++;
+                    }
+                }
+            }
             
+            // 如果没有面积在范围内，跳过
+            if (chunkArea == 0)
+                continue;
+            
+            // 应用群系修正
             if (includeBiome && g)
             {
+                // 使用区块中心取样群系
+                int chunkCenterX = (chunkX << 4) + 8;
+                int chunkCenterZ = (chunkZ << 4) + 8;
                 int biomeId = none;
                 
                 if (mc >= MC_1_18)
@@ -628,7 +677,7 @@ void TabSlime::on_treeResults_itemClicked(QTreeWidgetItem *item, int column)
         Pos p = qvariant_cast<Pos>(dat);
         
         // 创建两个圆形：半径为128和24
-        std::vector<Shape> shapes;
+        currentShapes.clear();
         
         Shape circle128;
         circle128.type = Shape::CIRCLE;
@@ -636,7 +685,7 @@ void TabSlime::on_treeResults_itemClicked(QTreeWidgetItem *item, int column)
         circle128.p1 = p;
         circle128.p2 = Pos{0, 0};
         circle128.r = 128;
-        shapes.push_back(circle128);
+        currentShapes.push_back(circle128);
         
         Shape circle24;
         circle24.type = Shape::CIRCLE;
@@ -644,11 +693,17 @@ void TabSlime::on_treeResults_itemClicked(QTreeWidgetItem *item, int column)
         circle24.p1 = p;
         circle24.p2 = Pos{0, 0};
         circle24.r = 24;
-        shapes.push_back(circle24);
+        currentShapes.push_back(circle24);
         
         // 跳转到坐标并设置形状
         parent->getMapView()->setView(p.x+0.5, p.z+0.5);
-        parent->getMapView()->setShapes(shapes);
+        parent->getMapView()->setShapes(currentShapes);
     }
+}
+
+void TabSlime::clearSlimeShapes()
+{
+    currentShapes.clear();
+    parent->getMapView()->setShapes(currentShapes);
 }
 

@@ -1122,6 +1122,20 @@ void MainWindow::onActionMapToggled(int sopt, bool show)
     if (sopt == D_PORTAL) // overworld portals should also control nether
         getMapView()->setShow(D_PORTALN, show);
     getMapView()->setShow(sopt, show);
+    
+    // 当关闭史莱姆区块显示时，清除TabSlime中绘制的红圈
+    if (sopt == D_SLIME && !show)
+    {
+        for (int i = 0; i < ui->tabContainer->count(); i++)
+        {
+            TabSlime *tabSlime = qobject_cast<TabSlime*>(ui->tabContainer->widget(i));
+            if (tabSlime)
+            {
+                tabSlime->clearSlimeShapes();
+                break;
+            }
+        }
+    }
 }
 
 void MainWindow::onActionBiomeLayerSelect(int mode, int disp)

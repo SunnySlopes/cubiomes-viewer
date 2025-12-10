@@ -53,6 +53,8 @@ public:
     virtual void save(QSettings& settings) override;
     virtual void load(QSettings& settings) override;
     virtual void refresh() override;
+    
+    void clearSlimeShapes(); // 清除史莱姆坐标的红圈
 
 private slots:
     void onAnalysisSeedDone(uint64_t seed, QList<SlimeResult> results);
@@ -82,6 +84,8 @@ private:
     uint64_t updt;
     uint64_t nextupdate;
     QList<QTreeWidgetItem*> qbufl;
+    
+    std::vector<Shape> currentShapes; // 当前绘制的形状
 };
 
 #endif // TABSLIME_H
