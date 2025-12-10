@@ -3781,7 +3781,7 @@ Applies only to feature-structures of region-size = 32 and chunk-gap = 8, in par
     <message>
         <location filename="../../src/mainwindow.ui" line="716"/>
         <location filename="../../src/mainwindow.cpp" line="1049"/>
-        <location filename="../../src/mainwindow.cpp" line="1359"/>
+        <location filename="../../src/mainwindow.cpp" line="1373"/>
         <source>Undock map</source>
         <translation>开启地图小窗</translation>
     </message>
@@ -3868,7 +3868,7 @@ Applies only to feature-structures of region-size = 32 and chunk-gap = 8, in par
     <message>
         <location filename="../../src/mainwindow.cpp" line="102"/>
         <source>Slime</source>
-        <translation type="unfinished"></translation>
+        <translation>史莱姆区块</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="142"/>
@@ -3968,7 +3968,7 @@ Applies only to feature-structures of region-size = 32 and chunk-gap = 8, in par
         <translation>关闭地图小窗</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="1204"/>
+        <location filename="../../src/mainwindow.cpp" line="1218"/>
         <source>The application will need to be restarted before all changes can take effect.</source>
         <translation>Cubiomes Viewer需要重启以应用所有更改</translation>
     </message>
@@ -5025,25 +5025,25 @@ condition missing or out of order.</source>
     </message>
     <message>
         <location filename="../../src/tabslime.ui" line="48"/>
-        <location filename="../../src/tabslime.cpp" line="189"/>
+        <location filename="../../src/tabslime.cpp" line="238"/>
         <source>Calculate optimal AFK positions for slime chunk coverage (24-128 blocks radius).</source>
         <translation>计算最佳史莱姆农场挂机位置</translation>
     </message>
     <message>
         <location filename="../../src/tabslime.ui" line="136"/>
-        <location filename="../../src/tabslime.cpp" line="190"/>
+        <location filename="../../src/tabslime.cpp" line="239"/>
         <source>Seed(s):</source>
         <translation>种子:</translation>
     </message>
     <message>
         <location filename="../../src/tabslime.ui" line="252"/>
-        <location filename="../../src/tabslime.cpp" line="191"/>
+        <location filename="../../src/tabslime.cpp" line="240"/>
         <source>Current seed</source>
         <translation>当前种子</translation>
     </message>
     <message>
         <location filename="../../src/tabslime.ui" line="257"/>
-        <location filename="../../src/tabslime.cpp" line="192"/>
+        <location filename="../../src/tabslime.cpp" line="241"/>
         <source>From matching seeds list</source>
         <translation>符合条件的种子列表</translation>
     </message>
@@ -5093,13 +5093,13 @@ condition missing or out of order.</source>
     </message>
     <message>
         <location filename="../../src/tabslime.ui" line="236"/>
-        <location filename="../../src/tabslime.cpp" line="197"/>
+        <location filename="../../src/tabslime.cpp" line="246"/>
         <source>From visible</source>
         <translation>使用可见范围</translation>
     </message>
     <message>
         <location filename="../../src/tabslime.ui" line="41"/>
-        <location filename="../../src/tabslime.cpp" line="198"/>
+        <location filename="../../src/tabslime.cpp" line="247"/>
         <source>Minimum area:</source>
         <translation>最小面积:</translation>
     </message>
@@ -5110,7 +5110,7 @@ condition missing or out of order.</source>
     </message>
     <message>
         <location filename="../../src/tabslime.ui" line="122"/>
-        <location filename="../../src/tabslime.cpp" line="199"/>
+        <location filename="../../src/tabslime.cpp" line="248"/>
         <source>Include biome parameters</source>
         <translation>增加群系修正</translation>
     </message>
@@ -5121,73 +5121,73 @@ condition missing or out of order.</source>
     </message>
     <message>
         <location filename="../../src/tabslime.ui" line="73"/>
-        <location filename="../../src/tabslime.cpp" line="203"/>
-        <location filename="../../src/tabslime.cpp" line="542"/>
+        <location filename="../../src/tabslime.cpp" line="252"/>
+        <location filename="../../src/tabslime.cpp" line="591"/>
         <source>seed</source>
         <translation>种子</translation>
     </message>
     <message>
         <location filename="../../src/tabslime.ui" line="83"/>
-        <location filename="../../src/tabslime.cpp" line="204"/>
-        <location filename="../../src/tabslime.cpp" line="542"/>
+        <location filename="../../src/tabslime.cpp" line="253"/>
+        <location filename="../../src/tabslime.cpp" line="591"/>
         <source>area</source>
         <translation>区域</translation>
     </message>
     <message>
         <location filename="../../src/tabslime.ui" line="93"/>
-        <location filename="../../src/tabslime.cpp" line="205"/>
-        <location filename="../../src/tabslime.cpp" line="542"/>
+        <location filename="../../src/tabslime.cpp" line="254"/>
+        <location filename="../../src/tabslime.cpp" line="591"/>
         <source>x</source>
         <translation>X</translation>
     </message>
     <message>
         <location filename="../../src/tabslime.ui" line="103"/>
-        <location filename="../../src/tabslime.cpp" line="206"/>
-        <location filename="../../src/tabslime.cpp" line="542"/>
+        <location filename="../../src/tabslime.cpp" line="255"/>
+        <location filename="../../src/tabslime.cpp" line="591"/>
         <source>z</source>
         <translation>Z</translation>
     </message>
     <message>
         <location filename="../../src/tabslime.ui" line="25"/>
-        <location filename="../../src/tabslime.cpp" line="208"/>
+        <location filename="../../src/tabslime.cpp" line="257"/>
         <source>Export...</source>
         <translation>导出...</translation>
     </message>
     <message>
-        <location filename="../../src/tabslime.cpp" line="200"/>
+        <location filename="../../src/tabslime.cpp" line="249"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sample biomes at y=-64 (for MC 1.18+). Exclude mushroom fields and deep dark. Apply multipliers for dripstone caves/rivers (5/6) and old growth pine taiga (0.95).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>在y=-64处取值(1.18+)，排除深暗之域和蘑菇岛的史莱姆刷怪面积，河流和溶洞乘以5/6，原始云杉树林乘以0.95</translation>
     </message>
     <message>
-        <location filename="../../src/tabslime.cpp" line="486"/>
+        <location filename="../../src/tabslime.cpp" line="535"/>
         <source>No seeds to process.</source>
         <translation>无待搜索的种子</translation>
     </message>
     <message>
-        <location filename="../../src/tabslime.cpp" line="455"/>
-        <location filename="../../src/tabslime.cpp" line="519"/>
+        <location filename="../../src/tabslime.cpp" line="504"/>
+        <location filename="../../src/tabslime.cpp" line="568"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
         <location filename="../../src/tabslime.ui" line="32"/>
-        <location filename="../../src/tabslime.cpp" line="209"/>
-        <location filename="../../src/tabslime.cpp" line="437"/>
+        <location filename="../../src/tabslime.cpp" line="258"/>
+        <location filename="../../src/tabslime.cpp" line="486"/>
         <source>Analyze</source>
         <translation>统计</translation>
     </message>
     <message>
-        <location filename="../../src/tabslime.cpp" line="574"/>
+        <location filename="../../src/tabslime.cpp" line="623"/>
         <source>Export slime results</source>
         <translation>导出史莱姆区块统计结果</translation>
     </message>
     <message>
-        <location filename="../../src/tabslime.cpp" line="574"/>
+        <location filename="../../src/tabslime.cpp" line="623"/>
         <source>Text files (*.txt *.csv);;Any files (*)</source>
         <translation>文本文件 (*.txt *csv);;任意文件 (*)</translation>
     </message>
     <message>
-        <location filename="../../src/tabslime.cpp" line="584"/>
+        <location filename="../../src/tabslime.cpp" line="633"/>
         <source>Failed to open file for export:
 &quot;%1&quot;</source>
         <translation>无法打开以下导出文件:
