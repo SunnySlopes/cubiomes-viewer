@@ -227,6 +227,81 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="tabDoubles">
+      <attribute name="title">
+       <string>Double-Structures</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
+        <widget class="QTreeWidget" name="treeDoubles">
+         <property name="font">
+          <font>
+           <family>Monospace</family>
+          </font>
+         </property>
+         <property name="contextMenuPolicy">
+          <enum>Qt::CustomContextMenu</enum>
+         </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::SingleSelection</enum>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <property name="verticalScrollMode">
+          <enum>QAbstractItemView::ScrollPerPixel</enum>
+         </property>
+         <property name="horizontalScrollMode">
+          <enum>QAbstractItemView::ScrollPerPixel</enum>
+         </property>
+         <property name="sortingEnabled">
+          <bool>true</bool>
+         </property>
+         <property name="animated">
+          <bool>true</bool>
+         </property>
+         <column>
+          <property name="text">
+           <string>seed</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>type</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>distance</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>x</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>z</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>dx</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>dz</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item row="2" column="0" colspan="2">

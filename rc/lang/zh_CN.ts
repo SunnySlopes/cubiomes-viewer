@@ -5228,7 +5228,7 @@ condition missing or out of order.</source>
     </message>
     <message>
         <location filename="../../src/tabstructures.ui" line="58"/>
-        <location filename="../../src/tabstructures.cpp" line="354"/>
+        <location filename="../../src/tabstructures.cpp" line="420"/>
         <source>Analyze</source>
         <translation>统计</translation>
     </message>
@@ -5255,15 +5255,17 @@ condition missing or out of order.</source>
     <message>
         <location filename="../../src/tabstructures.ui" line="123"/>
         <location filename="../../src/tabstructures.ui" line="193"/>
-        <location filename="../../src/tabstructures.cpp" line="512"/>
-        <location filename="../../src/tabstructures.cpp" line="553"/>
-        <location filename="../../src/tabstructures.cpp" line="579"/>
+        <location filename="../../src/tabstructures.ui" line="268"/>
+        <location filename="../../src/tabstructures.cpp" line="601"/>
+        <location filename="../../src/tabstructures.cpp" line="642"/>
+        <location filename="../../src/tabstructures.cpp" line="668"/>
+        <location filename="../../src/tabstructures.cpp" line="692"/>
         <source>seed</source>
         <translation>种子</translation>
     </message>
     <message>
         <location filename="../../src/tabstructures.ui" line="128"/>
-        <location filename="../../src/tabstructures.cpp" line="512"/>
+        <location filename="../../src/tabstructures.cpp" line="601"/>
         <source>structure</source>
         <translation>结构</translation>
     </message>
@@ -5275,22 +5277,26 @@ condition missing or out of order.</source>
     <message>
         <location filename="../../src/tabstructures.ui" line="138"/>
         <location filename="../../src/tabstructures.ui" line="208"/>
-        <location filename="../../src/tabstructures.cpp" line="512"/>
-        <location filename="../../src/tabstructures.cpp" line="579"/>
+        <location filename="../../src/tabstructures.ui" line="283"/>
+        <location filename="../../src/tabstructures.cpp" line="601"/>
+        <location filename="../../src/tabstructures.cpp" line="668"/>
+        <location filename="../../src/tabstructures.cpp" line="692"/>
         <source>x</source>
         <translation>X</translation>
     </message>
     <message>
         <location filename="../../src/tabstructures.ui" line="143"/>
         <location filename="../../src/tabstructures.ui" line="213"/>
-        <location filename="../../src/tabstructures.cpp" line="512"/>
-        <location filename="../../src/tabstructures.cpp" line="579"/>
+        <location filename="../../src/tabstructures.ui" line="288"/>
+        <location filename="../../src/tabstructures.cpp" line="601"/>
+        <location filename="../../src/tabstructures.cpp" line="668"/>
+        <location filename="../../src/tabstructures.cpp" line="692"/>
         <source>z</source>
         <translation>Z</translation>
     </message>
     <message>
         <location filename="../../src/tabstructures.ui" line="148"/>
-        <location filename="../../src/tabstructures.cpp" line="512"/>
+        <location filename="../../src/tabstructures.cpp" line="601"/>
         <source>details</source>
         <translation>详细信息</translation>
     </message>
@@ -5301,95 +5307,116 @@ condition missing or out of order.</source>
     </message>
     <message>
         <location filename="../../src/tabstructures.ui" line="198"/>
-        <location filename="../../src/tabstructures.cpp" line="579"/>
+        <location filename="../../src/tabstructures.ui" line="273"/>
+        <location filename="../../src/tabstructures.cpp" line="668"/>
+        <location filename="../../src/tabstructures.cpp" line="692"/>
         <source>type</source>
         <translation>种类</translation>
     </message>
     <message>
         <location filename="../../src/tabstructures.ui" line="203"/>
-        <location filename="../../src/tabstructures.cpp" line="579"/>
+        <location filename="../../src/tabstructures.ui" line="278"/>
+        <location filename="../../src/tabstructures.cpp" line="668"/>
+        <location filename="../../src/tabstructures.cpp" line="692"/>
         <source>distance</source>
         <translation>距离</translation>
     </message>
     <message>
         <location filename="../../src/tabstructures.ui" line="218"/>
-        <location filename="../../src/tabstructures.cpp" line="579"/>
+        <location filename="../../src/tabstructures.cpp" line="668"/>
         <source>radius</source>
         <translation>半径</translation>
     </message>
     <message>
         <location filename="../../src/tabstructures.ui" line="223"/>
-        <location filename="../../src/tabstructures.cpp" line="579"/>
+        <location filename="../../src/tabstructures.cpp" line="668"/>
         <source>spawn area</source>
         <translation>有效刷怪面积</translation>
     </message>
     <message>
-        <location filename="../../src/tabstructures.ui" line="239"/>
-        <location filename="../../src/tabstructures.ui" line="249"/>
-        <location filename="../../src/tabstructures.ui" line="259"/>
-        <location filename="../../src/tabstructures.ui" line="269"/>
+        <location filename="../../src/tabstructures.ui" line="232"/>
+        <source>Double-Structures</source>
+        <translation>二联结构</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabstructures.ui" line="293"/>
+        <location filename="../../src/tabstructures.cpp" line="692"/>
+        <source>dx</source>
+        <translation>dx</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabstructures.ui" line="298"/>
+        <location filename="../../src/tabstructures.cpp" line="692"/>
+        <source>dz</source>
+        <translation>dz</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabstructures.ui" line="314"/>
+        <location filename="../../src/tabstructures.ui" line="324"/>
+        <location filename="../../src/tabstructures.ui" line="334"/>
+        <location filename="../../src/tabstructures.ui" line="344"/>
         <source>Lower bound (inclusive)</source>
         <translation>最小值(含)</translation>
     </message>
     <message>
-        <location filename="../../src/tabstructures.ui" line="242"/>
+        <location filename="../../src/tabstructures.ui" line="317"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;X&lt;span style=&quot; vertical-align:sub;&quot;&gt;1&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>X&lt;sub&gt;1&lt;/sub&gt;:</translation>
     </message>
     <message>
-        <location filename="../../src/tabstructures.ui" line="252"/>
-        <location filename="../../src/tabstructures.ui" line="272"/>
-        <location filename="../../src/tabstructures.ui" line="299"/>
-        <location filename="../../src/tabstructures.ui" line="319"/>
+        <location filename="../../src/tabstructures.ui" line="327"/>
+        <location filename="../../src/tabstructures.ui" line="347"/>
+        <location filename="../../src/tabstructures.ui" line="374"/>
+        <location filename="../../src/tabstructures.ui" line="394"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="../../src/tabstructures.ui" line="262"/>
+        <location filename="../../src/tabstructures.ui" line="337"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Z&lt;span style=&quot; vertical-align:sub;&quot;&gt;1&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>Z&lt;sub&gt;1&lt;/sub&gt;:</translation>
     </message>
     <message>
-        <location filename="../../src/tabstructures.ui" line="286"/>
-        <location filename="../../src/tabstructures.ui" line="296"/>
-        <location filename="../../src/tabstructures.ui" line="306"/>
-        <location filename="../../src/tabstructures.ui" line="316"/>
+        <location filename="../../src/tabstructures.ui" line="361"/>
+        <location filename="../../src/tabstructures.ui" line="371"/>
+        <location filename="../../src/tabstructures.ui" line="381"/>
+        <location filename="../../src/tabstructures.ui" line="391"/>
         <source>Upper bound (inclusive)</source>
         <translation>最大值(含)</translation>
     </message>
     <message>
-        <location filename="../../src/tabstructures.ui" line="289"/>
+        <location filename="../../src/tabstructures.ui" line="364"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;X&lt;span style=&quot; vertical-align:sub;&quot;&gt;2&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>X&lt;sub&gt;2&lt;/sub&gt;:</translation>
     </message>
     <message>
-        <location filename="../../src/tabstructures.ui" line="309"/>
+        <location filename="../../src/tabstructures.ui" line="384"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Z&lt;span style=&quot; vertical-align:sub;&quot;&gt;2&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>Z&lt;sub&gt;2&lt;/sub&gt;:</translation>
     </message>
     <message>
-        <location filename="../../src/tabstructures.ui" line="328"/>
+        <location filename="../../src/tabstructures.ui" line="403"/>
         <source>From visible</source>
         <translation>使用可见范围</translation>
     </message>
     <message>
-        <location filename="../../src/tabstructures.cpp" line="384"/>
-        <location filename="../../src/tabstructures.cpp" line="480"/>
+        <location filename="../../src/tabstructures.cpp" line="461"/>
+        <location filename="../../src/tabstructures.cpp" line="569"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../../src/tabstructures.cpp" line="608"/>
+        <location filename="../../src/tabstructures.cpp" line="721"/>
         <source>Export structure analysis</source>
         <translation>导出结构统计结果</translation>
     </message>
     <message>
-        <location filename="../../src/tabstructures.cpp" line="608"/>
+        <location filename="../../src/tabstructures.cpp" line="721"/>
         <source>Text files (*.txt *csv);;Any files (*)</source>
         <translation>文本文件 (*.txt *csv);;任意文件 (*)</translation>
     </message>
     <message>
-        <location filename="../../src/tabstructures.cpp" line="618"/>
+        <location filename="../../src/tabstructures.cpp" line="731"/>
         <source>Failed to open file for export:
 &quot;%1&quot;</source>
         <translation>无法打开以下导出文件:
