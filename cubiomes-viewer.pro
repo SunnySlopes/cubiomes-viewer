@@ -129,6 +129,7 @@ SOURCES += \
         src/searchthread.cpp \
         src/tabbiomes.cpp \
         src/tablocations.cpp \
+        src/tablocatebiome.cpp \
         src/tabstructures.cpp \
         src/tabslime.cpp \
         src/mainwindow.cpp \
@@ -197,6 +198,7 @@ HEADERS += \
         src/seedtables.h \
         src/tabbiomes.h \
         src/tablocations.h \
+        src/tablocatebiome.h \
         src/tabstructures.h \
         src/tabslime.h \
         src/mainwindow.h \
@@ -222,6 +224,7 @@ FORMS += \
         src/rangedialog.ui \
         src/tabbiomes.ui \
         src/tablocations.ui \
+        src/tablocatebiome.ui \
         src/tabstructures.ui \
         src/tabslime.ui
 
