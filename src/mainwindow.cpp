@@ -12,7 +12,6 @@
 #include "presetdialog.h"
 #include "tabbiomes.h"
 #include "tablocations.h"
-#include "tabslime.h"
 #include "tabstructures.h"
 #include "util.h"
 #include "world.h"
@@ -99,7 +98,6 @@ MainWindow::MainWindow(QString sessionpath, QString resultspath, QWidget *parent
     ui->tabContainerSearch->addTab(new TabLocations(this), tr("Locations"));
     ui->tabContainer->addTab(new TabBiomes(this), tr("Biomes"));
     ui->tabContainer->addTab(new TabStructures(this), tr("Structures"));
-    ui->tabContainer->addTab(new TabSlime(this), tr("Slime"));
 
     laction.resize(LOPT_MAX);
     laction[LOPT_BIOMES] = ui->actionBiomes;
