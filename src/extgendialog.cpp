@@ -44,13 +44,6 @@ ExtGenDialog::ExtGenDialog(QWidget *parent, ExtGenConfig *extgen)
         connect(checkSalts[st], &QCheckBox::toggled, this, &ExtGenDialog::updateToggles);
     }
 
-    Pos dummy;
-    if (!getStructurePos(Feature, INT_MAX, 0, 0, 0, &dummy))
-    {
-        // cubiomes was not built with salt override support
-        ui->groupSalts->setEnabled(false);
-    }
-
     initSettings(extgen);
 }
 

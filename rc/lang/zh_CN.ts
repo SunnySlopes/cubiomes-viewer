@@ -545,6 +545,11 @@
         <source>Pale Garden</source>
         <translation>苍白之园</translation>
     </message>
+    <message>
+        <location filename="../../src/util.cpp" line="162"/>
+        <source>Sulfur Caves</source>
+        <translation>硫磺洞穴</translation>
+    </message>
 </context>
 <context>
     <name>BiomeColorDialog</name>
@@ -2628,6 +2633,11 @@ Leave blank for the default behaviour</source>
         <translation>特指返程折跃门, 而非那些你打龙开的折跃门</translation>
     </message>
     <message>
+        <location filename="../../src/search.h" line="575"/>
+        <source>Nether fossil</source>
+        <translation>下界化石</translation>
+    </message>
+    <message>
         <location filename="../../src/scripts.cpp" line="219"/>
         <source>function check() was not defined</source>
         <translation>未定义check()函数！</translation>
@@ -3213,6 +3223,11 @@ Applies only to feature-structures of region-size = 32 and chunk-gap = 8, in par
         <location filename="../../src/gotodialog.ui" line="133"/>
         <source>Animate travel</source>
         <translation>播放移动动画</translation>
+    </message>
+    <message>
+        <location filename="../../src/gotodialog.ui" line="140"/>
+        <source>Draw AFK range centered on destination</source>
+        <translation>绘制前往坐标为中心点的挂机范围</translation>
     </message>
 </context>
 <context>
@@ -4097,11 +4112,16 @@ Applies only to feature-structures of region-size = 32 and chunk-gap = 8, in par
     </message>
     <message>
         <location filename="../../src/config.cpp" line="167"/>
+        <source>Nether Fossil</source>
+        <translation>下界化石</translation>
+    </message>
+    <message>
+        <location filename="../../src/config.cpp" line="168"/>
         <source>End City</source>
         <translation>末地城</translation>
     </message>
     <message>
-        <location filename="../../src/config.cpp" line="168"/>
+        <location filename="../../src/config.cpp" line="169"/>
         <source>End Gateway</source>
         <translation>末地折跃门</translation>
     </message>

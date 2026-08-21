@@ -9,6 +9,7 @@
 #include <QRegularExpression>
 
 static bool g_animate;
+static bool g_afkRange;
 
 GotoDialog::GotoDialog(MapView *map, qreal x, qreal z, qreal scale)
     : QDialog(map)
@@ -28,6 +29,7 @@ GotoDialog::GotoDialog(MapView *map, qreal x, qreal z, qreal scale)
     ui->lineScale->setText(QString::asprintf("%.4f", scale));
 
     ui->checkAnimate->setChecked(g_animate);
+    ui->checkAfkRange->setChecked(g_afkRange);
 }
 
 GotoDialog::~GotoDialog()
@@ -101,6 +103,8 @@ void GotoDialog::on_buttonBox_clicked(QAbstractButton *button)
         if (scale > scalemax) scale = scalemax;
         ui->lineScale->setText(QString::asprintf("%.4f", scale));
         g_animate = ui->checkAnimate->isChecked();
+        g_afkRange = ui->checkAfkRange->isChecked();
+        mapview->setAfkRange(x, z, g_afkRange);
         if (g_animate)
             mapview->animateView(x, z, scale);
         else

@@ -50,6 +50,9 @@ MapView::MapView(QWidget *parent)
     , bstart()
     , measure()
     , updatecounter()
+    , afkRangeEnabled()
+    , afkRangex()
+    , afkRangez()
     , lopt()
     , config()
 {
@@ -194,6 +197,14 @@ void MapView::setShapes(const std::vector<Shape>& s)
 {
     shapes = s;
     settingsToWorld();
+    update(1);
+}
+
+void MapView::setAfkRange(qreal x, qreal z, bool enabled)
+{
+    afkRangeEnabled = enabled;
+    afkRangex = x;
+    afkRangez = z;
     update(1);
 }
 
@@ -498,6 +509,15 @@ void MapView::paintEvent(QPaintEvent *)
     if (world)
     {
         world->draw(painter, width(), height(), fx, fz, blocks2pix);
+
+        if (afkRangeEnabled)
+        {
+            qreal cx = width()/2.0 + (afkRangex - fx) * blocks2pix;
+            qreal cy = height()/2.0 + (afkRangez - fz) * blocks2pix;
+            painter.setPen(QPen(QColor(0, 192, 255, 200), 2));
+            painter.drawEllipse(QPointF(cx, cy), 24.0 * blocks2pix, 24.0 * blocks2pix);
+            painter.drawEllipse(QPointF(cx, cy), 128.0 * blocks2pix, 128.0 * blocks2pix);
+        }
 
         QPoint cur = mapFromGlobal(QCursor::pos());
         qreal bx = (cur.x() -  width()/2.0) / blocks2pix + fx;
