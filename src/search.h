@@ -751,16 +751,7 @@ struct QuadInfo
     float rad;  // enclosing radius
 };
 
-struct DoubleInfo
-{
-    Pos p[2];   // two monument positions
-    Pos center; // center position (average of two monuments)
-    int dx;     // x difference between monuments
-    int dz;     // z difference between monuments
-};
-
 void findQuadStructs(int styp, Generator *g, QVector<QuadInfo> *out);
-void findDoubleMonuments(Generator *g, int x1, int z1, int x2, int z2, QVector<DoubleInfo> *out);
 
 
 #endif // SEARCH_H

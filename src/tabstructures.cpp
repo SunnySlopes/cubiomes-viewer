@@ -2,7 +2,6 @@
 #include "ui_tabstructures.h"
 
 #include "message.h"
-#include "search.h"
 #include "util.h"
 
 #include <QFileDialog>
@@ -42,8 +41,6 @@ void AnalysisStructures::run()
         wi.seed = seeds[idx];
         if (quad)
             runQuads(&g);
-        else if (this->isDouble)
-            runDoubles(&g);
         else
             runStructs(&g);
     }
@@ -218,42 +215,6 @@ void AnalysisStructures::runQuads(Generator *g)
     emit quadDone(seeditem);
 }
 
-void AnalysisStructures::runDoubles(Generator *g)
-{
-    applySeed(g, 0, wi.seed);
-
-    QVector<DoubleInfo> dsinfo;
-    findDoubleMonuments(g, area.x1, area.z1, area.x2, area.z2, &dsinfo);
-    if (dsinfo.empty())
-        return;
-
-    QTreeWidgetItem *seeditem = new TreeIntItem();
-    seeditem->setText(0, QString::asprintf("%" PRId64, wi.seed));
-    seeditem->setData(0, Qt::UserRole+0, QVariant::fromValue(wi.seed));
-    seeditem->setData(0, Qt::UserRole+1, QVariant::fromValue((int)DIM_OVERWORLD));
-
-    for (DoubleInfo& di : dsinfo)
-    {
-        QTreeWidgetItem *item = new QTreeWidgetItem(seeditem);
-
-        qreal dist = di.center.x*(qreal)di.center.x + di.center.z*(qreal)di.center.z;
-        dist = sqrt(dist);
-
-        item->setText(0, "-");
-        item->setData(1, Qt::DisplayRole, QVariant::fromValue(QString("double-monument")));
-        item->setData(2, Qt::DisplayRole, QVariant::fromValue((qlonglong)dist));
-        item->setData(3, Qt::DisplayRole, QVariant::fromValue(di.center.x));
-        item->setData(4, Qt::DisplayRole, QVariant::fromValue(di.center.z));
-        item->setData(5, Qt::DisplayRole, QVariant::fromValue(di.dx));
-        item->setData(6, Qt::DisplayRole, QVariant::fromValue(di.dz));
-        item->setData(0, Qt::UserRole+0, QVariant::fromValue(wi.seed));
-        item->setData(0, Qt::UserRole+1, QVariant::fromValue((int)DIM_OVERWORLD));
-        item->setData(0, Qt::UserRole+2, QVariant::fromValue(di.center));
-    }
-
-    emit doubleDone(seeditem);
-}
-
 
 TabStructures::TabStructures(MainWindow *parent)
     : QWidget(parent)
@@ -262,7 +223,6 @@ TabStructures::TabStructures(MainWindow *parent)
     , thread(this)
     , sortcols(-1)
     , sortcolq(-1)
-    , sortcold(-1)
     , nextupdate()
     , updt(100)
 {
@@ -275,18 +235,12 @@ TabStructures::TabStructures(MainWindow *parent)
     ui->treeQuads->sortByColumn(-1, Qt::AscendingOrder);
     connect(ui->treeQuads->header(), &QHeaderView::sectionClicked, this, [=](){ onHeaderClick(ui->treeQuads); } );
 
-    ui->treeDoubles->setColumnWidth(0, 160);
-    ui->treeDoubles->sortByColumn(-1, Qt::AscendingOrder);
-    connect(ui->treeDoubles->header(), &QHeaderView::sectionClicked, this, [=](){ onHeaderClick(ui->treeDoubles); } );
-
     connect(&thread, &AnalysisStructures::itemDone, this, &TabStructures::onAnalysisItemDone, Qt::BlockingQueuedConnection);
     connect(&thread, &AnalysisStructures::quadDone, this, &TabStructures::onAnalysisQuadDone, Qt::BlockingQueuedConnection);
-    connect(&thread, &AnalysisStructures::doubleDone, this, &TabStructures::onAnalysisDoubleDone, Qt::BlockingQueuedConnection);
     connect(&thread, &AnalysisStructures::finished, this, &TabStructures::onAnalysisFinished);
 
     connect(ui->treeStructs, &QTreeWidget::itemClicked, this, &TabStructures::onTreeItemClicked);
     connect(ui->treeQuads, &QTreeWidget::itemClicked, this, &TabStructures::onTreeItemClicked);
-    connect(ui->treeDoubles, &QTreeWidget::itemClicked, this, &TabStructures::onTreeItemClicked);
 }
 
 TabStructures::~TabStructures()
@@ -314,14 +268,6 @@ bool TabStructures::event(QEvent *e)
         ui->treeQuads->setColumnWidth(4, txtWidth(fm) * 10);
         ui->treeQuads->setColumnWidth(5, txtWidth(fm, "_123.123"));
         ui->treeQuads->setColumnWidth(6, txtWidth(fm) * 14);
-
-        ui->treeDoubles->setColumnWidth(0, txtWidth(fm) * 23);
-        ui->treeDoubles->setColumnWidth(1, txtWidth(fm, "_double-monument"));
-        ui->treeDoubles->setColumnWidth(2, txtWidth(fm) * 10);
-        ui->treeDoubles->setColumnWidth(3, txtWidth(fm) * 10);
-        ui->treeDoubles->setColumnWidth(4, txtWidth(fm) * 10);
-        ui->treeDoubles->setColumnWidth(5, txtWidth(fm) * 10);
-        ui->treeDoubles->setColumnWidth(6, txtWidth(fm) * 10);
     }
     return QWidget::event(e);
 }
@@ -366,7 +312,7 @@ void TabStructures::load(QSettings& settings)
 
 void TabStructures::onHeaderClick(QTreeView *tree)
 {
-    int& col = (tree == ui->treeStructs) ? sortcols : ((tree == ui->treeQuads) ? sortcolq : sortcold);
+    int& col = (tree == ui->treeStructs) ? sortcols : sortcolq;
     int section =  tree->header()->sortIndicatorSection();
     if (tree->header()->sortIndicatorOrder() == Qt::AscendingOrder && col == section)
     {
@@ -398,31 +344,19 @@ void TabStructures::onAnalysisQuadDone(QTreeWidgetItem *item)
     }
 }
 
-void TabStructures::onAnalysisDoubleDone(QTreeWidgetItem *item)
-{
-    qbufd.push_back(item);
-    quint64 ns = elapsed.nsecsElapsed();
-    if (ns > nextupdate)
-    {
-        nextupdate = ns + updt * 1e6;
-        QTimer::singleShot(updt, this, &TabStructures::onBufferTimeout);
-    }
-}
-
 void TabStructures::onAnalysisFinished()
 {
     onBufferTimeout();
     on_tabWidget_currentChanged(-1);
     ui->treeStructs->setSortingEnabled(true);
     ui->treeQuads->setSortingEnabled(true);
-    ui->treeDoubles->setSortingEnabled(true);
     ui->pushStart->setChecked(false);
     ui->pushStart->setText(tr("Analyze"));
 }
 
 void TabStructures::onBufferTimeout()
 {
-    if (qbufs.empty() && qbufq.empty() && qbufd.empty())
+    if (qbufs.empty() && qbufq.empty())
         return;
     uint64_t t = -elapsed.elapsed();
     if (!qbufs.empty())
@@ -445,17 +379,6 @@ void TabStructures::onBufferTimeout()
         ui->treeQuads->setUpdatesEnabled(true);
         ui->treeQuads->setSortingEnabled(true);
         qbufq.clear();
-    }
-    if (!qbufd.empty())
-    {
-        ui->treeDoubles->setSortingEnabled(false);
-        ui->treeDoubles->setUpdatesEnabled(false);
-        ui->treeDoubles->addTopLevelItems(qbufd);
-        for (QTreeWidgetItem *item: qAsConst(qbufd))
-            item->setExpanded(true);
-        ui->treeDoubles->setUpdatesEnabled(true);
-        ui->treeDoubles->setSortingEnabled(true);
-        qbufd.clear();
     }
     QString progress = QString::asprintf(" (%d/%zu)", thread.idx.load(), thread.seeds.size());
     ui->pushStart->setText(tr("Stop") + progress);
@@ -535,32 +458,20 @@ void TabStructures::on_pushStart_clicked()
     if (ui->tabWidget->currentWidget() == ui->tabStructures)
     {
         thread.quad = false;
-        thread.isDouble = false;
         dats = thread.area;
         ui->treeStructs->setSortingEnabled(false);
         while (ui->treeStructs->topLevelItemCount() > 0)
             delete ui->treeStructs->takeTopLevelItem(0);
         ui->treeStructs->setSortingEnabled(true);
     }
-    else if (ui->tabWidget->currentWidget() == ui->tabQuads)
+    else
     {
         thread.quad = true;
-        thread.isDouble = false;
         datq = thread.area;
         ui->treeQuads->setSortingEnabled(false);
         while (ui->treeQuads->topLevelItemCount() > 0)
             delete ui->treeQuads->takeTopLevelItem(0);
         ui->treeQuads->setSortingEnabled(true);
-    }
-    else if (ui->tabWidget->currentWidget() == ui->tabDoubles)
-    {
-        thread.quad = false;
-        thread.isDouble = true;
-        datd = thread.area;
-        ui->treeDoubles->setSortingEnabled(false);
-        while (ui->treeDoubles->topLevelItemCount() > 0)
-            delete ui->treeDoubles->takeTopLevelItem(0);
-        ui->treeDoubles->setSortingEnabled(true);
     }
 
     ui->pushExport->setEnabled(false);
@@ -682,30 +593,6 @@ void TabStructures::exportResults(QTextStream& stream)
             csvline(stream, qte, sep, cols);
         }
     }
-    else if(ui->tabWidget->currentWidget() == ui->tabDoubles)
-    {
-        stream << qte << "#X1" << sep << datd.x1 << qte << "\n";
-        stream << qte << "#Z1" << sep << datd.z1 << qte << "\n";
-        stream << qte << "#X2" << sep << datd.x2 << qte << "\n";
-        stream << qte << "#Z2" << sep << datd.z2 << qte << "\n";
-
-        QStringList header = { tr("seed"), tr("type"), tr("distance"), tr("x"), tr("z"), tr("dx"), tr("dz") };
-        csvline(stream, qte, sep, header);
-        QString seed;
-        for (QTreeWidgetItemIterator it(ui->treeDoubles); *it; ++it)
-        {
-            QTreeWidgetItem *item = *it;
-            if (item->text(0) != "-")
-            {
-                seed = item->text(0);
-                continue;
-            }
-            QStringList cols = { seed };
-            for (int i = 1, n = item->columnCount(); i < n; i++)
-                cols.append(item->text(i));
-            csvline(stream, qte, sep, cols);
-        }
-    }
     stream.flush();
 }
 
@@ -757,10 +644,8 @@ void TabStructures::on_tabWidget_currentChanged(int)
     {
         if (ui->tabWidget->currentWidget() == ui->tabStructures)
             ok = ui->treeStructs->topLevelItemCount() > 0;
-        else if (ui->tabWidget->currentWidget() == ui->tabQuads)
+        if (ui->tabWidget->currentWidget() == ui->tabQuads)
             ok = ui->treeQuads->topLevelItemCount() > 0;
-        else if (ui->tabWidget->currentWidget() == ui->tabDoubles)
-            ok = ui->treeDoubles->topLevelItemCount() > 0;
     }
     ui->pushExport->setEnabled(ok);
 }

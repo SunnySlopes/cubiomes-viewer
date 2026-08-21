@@ -17,12 +17,10 @@ public:
     virtual void run() override;
     void runStructs(Generator *g);
     void runQuads(Generator *g);
-    void runDoubles(Generator *g);
 
 signals:
     void itemDone(QTreeWidgetItem *item);
     void quadDone(QTreeWidgetItem *item);
-    void doubleDone(QTreeWidgetItem *item);
 
 public:
     std::vector<uint64_t> seeds;
@@ -34,7 +32,6 @@ public:
     bool mapshow[D_STRUCT_NUM];
     bool collect;
     bool quad;
-    bool isDouble;
 };
 
 class TabStructures : public QWidget, public ISaveTab
@@ -55,7 +52,6 @@ private slots:
 
     void onAnalysisItemDone(QTreeWidgetItem *item);
     void onAnalysisQuadDone(QTreeWidgetItem *item);
-    void onAnalysisDoubleDone(QTreeWidgetItem *item);
     void onAnalysisFinished();
     void onBufferTimeout();
 
@@ -73,15 +69,14 @@ private:
     Ui::TabStructures *ui;
     MainWindow *parent;
     AnalysisStructures thread;
-    AnalysisStructures::Dat dats, datq, datd;
-    int sortcols, sortcolq, sortcold;
+    AnalysisStructures::Dat dats, datq;
+    int sortcols, sortcolq;
 
     QElapsedTimer elapsed;
     uint64_t nextupdate;
     uint64_t updt;
     QList<QTreeWidgetItem*> qbufs;
     QList<QTreeWidgetItem*> qbufq;
-    QList<QTreeWidgetItem*> qbufd;
 };
 
 #endif // TABSTRUCTURES_H
