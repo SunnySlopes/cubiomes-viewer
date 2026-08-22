@@ -10,12 +10,9 @@
 #include <QGuiApplication>
 #include <QStandardPaths>
 
-extern "C"
-int getStructureConfig_override(int stype, int mc, StructureConfig *sconf)
+static int structureConfigProvider(int stype, int mc, StructureConfig *sconf)
 {
-    if unlikely(mc == INT_MAX) // to check if override is enabled in cubiomes
-        mc = 0;
-    int ok = getStructureConfig(stype, mc, sconf);
+    int ok = getStructureConfig_default(stype, mc, sconf);
     if (ok && g_extgen.saltOverride)
     {
         uint64_t salt = g_extgen.salts[stype];
@@ -27,6 +24,8 @@ int getStructureConfig_override(int stype, int mc, StructureConfig *sconf)
 
 int main(int argc, char *argv[])
 {
+    setStructureConfigProvider(structureConfigProvider);
+
     initBiomeColors(g_biomeColors);
     initBiomeTypeColors(g_tempsColors);
 

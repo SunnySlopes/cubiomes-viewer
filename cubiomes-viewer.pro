@@ -65,8 +65,8 @@ CONFIG(debug, debug|release): {
 
 # compile cubiomes
 CUPATH              = $$PWD/cubiomes
-QMAKE_PRE_LINK      += $(MAKE) -C $$CUPATH -f $$CUPATH/makefile CC=\"$$QMAKE_CC\" CFLAGS=\"$(CFLAGS) $$QMAKE_CFLAGS\" $$CUTARGET
-QMAKE_CLEAN         += $$CUPATH/*.o $$CUPATH/libcubiomes.a
+QMAKE_PRE_LINK      += $(MAKE) -C $$CUPATH -f $$PWD/etc/makefile.cubiomes CC=\"$$QMAKE_CC\" CFLAGS=\"$(CFLAGS) $$QMAKE_CFLAGS\" $$CUTARGET
+QMAKE_CLEAN         += $$CUPATH/*.o $$CUPATH/libcubiomes.a $$CUPATH/features/*.o
 LIBS                += $$CUPATH/libcubiomes.a -lm
 
 LUAPATH = $$PWD/lua/src
@@ -130,7 +130,6 @@ SOURCES += \
         src/tabbiomes.cpp \
         src/tablocations.cpp \
         src/tabstructures.cpp \
-        src/tabslime.cpp \
         src/mainwindow.cpp \
         src/main.cpp \
         src/util.cpp \
@@ -198,7 +197,6 @@ HEADERS += \
         src/tabbiomes.h \
         src/tablocations.h \
         src/tabstructures.h \
-        src/tabslime.h \
         src/mainwindow.h \
         src/util.h \
         src/widgets.h \
@@ -222,8 +220,7 @@ FORMS += \
         src/rangedialog.ui \
         src/tabbiomes.ui \
         src/tablocations.ui \
-        src/tabstructures.ui \
-        src/tabslime.ui
+        src/tabstructures.ui
 
 RESOURCES += \
         rc/icons.qrc \

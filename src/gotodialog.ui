@@ -135,6 +135,13 @@
     </widget>
    </item>
    <item>
+    <widget class="QCheckBox" name="checkAfkRange">
+     <property name="text">
+      <string>Draw AFK range centered on destination</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>

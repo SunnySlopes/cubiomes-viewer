@@ -1,0 +1,61 @@
+# Makefile for building libcubiomes.a for cubiomes-viewer (xpple/cubiomes).
+# Invoked from cubiomes-viewer.pro via: make -C cubiomes -f ../etc/makefile.cubiomes
+
+ARFLAGS = cr
+override LDFLAGS = -lm
+override CFLAGS += -Wall -Wextra -fwrapv
+
+ifeq ($(OS),Windows_NT)
+	override CFLAGS += -D_WIN32
+	CC ?= gcc
+	RM = del /Q
+else
+	override LDFLAGS += -pthread
+endif
+
+.PHONY : all debug release native libcubiomes clean
+
+all: release
+
+debug: CFLAGS += -DDEBUG -O0 -ggdb3
+debug: libcubiomes
+release: CFLAGS += -O3
+release: libcubiomes
+native: CFLAGS += -O3 -march=native -ffast-math
+native: libcubiomes
+
+ifneq ($(OS),Windows_NT)
+release: CFLAGS += -fPIC
+endif
+
+OBJS = \
+	noise.o \
+	biomes.o \
+	layers.o \
+	biomenoise.o \
+	terrainnoise.o \
+	generator.o \
+	finders.o \
+	util.o \
+	quadbase.o \
+	carver.o \
+	features/end_city.o \
+	features/fortress.o \
+	features/stronghold.o \
+	features/ore.o
+
+libcubiomes: $(OBJS)
+	$(AR) $(ARFLAGS) libcubiomes.a $(OBJS)
+
+%.o: %.c
+	$(CC) -c $(CFLAGS) -o $@ $<
+
+features/%.o: features/%.c
+	$(CC) -c $(CFLAGS) -o $@ $<
+
+clean:
+ifeq ($(OS),Windows_NT)
+	-$(RM) *.o libcubiomes.a features\*.o 2>NUL
+else
+	$(RM) -f *.o libcubiomes.a features/*.o
+endif

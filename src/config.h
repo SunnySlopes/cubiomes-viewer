@@ -15,7 +15,7 @@
 
 #define PRECOMPUTE48_BUFSIZ ((int64_t)1 << 30)
 
-enum { MC_DEFAULT = MC_1_21_3 };
+enum { MC_DEFAULT = MC_NEWEST };
 
 struct ExtGenConfig
 {
@@ -124,6 +124,7 @@ enum {
     D_PORTALN,
     D_FORTESS,
     D_BASTION,
+    D_FOSSIL,
     D_ENDCITY,
     D_GATEWAY,
     // non-recurring structures

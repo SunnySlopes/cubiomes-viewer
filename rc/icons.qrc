@@ -57,6 +57,8 @@
         <file>icons/endcity.png</file>
         <file>icons/bastion_d.png</file>
         <file>icons/bastion.png</file>
+        <file>icons/fossil_d.png</file>
+        <file>icons/fossil.png</file>
         <file>icons/gateway.png</file>
         <file>icons/gateway_d.png</file>
         <file>icons/mineshaft.png</file>

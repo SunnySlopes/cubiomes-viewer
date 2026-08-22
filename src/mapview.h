@@ -55,6 +55,7 @@ public:
     void setShow(int stype, bool v);
     void setConfig(const Config& config);
     void setShapes(const std::vector<Shape>& shapes);
+    void setAfkRange(qreal x, qreal z, bool enabled);
     void refreshBiomeColors();
 
     void timeout();
@@ -113,6 +114,8 @@ private:
     int updatecounter;
 
     std::vector<Shape> shapes;
+    bool afkRangeEnabled;
+    qreal afkRangex, afkRangez;
 
     bool sshow[D_STRUCT_NUM];
     LayerOpt lopt;

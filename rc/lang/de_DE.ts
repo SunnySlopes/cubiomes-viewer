@@ -545,6 +545,11 @@
         <source>Pale Garden</source>
         <translation>Blasser Garten</translation>
     </message>
+    <message>
+        <location filename="../../src/util.cpp" line="162"/>
+        <source>Sulfur Caves</source>
+        <translation>Schwefelhöhlen</translation>
+    </message>
 </context>
 <context>
     <name>BiomeColorDialog</name>
@@ -2641,6 +2646,11 @@ Fortfahren und Überschreiben?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/search.h" line="575"/>
+        <source>Nether fossil</source>
+        <translation>Netherfossil</translation>
+    </message>
+    <message>
         <location filename="../../src/scripts.cpp" line="225"/>
         <source>function check() was not defined</source>
         <translation>Function check() wurde nicht definiert</translation>
@@ -3238,6 +3248,11 @@ Nur für Strukturen mit region-size = 32 und chunk-gap = 8</translation>
         <location filename="../../src/gotodialog.ui" line="100"/>
         <source>Animate travel</source>
         <translation>Bewegung animieren</translation>
+    </message>
+    <message>
+        <location filename="../../src/gotodialog.ui" line="140"/>
+        <source>Draw AFK range centered on destination</source>
+        <translation>AFK-Bereich um Zielkoordinate zeichnen</translation>
     </message>
     <message>
         <source>Setting a very large scale may be unsafe.
@@ -4133,11 +4148,16 @@ Trozdem fortfahren?</translation>
     </message>
     <message>
         <location filename="../../src/config.cpp" line="167"/>
+        <source>Nether Fossil</source>
+        <translation>Netherfossil</translation>
+    </message>
+    <message>
+        <location filename="../../src/config.cpp" line="168"/>
         <source>End City</source>
         <translation>Endsiedlungen</translation>
     </message>
     <message>
-        <location filename="../../src/config.cpp" line="168"/>
+        <location filename="../../src/config.cpp" line="169"/>
         <source>End Gateway</source>
         <translation>Endtransitportale</translation>
     </message>

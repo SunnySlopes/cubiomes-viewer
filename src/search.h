@@ -93,6 +93,7 @@ enum
     F_NOISE_SAMPLE,
     F_CHAMBERS,
     F_DM,  // Double Monument - added at end for backwards compatibility
+    F_FOSSIL,
     // new filters should be added here at the end to keep some downwards compatibility
     FILTER_MAX,
 };
@@ -568,6 +569,13 @@ static const struct FilterList : private FilterInfo
             "Checks only scattered return gateways. Does not include those generated "
             "when defeating the dragon.")
         };
+
+        list[F_FOSSIL] = FilterInfo{
+            CAT_STRUCT, 0, LOC_RAD, Nether_Fossil, 1, BR_CLUST, MC_1_16_1, MC_NEWEST, -1, 0, disp++,
+            "fossil",
+            QT_TRANSLATE_NOOP("Filter", "Nether fossil"),
+            ""
+        };
     }
 }
 g_filterinfo;
@@ -751,16 +759,7 @@ struct QuadInfo
     float rad;  // enclosing radius
 };
 
-struct DoubleInfo
-{
-    Pos p[2];   // two monument positions
-    Pos center; // center position (average of two monuments)
-    int dx;     // x difference between monuments
-    int dz;     // z difference between monuments
-};
-
 void findQuadStructs(int styp, Generator *g, QVector<QuadInfo> *out);
-void findDoubleMonuments(Generator *g, int x1, int z1, int x2, int z2, QVector<DoubleInfo> *out);
 
 
 #endif // SEARCH_H

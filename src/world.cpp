@@ -2,6 +2,9 @@
 
 #include "util.h"
 
+#include "cubiomes/features/end_city.h"
+#include "cubiomes/features/fortress.h"
+
 #include <QPainterPath>
 #include <QSettings>
 #include <QThreadPool>
@@ -464,7 +467,7 @@ void Quad::run()
             int z0 = tj*blocks, z1 = (tj+1)*blocks;
             std::vector<VarPos>* st = new std::vector<VarPos>();
             StructureConfig sconf;
-            if (getStructureConfig_override(structureType, wi.mc, &sconf))
+            if (getStructureConfig(structureType, wi.mc, &sconf))
                 getStructs(st, sconf, wi, dim, x0, z0, x1, z1, lopt.mode == LOPT_STRUCTS);
             spos = st;
         }

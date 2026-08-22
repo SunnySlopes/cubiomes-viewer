@@ -654,7 +654,7 @@ yield each sampled position individually</string>
                  <bool>true</bool>
                 </property>
                 <property name="maxVisibleItems">
-                 <number>12</number>
+                 <number>16</number>
                 </property>
                 <item>
                  <property name="text">
@@ -704,6 +704,21 @@ yield each sampled position individually</string>
                 <item>
                  <property name="text">
                   <string>-48</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>-52</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>-56</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>-60</string>
                  </property>
                 </item>
                 <item>
@@ -825,7 +840,7 @@ yield each sampled position individually</string>
                  <bool>true</bool>
                 </property>
                 <property name="maxVisibleItems">
-                 <number>12</number>
+                 <number>16</number>
                 </property>
                 <item>
                  <property name="text">
@@ -875,6 +890,21 @@ yield each sampled position individually</string>
                 <item>
                  <property name="text">
                   <string>-48</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>-52</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>-56</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>-60</string>
                  </property>
                 </item>
                 <item>

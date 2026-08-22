@@ -12,7 +12,6 @@
 #include "presetdialog.h"
 #include "tabbiomes.h"
 #include "tablocations.h"
-#include "tabslime.h"
 #include "tabstructures.h"
 #include "util.h"
 #include "world.h"
@@ -99,7 +98,6 @@ MainWindow::MainWindow(QString sessionpath, QString resultspath, QWidget *parent
     ui->tabContainerSearch->addTab(new TabLocations(this), tr("Locations"));
     ui->tabContainer->addTab(new TabBiomes(this), tr("Biomes"));
     ui->tabContainer->addTab(new TabStructures(this), tr("Structures"));
-    ui->tabContainer->addTab(new TabSlime(this), tr("Slime"));
 
     laction.resize(LOPT_MAX);
     laction[LOPT_BIOMES] = ui->actionBiomes;
@@ -190,6 +188,7 @@ MainWindow::MainWindow(QString sessionpath, QString resultspath, QWidget *parent
     ui->toolBar->addSeparator();
     addMapAction(D_FORTESS);
     addMapAction(D_BASTION);
+    addMapAction(D_FOSSIL);
     ui->toolBar->addSeparator();
     addMapAction(D_ENDCITY);
     addMapAction(D_GATEWAY);
@@ -699,7 +698,7 @@ void MainWindow::setMCList(bool experimental)
     {
         if (!experimental && mc != wi.mc)
         {
-            if (mc <= MC_1_0 || mc == MC_1_16_1 || mc == MC_1_19_2 || mc == MC_1_21_1 || mc == MC_1_21_WD)
+            if (mc <= MC_1_0 || mc == MC_1_16_1 || mc == MC_1_19_2 || mc == MC_1_21_1)
                 continue;
         }
         mclist.append(mc2str(mc));
@@ -1122,20 +1121,6 @@ void MainWindow::onActionMapToggled(int sopt, bool show)
     if (sopt == D_PORTAL) // overworld portals should also control nether
         getMapView()->setShow(D_PORTALN, show);
     getMapView()->setShow(sopt, show);
-    
-    // 当关闭史莱姆区块显示时，清除TabSlime中绘制的红圈
-    if (sopt == D_SLIME && !show)
-    {
-        for (int i = 0; i < ui->tabContainer->count(); i++)
-        {
-            TabSlime *tabSlime = qobject_cast<TabSlime*>(ui->tabContainer->widget(i));
-            if (tabSlime)
-            {
-                tabSlime->clearSlimeShapes();
-                break;
-            }
-        }
-    }
 }
 
 void MainWindow::onActionBiomeLayerSelect(int mode, int disp)
