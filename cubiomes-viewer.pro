@@ -13,13 +13,15 @@ QT += core widgets
 CHARSET                 = -finput-charset=UTF-8 -fexec-charset=UTF-8
 QMAKE_CFLAGS            = $$CHARSET -fwrapv -DSTRUCT_CONFIG_OVERRIDE=1
 QMAKE_CXXFLAGS          = $$QMAKE_CFLAGS
-QMAKE_CXXFLAGS_RELEASE  *= -O3 -g3
+QMAKE_CFLAGS_RELEASE    *= -O3 -DNDEBUG
+QMAKE_CXXFLAGS_RELEASE  *= -O3 -g3 -DNDEBUG
 
 greaterThan(QT_MAJOR_VERSION, 5) {
     QMAKE_CXXFLAGS += -std=gnu++17
     DEFINES += QT_DISABLE_DEPRECATED_UP_TO=0x050F00
 } else {
-    QMAKE_CXXFLAGS += -std=gnu++11
+    # Fixed-seed cave finder uses if constexpr / C++17; Qt5 build uses gnu++17.
+    QMAKE_CXXFLAGS += -std=gnu++17
     equals(QMAKE_CXX, g++) {
         QMAKE_CXXFLAGS += -Wno-deprecated-copy
     }
@@ -77,6 +79,75 @@ CU_VIEW_INC         = $$OUT_PWD/cubiomes_view_inc
 QMAKE_CFLAGS        = -I$$shell_path($$CU_VIEW_INC) $$QMAKE_CFLAGS
 QMAKE_CXXFLAGS      = -I$$shell_path($$CU_VIEW_INC) $$QMAKE_CXXFLAGS
 INCLUDEPATH         += $$PWD/cubiomes
+INCLUDEPATH += \
+        $$PWD \
+        $$PWD/src \
+        $$PWD/src/fixedseed \
+        $$PWD/src/fixedseed/monument \
+        $$PWD/src/fixedseed/fortress \
+        $$PWD/src/fixedseed/river \
+        $$PWD/src/fixedseed/cave \
+        $$PWD/src/fixedseed/swamphut \
+        $$PWD/src/fixedseed/swamphut/lysh \
+        $$PWD/src/fixedseed/slime \
+        $$PWD/src/fixedseed/slime/opt \
+        $$PWD/src/fixedseed/slime/radar
+
+# Avoid object basename clashes (e.g. src/search.cpp vs lysh/search.c).
+CONFIG += object_parallel_to_source
+
+# LowYSwampHut lysh core needs -ffp-contract=off for bit-identical FP vs Java.
+# Keep it off the global CFLAGS: applying it app-wide slowed dripstone cave vs the JNI DLL.
+win32-g++|unix:!macx {
+    LYSH_FP_OFF = \
+        src/fixedseed/swamphut/lysh/aquifer.c \
+        src/fixedseed/swamphut/lysh/biome.c \
+        src/fixedseed/swamphut/lysh/carver.c \
+        src/fixedseed/swamphut/lysh/caves.c \
+        src/fixedseed/swamphut/lysh/climate.c \
+        src/fixedseed/swamphut/lysh/column_top.c \
+        src/fixedseed/swamphut/lysh/density.c \
+        src/fixedseed/swamphut/lysh/eval.c \
+        src/fixedseed/swamphut/lysh/interp_noise.c \
+        src/fixedseed/swamphut/lysh/noise.c \
+        src/fixedseed/swamphut/lysh/phase1.c \
+        src/fixedseed/swamphut/lysh/phase2.c \
+        src/fixedseed/swamphut/lysh/rng.c \
+        src/fixedseed/swamphut/lysh/search.c \
+        src/fixedseed/swamphut/lysh/spline.c \
+        src/fixedseed/swamphut/lysh/structure.c \
+        src/fixedseed/swamphut/lysh/terrain.c
+    lysh_fp.name = lysh_fp_contract_off
+    lysh_fp.input = LYSH_FP_OFF
+    lysh_fp.dependency_type = TYPE_C
+    lysh_fp.variable_out = OBJECTS
+    # Flat names under OBJECTS_DIR (avoid nested-dir mkdir issues with EXTRA_COMPILERS).
+    lysh_fp.output = $${OBJECTS_DIR}${QMAKE_FILE_BASE}_lysh$${first(QMAKE_EXT_OBJ)}
+    lysh_fp.commands = $$QMAKE_CC -c $(CFLAGS) -ffp-contract=off $(INCPATH) -o ${QMAKE_FILE_OUT} ${QMAKE_FILE_IN}
+    QMAKE_EXTRA_COMPILERS += lysh_fp
+} else {
+    # Non-gcc: compile lysh via normal SOURCES (no FMA-contract tweak).
+    SOURCES += \
+        src/fixedseed/swamphut/lysh/aquifer.c \
+        src/fixedseed/swamphut/lysh/biome.c \
+        src/fixedseed/swamphut/lysh/carver.c \
+        src/fixedseed/swamphut/lysh/caves.c \
+        src/fixedseed/swamphut/lysh/climate.c \
+        src/fixedseed/swamphut/lysh/column_top.c \
+        src/fixedseed/swamphut/lysh/density.c \
+        src/fixedseed/swamphut/lysh/eval.c \
+        src/fixedseed/swamphut/lysh/interp_noise.c \
+        src/fixedseed/swamphut/lysh/noise.c \
+        src/fixedseed/swamphut/lysh/phase1.c \
+        src/fixedseed/swamphut/lysh/phase2.c \
+        src/fixedseed/swamphut/lysh/rng.c \
+        src/fixedseed/swamphut/lysh/search.c \
+        src/fixedseed/swamphut/lysh/spline.c \
+        src/fixedseed/swamphut/lysh/structure.c \
+        src/fixedseed/swamphut/lysh/terrain.c
+}
+
+LUAPATH = $$PWD/lua/src
 cu_view_inc.target  = $$CU_VIEW_INC/cubiomes/.stamp
 cu_view_inc.depends = $$PWD/cubiomes/finders.h $$PWD/src/terrainnoise.h
 win32 {
@@ -157,6 +228,21 @@ SOURCES += \
         src/tabbiomes.cpp \
         src/tablocations.cpp \
         src/tabstructures.cpp \
+        src/tabfixedseed.cpp \
+        src/fixedseed/monument/monument_search.cpp \
+        src/fixedseed/monument/monument_search_core.c \
+        src/fixedseed/fortress/fortress_search.cpp \
+        src/fixedseed/river/river_search.cpp \
+        src/fixedseed/cave/cave_search.cpp \
+        src/fixedseed/cave/BiomeSampler.cpp \
+        src/fixedseed/swamphut/swamp_hut_search.cpp \
+        src/fixedseed/slime/slime_pipeline.cpp \
+        src/fixedseed/slime/opt/geometry.cpp \
+        src/fixedseed/slime/opt/java_random.cpp \
+        src/fixedseed/slime/opt/optimizer.cpp \
+        src/fixedseed/slime/opt/slime_check.cpp \
+        src/fixedseed/slime/radar/cpu_search.c \
+        src/fixedseed/slime/radar/cpu_simd_stub.c \
         src/mainwindow.cpp \
         src/main.cpp \
         src/util.cpp \
@@ -224,6 +310,7 @@ HEADERS += \
         src/tabbiomes.h \
         src/tablocations.h \
         src/tabstructures.h \
+        src/tabfixedseed.h \
         src/mainwindow.h \
         src/util.h \
         src/widgets.h \
@@ -247,7 +334,8 @@ FORMS += \
         src/rangedialog.ui \
         src/tabbiomes.ui \
         src/tablocations.ui \
-        src/tabstructures.ui
+        src/tabstructures.ui \
+        src/tabfixedseed.ui
 
 RESOURCES += \
         rc/icons.qrc \

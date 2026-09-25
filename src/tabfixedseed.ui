@@ -1,0 +1,1067 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TabFixedSeed</class>
+ <widget class="QWidget" name="TabFixedSeed">
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="labelDescription">
+     <property name="text">
+      <string>Search features for fixed seed(s) inside an area (monuments, slime, river, dripstone caves, witch huts, fortress).</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="layoutSeed">
+     <item>
+      <widget class="QLabel" name="labelSeed">
+       <property name="text">
+        <string>Seed(s):</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="StyledComboBox" name="comboSeedSource">
+       <item>
+        <property name="text">
+         <string>Current seed</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>From matching seeds list</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelThreads">
+       <property name="text">
+        <string>Threads:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="spinThreads">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>256</number>
+       </property>
+       <property name="value">
+        <number>4</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="layoutArea">
+     <item>
+      <widget class="QLabel" name="labelX1">
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;X&lt;span style=&quot; vertical-align:sub;&quot;&gt;1&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::RichText</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="CoordEdit" name="lineX1">
+       <property name="text">
+        <string>-10000</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelZ1">
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Z&lt;span style=&quot; vertical-align:sub;&quot;&gt;1&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::RichText</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="CoordEdit" name="lineZ1">
+       <property name="text">
+        <string>-10000</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelX2">
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;X&lt;span style=&quot; vertical-align:sub;&quot;&gt;2&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::RichText</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="CoordEdit" name="lineX2">
+       <property name="text">
+        <string>10000</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelZ2">
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Z&lt;span style=&quot; vertical-align:sub;&quot;&gt;2&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::RichText</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="CoordEdit" name="lineZ2">
+       <property name="text">
+        <string>10000</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="buttonFromVisible">
+       <property name="text">
+        <string>From visible</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="checkSquare">
+       <property name="text">
+        <string>Square area</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelSquareSide">
+       <property name="text">
+        <string>Side:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="spinSquareSide">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>2000000000</number>
+       </property>
+       <property name="singleStep">
+        <number>1000</number>
+       </property>
+       <property name="value">
+        <number>20000</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="layoutRunButtons">
+     <item>
+      <widget class="QPushButton" name="pushStart">
+       <property name="text">
+        <string>Start search</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushPause">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Pause</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushStop">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Stop</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="spacerRun">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTabWidget" name="tabTools">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tabMonument">
+      <attribute name="title">
+       <string>Double monument</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="layoutMonument">
+       <item>
+        <widget class="QLabel" name="labelMonumentHint">
+         <property name="text">
+          <string>Find double ocean monument pairs for the given seed and area.</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkMonumentBiome">
+         <property name="text">
+          <string>Biome check</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTreeWidget" name="treeMonument">
+         <column>
+          <property name="text">
+           <string>Seed</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>X</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Z</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Distance</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>dx</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>dz</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Low eff.</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Ocean</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="progressMonument">
+         <property name="value">
+          <number>0</number>
+         </property>
+         <property name="textVisible">
+          <bool>true</bool>
+         </property>
+         <property name="format">
+          <string>Ready</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabSlime">
+      <attribute name="title">
+       <string>Slime chunks</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="layoutSlime">
+       <item>
+        <layout class="QHBoxLayout" name="layoutSlimeOpts">
+         <item>
+          <widget class="QLabel" name="labelSlimeThr">
+           <property name="text">
+            <string>Threshold:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinSlimeThreshold">
+           <property name="minimum">
+            <number>40</number>
+           </property>
+           <property name="maximum">
+            <number>60</number>
+           </property>
+           <property name="value">
+            <number>40</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="labelSlimeMinArea">
+           <property name="text">
+            <string>Min spawn area:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinSlimeMinArea">
+           <property name="minimum">
+            <number>0</number>
+           </property>
+           <property name="maximum">
+            <number>2000000000</number>
+           </property>
+           <property name="value">
+            <number>10000</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="spacerSlimeOpts">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkSlimeBiomeConv">
+         <property name="text">
+          <string>Apply biome conversion</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTreeWidget" name="treeSlime">
+         <column>
+          <property name="text">
+           <string>Seed</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>X</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Z</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Distance</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Area (raw)</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Chunks</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Area (conv.)</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="progressSlime">
+         <property name="value">
+          <number>0</number>
+         </property>
+         <property name="textVisible">
+          <bool>true</bool>
+         </property>
+         <property name="format">
+          <string>Ready</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabRiver">
+      <attribute name="title">
+       <string>River</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="layoutRiver">
+       <item>
+        <layout class="QHBoxLayout" name="layoutRiverOpts">
+         <item>
+          <widget class="QLabel" name="labelRiverMin">
+           <property name="text">
+            <string>Min area:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinRiverMinArea">
+           <property name="minimum">
+            <number>0</number>
+           </property>
+           <property name="maximum">
+            <number>2000000000</number>
+           </property>
+           <property name="value">
+            <number>30000</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="spacerRiver">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelRiverHint">
+         <property name="text">
+          <string>Sample height uses the Y value from the main window.</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTreeWidget" name="treeRiver">
+         <column>
+          <property name="text">
+           <string>Seed</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>X</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Z</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Distance</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Area</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="progressRiver">
+         <property name="value">
+          <number>0</number>
+         </property>
+         <property name="textVisible">
+          <bool>true</bool>
+         </property>
+         <property name="format">
+          <string>Ready</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabCave">
+      <attribute name="title">
+       <string>Dripstone cave</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="layoutCave">
+       <item>
+        <layout class="QHBoxLayout" name="layoutCaveOpts">
+         <item>
+          <widget class="QLabel" name="labelCaveMin">
+           <property name="text">
+            <string>Min area:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinCaveMinArea">
+           <property name="minimum">
+            <number>0</number>
+           </property>
+           <property name="maximum">
+            <number>2000000000</number>
+           </property>
+           <property name="value">
+            <number>40000</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkCaveFastSearch">
+           <property name="text">
+            <string>Fast search</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="labelCaveRiverFactor">
+           <property name="text">
+            <string>River factor:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDoubleSpinBox" name="doubleCaveRiverFactor">
+           <property name="decimals">
+            <number>2</number>
+           </property>
+           <property name="maximum">
+            <double>1.000000000000000</double>
+           </property>
+           <property name="singleStep">
+            <double>0.050000000000000</double>
+           </property>
+           <property name="value">
+            <double>0.750000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="spacerCave">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelCaveHint">
+         <property name="text">
+          <string>Samples three heights (−60/−56/−52). Area is cave + river × factor. Fast search is much faster but may miss results.</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTreeWidget" name="treeCave">
+         <column>
+          <property name="text">
+           <string>Seed</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>X</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Z</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Distance</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Area (total)</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Area (cave)</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Area (river)</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="progressCave">
+         <property name="value">
+          <number>0</number>
+         </property>
+         <property name="textVisible">
+          <bool>true</bool>
+         </property>
+         <property name="format">
+          <string>Ready</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabWitchHut">
+      <attribute name="title">
+       <string>Witch hut</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="layoutWitchHut">
+       <item>
+        <layout class="QHBoxLayout" name="layoutWitchHutOpts">
+         <item>
+          <widget class="QLabel" name="labelWitchMaxY">
+           <property name="text">
+            <string>Max Y:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="StyledComboBox" name="comboWitchMaxY">
+           <item>
+            <property name="text">
+             <string>-54</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>-50</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>-40</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>-30</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>-20</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>-10</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>0</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <spacer name="spacerWitchHut">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTreeWidget" name="treeWitchHut">
+         <column>
+          <property name="text">
+           <string>Seed</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>X</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Y</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Z</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Distance</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="progressWitchHut">
+         <property name="value">
+          <number>0</number>
+         </property>
+         <property name="textVisible">
+          <bool>true</bool>
+         </property>
+         <property name="format">
+          <string>Ready</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabFortCross">
+      <attribute name="title">
+       <string>Fortress crossings</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="layoutFortCross">
+       <item>
+        <layout class="QHBoxLayout" name="layoutFortCrossOpts">
+         <item>
+          <widget class="QLabel" name="labelCrossFilter">
+           <property name="text">
+            <string>Type:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="StyledComboBox" name="comboCrossFilter">
+           <item>
+            <property name="text">
+             <string>Dual+</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Triple+</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Quad only</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <spacer name="spacerFortCross">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTreeWidget" name="treeFortCross">
+         <column>
+          <property name="text">
+           <string>Seed</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>X</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Y</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Z</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Distance</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Type</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="progressFortCross">
+         <property name="value">
+          <number>0</number>
+         </property>
+         <property name="textVisible">
+          <bool>true</bool>
+         </property>
+         <property name="format">
+          <string>Ready</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabFortSpan">
+      <attribute name="title">
+       <string>Fortress span</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="layoutFortSpan">
+       <item>
+        <layout class="QHBoxLayout" name="layoutFortSpanOpts">
+         <item>
+          <widget class="QLabel" name="labelMinLong">
+           <property name="text">
+            <string>Min long:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinMinLong">
+           <property name="maximum">
+            <number>260</number>
+           </property>
+           <property name="value">
+            <number>0</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="labelMinShort">
+           <property name="text">
+            <string>Min short:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinMinShort">
+           <property name="maximum">
+            <number>260</number>
+           </property>
+           <property name="value">
+            <number>240</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="labelMinHeight">
+           <property name="text">
+            <string>Min height:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinMinHeight">
+           <property name="minimum">
+            <number>0</number>
+           </property>
+           <property name="maximum">
+            <number>40</number>
+           </property>
+           <property name="value">
+            <number>0</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="spacerFortSpan">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTreeWidget" name="treeFortSpan">
+         <column>
+          <property name="text">
+           <string>Seed</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>X</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Z</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Distance</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Span X</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Span Z</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Height</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Area</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="progressFortSpan">
+         <property name="value">
+          <number>0</number>
+         </property>
+         <property name="textVisible">
+          <bool>true</bool>
+         </property>
+         <property name="format">
+          <string>Ready</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="layoutControl">
+     <item>
+      <widget class="QLabel" name="labelStatus">
+       <property name="text">
+        <string>Idle</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="spacerControl">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushClear">
+       <property name="text">
+        <string>Clear</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushExport">
+       <property name="text">
+        <string>Export...</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CoordEdit</class>
+   <extends>QLineEdit</extends>
+   <header>widgets.h</header>
+  </customwidget>
+  <customwidget>
+   <class>StyledComboBox</class>
+   <extends>QComboBox</extends>
+   <header>widgets.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

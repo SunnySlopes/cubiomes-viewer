@@ -121,6 +121,7 @@ private slots:
     void onGen48Changed();
     void onSelectedSeedChanged(uint64_t seed);
     void onSearchStatusChanged(bool running);
+    void onFixedSeedSearchStatusChanged(bool running);
     void onUpdateConfig();
     void onUpdateMapConfig();
     void onBiomeColorChange();
@@ -135,6 +136,7 @@ public:
     FormConditions *formCond;
     FormGen48 *formGen48;
     FormSearchControl *formControl;
+    class TabFixedSeed *tabFixedSeed = nullptr;
     LayerOpt lopt;
     Config config;
     MapConfig mconfig;

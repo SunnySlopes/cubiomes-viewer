@@ -1,4 +1,20 @@
 cubiomes-viewer.pro.user
-build
+*.pro.user.*
+build/
+build-*/
+build-verify-*/
+.idea/
+.vscode/
+.qmake.stash
 src/libwinsane/*.o
 **/.directory
+
+# Accidental qmake/build outputs inside the cubiomes submodule
+cubiomes/.qmake.stash
+cubiomes/Makefile
+cubiomes/Makefile.Debug
+cubiomes/Makefile.Release
+cubiomes/object_script.*
+cubiomes/ui_*.h
+cubiomes/release/
+cubiomes/debug/

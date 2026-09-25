@@ -112,6 +112,8 @@ public:
 
     void searchLockUi(bool lock);
 
+    void setStartEnabled(bool enabled);
+
     void setSearchMode(int mode);
 
     bool getSeed(int row, uint64_t *seed);

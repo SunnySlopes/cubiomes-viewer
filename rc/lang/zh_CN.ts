@@ -5,8 +5,8 @@
     <name>AboutDialog</name>
     <message>
         <location filename="../../src/aboutdialog.ui" line="6"/>
-        <source>About</source>
-        <translation>关于</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Cubiomes-Viewer _VERSION_&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Built: _DATE_&lt;/p&gt;&lt;p&gt;URL: &lt;a href=&quot;https://github.com/Cubitect/cubiomes-viewer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;https://github.com/Cubitect/cubiomes-viewer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;License: &lt;a href=&quot;https://www.gnu.org/licenses/gpl-3.0.en.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GPLv3&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Components and Legal Information&lt;/span&gt;&lt;/p&gt;&lt;p&gt;— Biome and structure generation from &lt;a href=&quot;https://github.com/Cubitect/cubiomes/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;cubiomes&lt;/span&gt;&lt;/a&gt;, licensed under &lt;a href=&quot;https://mit-license.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;MIT&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;— Cross platform GUI toolkit: Qt _QT_MAJOR_._QT_MINOR_, available under &lt;a href=&quot;https://www.qt.io/licensing/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;(L)GPLv3&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;— Dark Qt theme derived from &lt;a href=&quot;https://github.com/ColinDuquesnoy/QDarkStyleSheet&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;QDarkStyleSheet&lt;/span&gt;&lt;/a&gt;, licensed under MIT.&lt;/p&gt;&lt;p&gt;— Biome colors and icons are inspired by &lt;a href=&quot;https://github.com/toolbox4minecraft/amidst&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Amidst&lt;/span&gt;&lt;/a&gt;, licensed under GPLv3.&lt;/p&gt;&lt;p&gt;— &lt;a href=&quot;https://www.lua.org/license.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Lua _LUA_VERS_&lt;/span&gt;&lt;/a&gt; is distributed under the terms of the MIT license.&lt;/p&gt;&lt;p&gt;— Fixed-seed search credits: SunnySlopes / LowYDripstoneCaveFinderGUI (dripstone caves, monument, fortress); Bot_City (slime); Ruo_Mo (river).&lt;br/&gt;— Ultra-low-Y swamp hut logic from M33Galaxy (&lt;a href=&quot;https://github.com/M33Galaxy/LowYSwampHut&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;https://github.com/M33Galaxy/LowYSwampHut&lt;/span&gt;&lt;/a&gt;).&lt;br/&gt;&lt;/p&gt;&lt;p&gt;NOT AN OFFICIAL MINECRAFT PRODUCT.&lt;/p&gt;&lt;p&gt;NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Cubiomes-Viewer _VERSION_&lt;/span&gt;&lt;/p&gt;&lt;p&gt;发布日期: _DATE_&lt;/p&gt;&lt;p&gt;项目地址: &lt;a href=&quot;https://github.com/Cubitect/cubiomes-viewer&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;https://github.com/Cubitect/cubiomes-viewer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;许可证: &lt;a href=&quot;https://www.gnu.org/licenses/gpl-3.0.en.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GPLv3&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;参考和法律信息&lt;/span&gt;&lt;/p&gt;&lt;p&gt;— Minecraft群系和结构生成: &lt;a href=&quot;https://github.com/Cubitect/cubiomes/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;cubiomes&lt;/span&gt;&lt;/a&gt;, 遵照 &lt;a href=&quot;https://mit-license.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;MIT&lt;/span&gt;&lt;/a&gt; 许可证进行分发。&lt;/p&gt;&lt;p&gt;— 跨平台GUI工具: Qt _QT_MAJOR_._QT_MINOR_, 遵照 &lt;a href=&quot;https://www.qt.io/licensing/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;(L)GPLv3&lt;/span&gt;&lt;/a&gt; 许可证进行分发。&lt;/p&gt;&lt;p&gt;— 暗色系设计来源于 &lt;a href=&quot;https://github.com/ColinDuquesnoy/QDarkStyleSheet&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;QDarkStyleSheet&lt;/span&gt;&lt;/a&gt;, 遵照MIT许可证进行分发。&lt;/p&gt;&lt;p&gt;— 群系颜色与结构图标来自: &lt;a href=&quot;https://github.com/toolbox4minecraft/amidst&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Amidst&lt;/span&gt;&lt;/a&gt;, 遵照MIT许可证进行分发。&lt;/p&gt;&lt;p&gt;— &lt;a href=&quot;https://www.lua.org/license.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Lua _LUA_VERS_&lt;/span&gt;&lt;/a&gt; 遵照MIT许可证进行分发。&lt;/p&gt;&lt;p&gt;— 定种搜索致谢: SunnySlopes / LowYDripstoneCaveFinderGUI (溶洞, 二联海底神殿, 地狱堡垒); Bot_City (史莱姆); Ruo_Mo (河流).&lt;/p&gt;&lt;p&gt;— 超低y女巫小屋逻辑来自M33Galaxy (&lt;a href=&quot;https://github.com/M33Galaxy/LowYSwampHut&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;https://github.com/M33Galaxy/LowYSwampHut&lt;/span&gt;&lt;/a&gt;).&lt;/p&gt;&lt;p&gt;— 简体中文(中国)译者: &lt;a href=&quot;https://github.com/SunnySlopes&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;SunnySlopes&lt;/span&gt;&lt;/a&gt;。如有翻译建议欢迎来&lt;a href=&quot;https://space.bilibili.com/100377977&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Bilbili主页&lt;/span&gt;&lt;/a&gt;私信联系我。&lt;/p&gt;&lt;br/&gt;&lt;p&gt;本软件非MOJANG官方软件。&lt;/p&gt;&lt;br/&gt;&lt;p&gt;未经MOJANG或微软许可且与其无关。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../src/aboutdialog.ui" line="22"/>
@@ -4020,6 +4020,11 @@ Applies only to feature-structures of region-size = 32 and chunk-gap = 8, in par
         <source>The application will need to be restarted before all changes can take effect.</source>
         <translation>Cubiomes Viewer需要重启以应用所有更改</translation>
     </message>
+
+    <message>
+        <source>Fixed seed search</source>
+        <translation>定种搜索</translation>
+    </message>
 </context>
 <context>
     <name>Map</name>
@@ -5326,6 +5331,578 @@ condition missing or out of order.</source>
         <location filename="../../src/updater.cpp" line="80"/>
         <source>You using the latest version of Cubiomes-Viewer.</source>
         <translation>你正在使用最新版的Cubiomes Viewer！</translation>
+    </message>
+</context>
+
+<context>
+    <name>TabFixedSeed</name>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="6"/>
+        <source>Form</source>
+        <translation>定种搜索</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="12"/>
+        <source>Search features for fixed seed(s) inside an area (monuments, slime, river, dripstone caves, fortress).</source>
+        <translation>在区域内对固定种子搜索特征（海底神殿、史莱姆、河流、溶洞、地狱堡垒）。</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="24"/>
+        <source>Seed(s):</source>
+        <translation>种子：</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="32"/>
+        <source>Current seed</source>
+        <translation>当前种子</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="37"/>
+        <source>From matching seeds list</source>
+        <translation>来自匹配种子列表</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="45"/>
+        <source>Threads:</source>
+        <translation>线程数：</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="69"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;X&lt;span style=&quot; vertical-align:sub;&quot;&gt;1&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;X&lt;span style=&quot; vertical-align:sub;&quot;&gt;1&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="79"/>
+        <location filename="../../src/tabfixedseed.ui" line="96"/>
+        <source>-10000</source>
+        <translation>-10000</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="86"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Z&lt;span style=&quot; vertical-align:sub;&quot;&gt;1&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Z&lt;span style=&quot; vertical-align:sub;&quot;&gt;1&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="103"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;X&lt;span style=&quot; vertical-align:sub;&quot;&gt;2&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;X&lt;span style=&quot; vertical-align:sub;&quot;&gt;2&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="113"/>
+        <location filename="../../src/tabfixedseed.ui" line="130"/>
+        <source>10000</source>
+        <translation>10000</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="120"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Z&lt;span style=&quot; vertical-align:sub;&quot;&gt;2&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Z&lt;span style=&quot; vertical-align:sub;&quot;&gt;2&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="137"/>
+        <source>From visible</source>
+        <translation>使用可见范围</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="144"/>
+        <source>Square area</source>
+        <translation>正方形区域</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="151"/>
+        <source>Side:</source>
+        <translation>边长：</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="181"/>
+        <source>Start search</source>
+        <translation>开始搜索</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="191"/>
+        <location filename="../../src/tabfixedseed.cpp" line="857"/>
+        <location filename="../../src/tabfixedseed.cpp" line="877"/>
+        <location filename="../../src/tabfixedseed.cpp" line="1179"/>
+        <source>Pause</source>
+        <translation>暂停</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="201"/>
+        <source>Stop</source>
+        <translation>停止</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="227"/>
+        <source>Double monument</source>
+        <translation>二联海底神殿</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="233"/>
+        <source>Find double ocean monument pairs for the given seed and area.</source>
+        <translation>在给定种子与区域内查找二联海底神殿。</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="243"/>
+        <source>Biome check</source>
+        <translation>群系检查</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="254"/>
+        <location filename="../../src/tabfixedseed.ui" line="382"/>
+        <location filename="../../src/tabfixedseed.ui" line="488"/>
+        <location filename="../../src/tabfixedseed.ui" line="584"/>
+        <location filename="../../src/tabfixedseed.ui" line="676"/>
+        <location filename="../../src/tabfixedseed.ui" line="801"/>
+        <source>Seed</source>
+        <translation>种子</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="259"/>
+        <location filename="../../src/tabfixedseed.ui" line="387"/>
+        <location filename="../../src/tabfixedseed.ui" line="493"/>
+        <location filename="../../src/tabfixedseed.ui" line="589"/>
+        <location filename="../../src/tabfixedseed.ui" line="681"/>
+        <location filename="../../src/tabfixedseed.ui" line="806"/>
+        <source>X</source>
+        <translation>X</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="264"/>
+        <location filename="../../src/tabfixedseed.ui" line="392"/>
+        <location filename="../../src/tabfixedseed.ui" line="498"/>
+        <location filename="../../src/tabfixedseed.ui" line="594"/>
+        <location filename="../../src/tabfixedseed.ui" line="691"/>
+        <location filename="../../src/tabfixedseed.ui" line="811"/>
+        <source>Z</source>
+        <translation>Z</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="274"/>
+        <source>dx</source>
+        <translation>dx</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="279"/>
+        <source>dz</source>
+        <translation>dz</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="284"/>
+        <source>Low eff.</source>
+        <translation>是否低效</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="289"/>
+        <source>Ocean</source>
+        <translation>海洋类型</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="303"/>
+        <location filename="../../src/tabfixedseed.ui" line="426"/>
+        <location filename="../../src/tabfixedseed.ui" line="522"/>
+        <location filename="../../src/tabfixedseed.ui" line="618"/>
+        <location filename="../../src/tabfixedseed.ui" line="715"/>
+        <location filename="../../src/tabfixedseed.ui" line="835"/>
+        <source>%p%</source>
+        <translation>%p%</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="311"/>
+        <source>Slime chunks</source>
+        <translation>史莱姆区块</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="319"/>
+        <source>Threshold:</source>
+        <translation>阈值：</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="339"/>
+        <source>Min spawn area:</source>
+        <translation>最小生成面积：</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="374"/>
+        <source>Apply biome conversion</source>
+        <translation>应用群系折算</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="269"/>
+        <location filename="../../src/tabfixedseed.ui" line="397"/>
+        <location filename="../../src/tabfixedseed.ui" line="503"/>
+        <location filename="../../src/tabfixedseed.ui" line="599"/>
+        <location filename="../../src/tabfixedseed.ui" line="696"/>
+        <location filename="../../src/tabfixedseed.ui" line="816"/>
+        <source>Distance</source>
+        <translation>距离</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="402"/>
+        <source>Area (raw)</source>
+        <translation>折算前面积</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="407"/>
+        <source>Chunks</source>
+        <translation>区块数</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="412"/>
+        <source>Area (conv.)</source>
+        <translation>折算后面积</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="508"/>
+        <location filename="../../src/tabfixedseed.ui" line="604"/>
+        <source>Area</source>
+        <translation>面积</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="434"/>
+        <source>River</source>
+        <translation>河流</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="442"/>
+        <location filename="../../src/tabfixedseed.ui" line="538"/>
+        <source>Min area:</source>
+        <translation>最小面积：</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="477"/>
+        <source>Sample height uses the Y value from the main window.</source>
+        <translation>取样高度使用主界面的Y值。</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="530"/>
+        <source>Dripstone cave</source>
+        <translation>溶洞</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="573"/>
+        <source>Samples three heights (−60/−56/−52). Area is cave + river×0.75.</source>
+        <translation>在 Y=−60/−56/−52 三层采样。面积=溶洞+河流×折算系数。快速搜索 Cont@128/Weird@32；精确搜索 Cont@32/Weird@16。</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="626"/>
+        <source>Fortress crossings</source>
+        <translation>堡垒十字路口</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="634"/>
+        <source>Type:</source>
+        <translation>类型：</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="642"/>
+        <source>Dual+</source>
+        <translation>二联及以上</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="647"/>
+        <source>Triple+</source>
+        <translation>三联及以上</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="652"/>
+        <source>Quad only</source>
+        <translation>仅四联</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="686"/>
+        <source>Y</source>
+        <translation>Y</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="701"/>
+        <source>Type</source>
+        <translation>类型</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="723"/>
+        <source>Fortress span</source>
+        <translation>堡垒大范围</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="731"/>
+        <source>Min long:</source>
+        <translation>最短长边：</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="748"/>
+        <source>Min short:</source>
+        <translation>最短短边：</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="765"/>
+        <source>Min height:</source>
+        <translation>大范围最矮高度：</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="821"/>
+        <source>Span</source>
+        <translation>跨度</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="848"/>
+        <source>Idle</source>
+        <translation>空闲</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="868"/>
+        <source>Clear</source>
+        <translation>清空</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="875"/>
+        <source>Export...</source>
+        <translation>导出...</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="757"/>
+        <source>Phase %1: %2 done</source>
+        <translation>阶段%1：%2 完成</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="759"/>
+        <source>Phase %1: done</source>
+        <translation>阶段%1：完成</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="761"/>
+        <location filename="../../src/tabfixedseed.cpp" line="1178"/>
+        <source>Done</source>
+        <translation>完成</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="771"/>
+        <source>Phase %1: %2 %3/%4=%5%6</source>
+        <translation>阶段%1：%2 %3/%4=%5%6</translation>
+    </message>
+    <message>
+        <source>%1 %2/%3=%4%5</source>
+        <translation>%1 %2/%3=%4%5</translation>
+    </message>
+    <message>
+        <source>Phase %1: %2 %3/%4=%5%</source>
+        <translation>阶段%1：%2 %3/%4=%5%</translation>
+    </message>
+    <message>
+        <source>Phase %1: %2 %3/%4=%5%%</source>
+        <translation>阶段%1：%2 %3/%4=%5%</translation>
+    </message>
+    <message>
+        <source>Search area is too large and would produce too many results; please shrink the search area.</source>
+        <translation>搜索面积过大将会导致结果过多，请减小面积搜索</translation>
+    </message>
+    <message>
+        <source>Span X</source>
+        <translation>跨度 X</translation>
+    </message>
+    <message>
+        <source>Span Z</source>
+        <translation>跨度 Z</translation>
+    </message>
+    <message>
+        <source>Height</source>
+        <translation>高度</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="815"/>
+        <source>No seeds to search.</source>
+        <translation>没有可搜索的种子。</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="856"/>
+        <location filename="../../src/tabfixedseed.cpp" line="878"/>
+        <source>Searching...</source>
+        <translation>搜索中...</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="870"/>
+        <source>Resume</source>
+        <translation>继续</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="871"/>
+        <source>Paused</source>
+        <translation>已暂停</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="889"/>
+        <source>Stopping...</source>
+        <translation>正在停止...</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="903"/>
+        <source>Export results</source>
+        <translation>导出结果</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="904"/>
+        <source>Text files (*.txt *.csv);;Any files (*)</source>
+        <translation>文本文件 (*.txt *.csv);;所有文件 (*)</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="909"/>
+        <source>Failed to open file for export.</source>
+        <translation>无法打开文件进行导出。</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="1119"/>
+        <source>yes</source>
+        <translation>是</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="1119"/>
+        <source>no</source>
+        <translation>否</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="1178"/>
+        <source>Stopped</source>
+        <translation>已停止</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="671"/>
+        <source>Elapsed (pause excluded)</source>
+        <translation>已用时间（不含暂停）</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="673"/>
+        <source>Estimated time remaining</source>
+        <translation>预计剩余时间</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="711"/>
+        <location filename="../../src/tabfixedseed.cpp" line="726"/>
+        <source>Elapsed %1</source>
+        <translation>已用 %1</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="713"/>
+        <location filename="../../src/tabfixedseed.cpp" line="740"/>
+        <source>ETA %1</source>
+        <translation>剩余 %1</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="0"/>
+        <source>Fast search</source>
+        <translation>快速搜索</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="0"/>
+        <source>Witch hut</source>
+        <translation>女巫小屋</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="0"/>
+        <source>Max Y:</source>
+        <translation>最高 Y:</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="0"/>
+        <source>Witch hut scan</source>
+        <translation>女巫小屋扫描</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.ui" line="0"/>
+        <source>Search features for fixed seed(s) inside an area (monuments, slime, river, dripstone caves, witch huts, fortress).</source>
+        <translation>在给定区域内对固定种子搜索特征（海底神殿、史莱姆、河流、溶洞、女巫小屋、地狱堡垒）。</translation>
+    </message>
+
+    <message>
+        <source>Samples three heights (−60/−56/−52). Area is cave + river × factor. Fast search is much faster but may miss results.</source>
+        <translation>在 Y=−60/−56/−52 三层采样。面积=溶洞+河流×折算系数。快速搜索速度大幅提升，但容易漏结果。</translation>
+    </message>
+
+    <message>
+        <source>Area (total)</source>
+        <translation>折算总面积</translation>
+    </message>
+    <message>
+        <source>Area (cave)</source>
+        <translation>溶洞群系面积</translation>
+    </message>
+    <message>
+        <source>Area (river)</source>
+        <translation>河流群系面积</translation>
+    </message>
+
+    <message>
+        <source>River factor:</source>
+        <translation>河流折算系数：</translation>
+    </message>
+</context>
+
+<context>
+    <name>FixedSeedWorker</name>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="135"/>
+        <source>seed %1</source>
+        <translation>种子 %1</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="157"/>
+        <source>Scanning regions</source>
+        <translation>扫描区域</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="177"/>
+        <source>frozen</source>
+        <translation>冰冻</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="179"/>
+        <source>cold</source>
+        <translation>冷水</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="181"/>
+        <source>others</source>
+        <translation>其他</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="211"/>
+        <source>Optimizing AFK</source>
+        <translation>优化挂机点</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="211"/>
+        <source>Radar scan</source>
+        <translation>雷达扫描</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="251"/>
+        <location filename="../../src/tabfixedseed.cpp" line="289"/>
+        <source>Coarse scan</source>
+        <translation>粗扫描</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="251"/>
+        <location filename="../../src/tabfixedseed.cpp" line="289"/>
+        <source>Refine</source>
+        <translation>精修</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="335"/>
+        <source>Fortress search</source>
+        <translation>堡垒搜索</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="358"/>
+        <source>double</source>
+        <translation>二联</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="360"/>
+        <source>triple</source>
+        <translation>三联</translation>
+    </message>
+    <message>
+        <location filename="../../src/tabfixedseed.cpp" line="362"/>
+        <source>quad</source>
+        <translation>四联</translation>
     </message>
 </context>
 </TS>

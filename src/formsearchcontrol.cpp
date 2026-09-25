@@ -314,6 +314,12 @@ void FormSearchControl::searchLockUi(bool lock)
     emit searchStatusChanged(lock);
 }
 
+void FormSearchControl::setStartEnabled(bool enabled)
+{
+    if (!ui->buttonStart->isChecked())
+        ui->buttonStart->setEnabled(enabled);
+}
+
 void FormSearchControl::setSearchMode(int mode)
 {
     ui->comboSearchType->setCurrentIndex(ui->comboSearchType->findData(mode));

@@ -13,6 +13,7 @@
 #include "tabbiomes.h"
 #include "tablocations.h"
 #include "tabstructures.h"
+#include "tabfixedseed.h"
 #include "util.h"
 #include "world.h"
 
@@ -98,6 +99,10 @@ MainWindow::MainWindow(QString sessionpath, QString resultspath, QWidget *parent
     ui->tabContainerSearch->addTab(new TabLocations(this), tr("Locations"));
     ui->tabContainer->addTab(new TabBiomes(this), tr("Biomes"));
     ui->tabContainer->addTab(new TabStructures(this), tr("Structures"));
+    tabFixedSeed = new TabFixedSeed(this);
+    ui->tabContainer->addTab(tabFixedSeed, tr("Fixed seed search"));
+    connect(tabFixedSeed, &TabFixedSeed::fixedSearchStatusChanged,
+            this, &MainWindow::onFixedSeedSearchStatusChanged);
 
     laction.resize(LOPT_MAX);
     laction[LOPT_BIOMES] = ui->actionBiomes;
@@ -312,6 +317,8 @@ MainWindow::~MainWindow()
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     formControl->stopSearch();
+    if (tabFixedSeed)
+        tabFixedSeed->requestStop();
     QThreadPool::globalInstance()->clear();
     saveSettings();
     QMainWindow::closeEvent(event);
@@ -1190,6 +1197,14 @@ void MainWindow::onSelectedSeedChanged(uint64_t seed)
 
 void MainWindow::onSearchStatusChanged(bool running)
 {
+    formGen48->setEnabled(!running);
+    if (tabFixedSeed)
+        tabFixedSeed->setExternalSearchRunning(running);
+}
+
+void MainWindow::onFixedSeedSearchStatusChanged(bool running)
+{
+    formControl->setStartEnabled(!running);
     formGen48->setEnabled(!running);
 }
 
