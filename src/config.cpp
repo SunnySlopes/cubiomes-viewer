@@ -164,7 +164,7 @@ QString mapopt2display(int opt)
     case D_STRONGHOLD:  return QApplication::translate("Map", "Stronghold");
     case D_FORTESS:     return QApplication::translate("Map", "Nether Fortress");
     case D_BASTION:     return QApplication::translate("Map", "Bastion Remnant");
-    case D_FOSSIL:      return QApplication::translate("Map", "Nether Fossil");
+    case D_CAMP:        return QApplication::translate("Map", "Abandoned Camp");
     case D_ENDCITY:     return QApplication::translate("Map", "End City");
     case D_GATEWAY:     return QApplication::translate("Map", "End Gateway");
     default: return "";
@@ -200,7 +200,7 @@ const char *mapopt2str(int opt) // to resource string
     case D_STRONGHOLD:  return "stronghold";
     case D_FORTESS:     return "fortress";
     case D_BASTION:     return "bastion";
-    case D_FOSSIL:      return "fossil";
+    case D_CAMP:        return "camp";
     case D_ENDCITY:     return "endcity";
     case D_GATEWAY:     return "gateway";
     default:            return "";
@@ -234,7 +234,7 @@ int str2mapopt(const char *s) // from resource string
     if (!strcmp(s, "stronghold"))   return D_STRONGHOLD;
     if (!strcmp(s, "fortress"))     return D_FORTESS;
     if (!strcmp(s, "bastion"))      return D_BASTION;
-    if (!strcmp(s, "fossil"))       return D_FOSSIL;
+    if (!strcmp(s, "camp"))         return D_CAMP;
     if (!strcmp(s, "endcity"))      return D_ENDCITY;
     if (!strcmp(s, "gateway"))      return D_GATEWAY;
     return D_NONE;
@@ -265,7 +265,7 @@ int mapopt2stype(int opt)
     case D_PORTALN:     return Ruined_Portal_N;
     case D_FORTESS:     return Fortress;
     case D_BASTION:     return Bastion;
-    case D_FOSSIL:      return Nether_Fossil;
+    case D_CAMP:        return Abandoned_Camp;
     case D_ENDCITY:     return End_City;
     case D_GATEWAY:     return End_Gateway;
     default:
@@ -288,7 +288,7 @@ bool MapConfig::hasScale(int opt) const
 
 int MapConfig::getDim(int opt) const
 {
-    if (opt >= D_PORTALN && opt <= D_FOSSIL) return DIM_NETHER;
+    if (opt >= D_PORTALN && opt <= D_BASTION) return DIM_NETHER;
     if (opt >= D_ENDCITY && opt <= D_GATEWAY) return DIM_END;
     return DIM_OVERWORLD;
 };

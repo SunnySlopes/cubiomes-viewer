@@ -5,6 +5,8 @@
 #include "cubiomes/features/end_city.h"
 #include "cubiomes/features/fortress.h"
 
+#include <cstring>
+
 #include <QPainterPath>
 #include <QSettings>
 #include <QThreadPool>
@@ -13,6 +15,21 @@
 #include <cmath>
 
 
+static bool campHasCopperChest(const VarPos *vp)
+{
+    if (!vp)
+        return false;
+    for (const Piece& p : vp->pieces)
+    {
+        for (int i = 0; i < p.chestCount; i++)
+        {
+            if (p.lootTables[i] && strstr(p.lootTables[i], "abandoned_camp_secret_chest"))
+                return true;
+        }
+    }
+    return false;
+}
+
 const QPixmap& getMapIcon(int opt, VarPos *vp)
 {
     static QPixmap icons[D_STRUCT_NUM];
@@ -20,6 +37,7 @@ const QPixmap& getMapIcon(int opt, VarPos *vp)
     static QPixmap icongiant;
     static QPixmap iconship;
     static QPixmap iconbasement;
+    static QPixmap iconcampcopper;
     static QMutex mutex;
 
     mutex.lock();
@@ -33,6 +51,7 @@ const QPixmap& getMapIcon(int opt, VarPos *vp)
         icongiant        = getPix("portal_giant", w);
         iconship         = getPix("end_ship", w);
         iconbasement     = getPix("igloo_basement", w);
+        iconcampcopper   = getPix("camp_copper", w);
     }
     mutex.unlock();
 
@@ -50,6 +69,8 @@ const QPixmap& getMapIcon(int opt, VarPos *vp)
             if (p.type == END_SHIP)
                 return iconship;
     }
+    if (opt == D_CAMP && campHasCopperChest(vp))
+        return iconcampcopper;
     return icons[opt];
 }
 
@@ -102,6 +123,11 @@ QStringList VarPos::detail() const
                 break;
             }
         }
+    }
+    else if (type == Abandoned_Camp)
+    {
+        if (campHasCopperChest(this))
+            sinfo.append("copper_chest");
     }
     else if (type == Fortress)
     {
@@ -224,6 +250,18 @@ void getStructs(std::vector<VarPos> *out, const StructureConfig sconf,
                         wi.mc, wi.seed, p.x >> 4, p.z >> 4);
                     vp.pieces.assign(pieces, pieces+n);
                 }
+                else if (sconf.structType == Abandoned_Camp)
+                {
+                    // isViableStructurePos returns 1, not the biome id
+                    StructureVariant sv;
+                    getVariant(&sv, Abandoned_Camp, wi.mc, wi.seed, p.x, p.z, -1);
+                    int cx = p.x >> 4, cz = p.z >> 4;
+                    int sampleX = (cx*32 + 2*sv.x + sv.sx - 1) / 2 >> 2;
+                    int sampleZ = (cz*32 + 2*sv.z + sv.sz - 1) / 2 >> 2;
+                    id = getBiomeAt(&g, 4, sampleX, sv.y >> 2, sampleZ);
+                    if (id < 0 || !isViableFeatureBiome(wi.mc, Abandoned_Camp, id))
+                        continue;
+                }
                 else if (g.mc >= MC_1_18)
                 {
                     if (g_extgen.estimateTerrain &&
@@ -234,6 +272,17 @@ void getStructs(std::vector<VarPos> *out, const StructureConfig sconf,
                 }
 
                 getVariant(&vp.v, sconf.structType, wi.mc, wi.seed, p.x, p.z, id);
+                if (sconf.structType == Abandoned_Camp && id > 0)
+                {
+                    StructureSaltConfig ssconf;
+                    if (getStructureSaltConfig(Abandoned_Camp, wi.mc, id, &ssconf))
+                    {
+                        int n = getStructurePieces(pieces, 8, Abandoned_Camp, ssconf,
+                            &vp.v, wi.mc, wi.seed, p.x, p.z);
+                        if (n > 0)
+                            vp.pieces.assign(pieces, pieces+n);
+                    }
+                }
                 out->push_back(vp);
             }
         }

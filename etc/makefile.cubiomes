@@ -39,6 +39,7 @@ OBJS = \
 	util.o \
 	quadbase.o \
 	carver.o \
+	features/abandoned_camp.o \
 	features/end_city.o \
 	features/fortress.o \
 	features/stronghold.o \
