@@ -15,7 +15,7 @@
 
 #define PRECOMPUTE48_BUFSIZ ((int64_t)1 << 30)
 
-enum { MC_DEFAULT = MC_NEWEST };
+enum { MC_DEFAULT = MC_26_3 }; // latest supported MC version
 
 struct ExtGenConfig
 {
@@ -120,11 +120,11 @@ enum {
     D_ANCIENTCITY,
     D_TRAILRUINS,
     D_CHAMBERS,
+    D_CAMP,
     D_PORTAL,
     D_PORTALN,
     D_FORTESS,
     D_BASTION,
-    D_FOSSIL,
     D_ENDCITY,
     D_GATEWAY,
     // non-recurring structures

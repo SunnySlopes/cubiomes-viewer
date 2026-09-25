@@ -63,11 +63,38 @@ CONFIG(debug, debug|release): {
     CUTARGET = release
 }
 
-# compile cubiomes
+# compile cubiomes (do not pass viewer overlay -I into the library build)
 CUPATH              = $$PWD/cubiomes
-QMAKE_PRE_LINK      += $(MAKE) -C $$CUPATH -f $$PWD/etc/makefile.cubiomes CC=\"$$QMAKE_CC\" CFLAGS=\"$(CFLAGS) $$QMAKE_CFLAGS\" $$CUTARGET
+QMAKE_PRE_LINK      += $(MAKE) -C $$CUPATH -f $$PWD/etc/makefile.cubiomes CC=\"$$QMAKE_CC\" CFLAGS=\"$(CFLAGS) $$CHARSET -fwrapv -DSTRUCT_CONFIG_OVERRIDE=1\" $$CUTARGET
 QMAKE_CLEAN         += $$CUPATH/*.o $$CUPATH/libcubiomes.a $$CUPATH/features/*.o
 LIBS                += $$CUPATH/libcubiomes.a -lm
+
+# Viewer-side include overlay: avoid pulling huge TerrainNoise into every TU
+# without modifying the cubiomes submodule. See src/terrainnoise.h.
+# Prepend -I via QMAKE_*FLAGS so it wins over the automatic project-root -I
+# (otherwise cubiomes/finders.h resolves to the real submodule header first).
+CU_VIEW_INC         = $$OUT_PWD/cubiomes_view_inc
+QMAKE_CFLAGS        = -I$$shell_path($$CU_VIEW_INC) $$QMAKE_CFLAGS
+QMAKE_CXXFLAGS      = -I$$shell_path($$CU_VIEW_INC) $$QMAKE_CXXFLAGS
+INCLUDEPATH         += $$PWD/cubiomes
+cu_view_inc.target  = $$CU_VIEW_INC/cubiomes/.stamp
+cu_view_inc.depends = $$PWD/cubiomes/finders.h $$PWD/src/terrainnoise.h
+win32 {
+    cu_view_inc.commands = \
+        if not exist $$shell_path($$CU_VIEW_INC\\cubiomes) mkdir $$shell_path($$CU_VIEW_INC\\cubiomes) $$escape_expand(\\n\\t) \
+        copy /Y $$shell_path($$PWD/cubiomes/finders.h) $$shell_path($$CU_VIEW_INC/cubiomes/finders.h) $$escape_expand(\\n\\t) \
+        copy /Y $$shell_path($$PWD/src/terrainnoise.h) $$shell_path($$CU_VIEW_INC/cubiomes/terrainnoise.h) $$escape_expand(\\n\\t) \
+        echo. > $$shell_path($$CU_VIEW_INC/cubiomes/.stamp)
+} else {
+    cu_view_inc.commands = \
+        mkdir -p $$shell_path($$CU_VIEW_INC/cubiomes) $$escape_expand(\\n\\t) \
+        cp -f $$shell_path($$PWD/cubiomes/finders.h) $$shell_path($$CU_VIEW_INC/cubiomes/finders.h) $$escape_expand(\\n\\t) \
+        cp -f $$shell_path($$PWD/src/terrainnoise.h) $$shell_path($$CU_VIEW_INC/cubiomes/terrainnoise.h) $$escape_expand(\\n\\t) \
+        touch $$shell_path($$CU_VIEW_INC/cubiomes/.stamp)
+}
+QMAKE_EXTRA_TARGETS += cu_view_inc
+PRE_TARGETDEPS      += $$CU_VIEW_INC/cubiomes/.stamp
+QMAKE_CLEAN         += $$CU_VIEW_INC/cubiomes/finders.h $$CU_VIEW_INC/cubiomes/terrainnoise.h $$CU_VIEW_INC/cubiomes/.stamp
 
 LUAPATH = $$PWD/lua/src
 
