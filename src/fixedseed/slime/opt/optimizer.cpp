@@ -1,158 +1,141 @@
 #include "optimizer.hpp"
-
-#include "geometry.hpp"
 #include "slime_check.hpp"
-
 #include <algorithm>
-#include <cstdint>
-#include <vector>
+#include <atomic>
+#include <thread>
+#include <unordered_map>
+#include <utility>
 
-// std::thread is unavailable on some toolchains (notably MinGW built with the
-// win32 thread model, where libstdc++ omits <thread>). Detect real support and
-// otherwise fall back to a correct single-threaded scan. (types.hpp above has
-// already pulled in a libstdc++ header, so _GLIBCXX_HAS_GTHREADS is defined if
-// the gthreads model is active.)
-#if defined(_MSC_VER) || defined(_GLIBCXX_HAS_GTHREADS) || defined(_LIBCPP_VERSION)
-#  include <thread>
-#  define SLIME_HAVE_THREAD 1
-#else
-#  define SLIME_HAVE_THREAD 0
-#endif
+namespace {
+struct Best {
+    int64_t area = -1, x = 0, z = 0;
+    int chunks = -1;
+};
+bool better(const Best &a, const Best &b) {
+    if (a.area != b.area) return a.area > b.area;
+    if (a.chunks != b.chunks) return a.chunks > b.chunks;
+    if (a.x != b.x) return a.x < b.x;
+    return a.z < b.z;
+}
+uint64_t key(int32_t x, int32_t z) {
+    return (uint64_t(uint32_t(x)) << 32) | uint32_t(z);
+}
+}
 
-Result optimizeCandidate(const Params& params,
-                         const Candidate& candidate,
-                         const std::vector<RingSpan>& ringSpans) {
-    const int pr = params.playerSearchRange;
+struct SlimeOptimizer::Impl {
+    Params params;
+    unsigned threads;
+    std::function<bool()> control;
+    int radius, dim;
+    // For each relative chunk, 256 exact intersection areas, one per AFK
+    // position inside its own chunk. Values are <= 256.
+    std::vector<uint16_t> weights;
+    std::unordered_map<uint64_t, Best> cache;
 
-    // Chunk reach that the ring can touch from any AFK block in the search area:
-    //   player search (pr chunks) + ring radius (ceil(M/16) chunks) + slack.
-    const int reach = pr + (params.outerRadius + 15) / 16 + 1;
-
-    // Slime map covers max(chunkSearchRange, reach) so lookups never go OOB.
-    const int range = std::max(params.chunkSearchRange, reach);
-    const int dim   = 2 * range + 1;
-    const int32_t minCX = candidate.chunkX - range;
-    const int32_t minCZ = candidate.chunkZ - range;
-
-    std::vector<uint8_t> slime(static_cast<size_t>(dim) * dim, 0);
-    for (int i = 0; i < dim; ++i) {
-        for (int j = 0; j < dim; ++j) {
-            slime[static_cast<size_t>(i) * dim + j] =
-                isSlimeChunk(params.worldSeed, minCX + i, minCZ + j) ? 1u : 0u;
-        }
-    }
-
-    // Player search area in blocks: (2*pr + 1) chunks wide (176 blocks for pr=5).
-    const int span = (2 * pr + 1) * 16;
-    const int64_t baseX = static_cast<int64_t>(candidate.chunkX - pr) * 16;
-    const int64_t baseZ = static_cast<int64_t>(candidate.chunkZ - pr) * 16;
-
-    // Local "stamp" grid used to count distinct slime chunks per AFK position
-    // without clearing it between iterations.
-    const int localDim   = 2 * reach + 1;
-    const int32_t lMinCX = candidate.chunkX - reach;
-    const int32_t lMinCZ = candidate.chunkZ - reach;
-
-    struct Best {
-        int64_t area   = -1;
-        int     chunks = -1;
-        int64_t px     = 0;
-        int64_t pz     = 0;
-    };
-
-#if SLIME_HAVE_THREAD
-    unsigned hw = std::thread::hardware_concurrency();
-    if (hw == 0) hw = 1;
-    const int nthreads = std::max(1, std::min<int>(static_cast<int>(hw), span));
-#else
-    const int nthreads = 1;
-#endif
-
-    std::vector<Best> bests(nthreads);
-
-    auto work = [&](int t) {
-        Best best;
-        std::vector<int32_t> stamp(static_cast<size_t>(localDim) * localDim, -1);
-        int32_t visit = 0;
-
-        for (int i = t; i < span; i += nthreads) {
-            const int64_t px = baseX + i;
-            for (int j = 0; j < span; ++j) {
-                const int64_t pz = baseZ + j;
-                ++visit;
-
-                int64_t area   = 0;
-                int     chunks = 0;
-
-                // 按行区间扫描:每行 dz 上,方块 x 范围 [px+loDx, px+hiDx],
-                // 都在区块行 cz 上。沿 x 按区块跳跃,一次处理落在同一区块里的
-                // 一整段方块 —— 把每行的运算从 ~宽度 降到 ~宽度/16。
-                for (const auto& sp : ringSpans) {
-                    const int64_t bz = pz + sp.dz;
-                    const int32_t cz = static_cast<int32_t>(floorDiv(bz, 16));
-                    const int64_t xStart = px + sp.loDx;
-                    const int64_t xEnd   = px + sp.hiDx;   // 含端点
-
-                    int64_t bx = xStart;
-                    while (bx <= xEnd) {
-                        const int32_t cx = static_cast<int32_t>(floorDiv(bx, 16));
-                        const int64_t chunkEndBx = static_cast<int64_t>(cx) * 16 + 15;
-                        const int64_t segEnd = std::min(xEnd, chunkEndBx);
-                        const int64_t segLen = segEnd - bx + 1;
-
-                        if (slime[static_cast<size_t>(cx - minCX) * dim + (cz - minCZ)]) {
-                            area += segLen;
-                            const size_t li =
-                                static_cast<size_t>(cx - lMinCX) * localDim + (cz - lMinCZ);
-                            if (stamp[li] != visit) {
-                                stamp[li] = visit;
-                                ++chunks;
-                            }
-                        }
-                        bx = segEnd + 1;
+    Impl(const Params &p, const std::vector<RingSpan> &spans,
+         unsigned n, std::function<bool()> c)
+        : params(p), threads(n ? n : std::thread::hardware_concurrency()),
+          control(std::move(c)), radius((p.outerRadius + 15) / 16),
+          dim(2 * radius + 1), weights(size_t(dim) * dim * 256, 0) {
+        threads = std::max(1u, threads);
+        for (int ox = 0; ox < 16; ++ox)
+            for (int oz = 0; oz < 16; ++oz)
+                for (const RingSpan &s : spans) {
+                    const int cz = int(floorDiv(oz + s.dz, 16));
+                    const int end = ox + s.hiDx;
+                    for (int x = ox + s.loDx; x <= end;) {
+                        const int cx = int(floorDiv(x, 16));
+                        const int last = std::min(end, cx * 16 + 15);
+                        weights[(size_t(cx + radius) * dim + cz + radius) * 256
+                                + ox * 16 + oz] += uint16_t(last - x + 1);
+                        x = last + 1;
                     }
                 }
+    }
 
-                if (area > best.area ||
-                    (area == best.area && chunks > best.chunks)) {
-                    best.area   = area;
-                    best.chunks = chunks;
-                    best.px     = px;
-                    best.pz     = pz;
+    Best evaluateChunk(int32_t cx, int32_t cz) const {
+        int64_t areas[256] = {};
+        int counts[256] = {};
+        for (int dx = -radius; dx <= radius; ++dx)
+            for (int dz = -radius; dz <= radius; ++dz) {
+                if (!isSlimeChunk(params.worldSeed, cx + dx, cz + dz)) continue;
+                const uint16_t *w = &weights[(size_t(dx + radius) * dim
+                                            + dz + radius) * 256];
+                for (int i = 0; i < 256; ++i) {
+                    areas[i] += w[i];
+                    counts[i] += w[i] != 0;
                 }
             }
+        Best best;
+        for (int i = 0; i < 256; ++i) {
+            Best b;
+            b.area = areas[i]; b.chunks = counts[i];
+            b.x = int64_t(cx) * 16 + i / 16;
+            b.z = int64_t(cz) * 16 + i % 16;
+            if (better(b, best)) best = b;
         }
-        bests[t] = best;
-    };
-
-#if SLIME_HAVE_THREAD
-    if (nthreads > 1) {
-        std::vector<std::thread> threads;
-        threads.reserve(nthreads);
-        for (int t = 0; t < nthreads; ++t) threads.emplace_back(work, t);
-        for (auto& th : threads) th.join();
-    } else {
-        work(0);
-    }
-#else
-    work(0);
-#endif
-
-    Best best;
-    for (const auto& b : bests) {
-        if (b.area > best.area ||
-            (b.area == best.area && b.chunks > best.chunks)) {
-            best = b;
-        }
+        return best;
     }
 
-    Result r;
-    r.inputChunkX          = candidate.chunkX;
-    r.inputChunkZ          = candidate.chunkZ;
-    r.inputCount           = candidate.count;
-    r.playerBlockX         = best.px;
-    r.playerBlockZ         = best.pz;
-    r.effectiveSlimeChunks = best.chunks < 0 ? 0 : best.chunks;
-    r.effectiveSpawnArea   = best.area   < 0 ? 0 : best.area;
-    return r;
+    Result optimize(const Candidate &candidate) {
+        struct Missing { int32_t x, z; Best best; };
+        std::vector<Missing> missing;
+        Best best;
+        const int pr = params.playerSearchRange;
+        // Bounded session cache. Clearing only changes performance, never the
+        // search domain or answers; ~6 MiB payload at this limit.
+        if (cache.size() > 131072) cache.clear();
+        for (int dx = -pr; dx <= pr; ++dx)
+            for (int dz = -pr; dz <= pr; ++dz) {
+                int32_t x = candidate.chunkX + dx, z = candidate.chunkZ + dz;
+                auto it = cache.find(key(x, z));
+                if (it != cache.end()) {
+                    if (better(it->second, best)) best = it->second;
+                } else missing.push_back({x, z, Best{}});
+            }
+        std::atomic<size_t> next{0};
+        std::atomic<bool> stopped{false};
+        // Only the calling thread touches the user control callback or cache.
+        // Each batch costs a bounded number of chunk evaluations.
+        for (size_t start = 0; start < missing.size(); start += 256) {
+            if (control && !control()) { stopped = true; break; }
+            const size_t end = std::min(missing.size(), start + 256);
+            next = start;
+            auto work = [&] {
+                for (;;) {
+                    const size_t i = next.fetch_add(1, std::memory_order_relaxed);
+                    if (i >= end) break;
+                    missing[i].best = evaluateChunk(missing[i].x, missing[i].z);
+                }
+            };
+            const unsigned n = std::min<unsigned>(threads, unsigned(end - start));
+            std::vector<std::thread> workers;
+            for (unsigned t = 1; t < n; ++t) workers.emplace_back(work);
+            work();
+            for (auto &w : workers) w.join();
+            for (size_t i = start; i < end; ++i) {
+                cache.emplace(key(missing[i].x, missing[i].z), missing[i].best);
+                if (better(missing[i].best, best)) best = missing[i].best;
+            }
+        }
+        Result r;
+        r.inputChunkX = candidate.chunkX; r.inputChunkZ = candidate.chunkZ;
+        r.inputCount = candidate.count;
+        if (!stopped && best.area >= 0) {
+            r.playerBlockX = best.x; r.playerBlockZ = best.z;
+            r.effectiveSpawnArea = best.area; r.effectiveSlimeChunks = best.chunks;
+        }
+        return r;
+    }
+};
+
+SlimeOptimizer::SlimeOptimizer(const Params &p, const std::vector<RingSpan> &s,
+                               unsigned n, std::function<bool()> c)
+    : impl(new Impl(p, s, n, std::move(c))) {}
+SlimeOptimizer::~SlimeOptimizer() = default;
+Result SlimeOptimizer::optimize(const Candidate &c) { return impl->optimize(c); }
+Result optimizeCandidate(const Params &p, const Candidate &c,
+                         const std::vector<RingSpan> &s) {
+    SlimeOptimizer optimizer(p, s);
+    return optimizer.optimize(c);
 }

@@ -73,7 +73,6 @@ typedef void (*sr_batch_fn)(int64_t seed, int32_t x0, int32_t z, uint8_t out[SR_
 #define SR_SIZE    512
 #define SR_TESTED  (SR_SIZE - SR_WINDOW + 1)   /* 496 */
 #define SR_SATDIM  (SR_SIZE + 1)               /* 513 */
-#define SR_MAX_RESULTS (1u << 20)              /* 结果缓冲上限 ~1M 条 */
 
 #define SAT_AT(sat, r, c) ((sat)[(size_t)(r) * SR_SATDIM + (size_t)(c)])
 
@@ -115,30 +114,31 @@ typedef struct {
 
     /* 频繁写的原子字段：各占一条缓存行，避免彼此及与只读字段伪共享。 */
     char _pad0[64];
-    volatile LONG64 result_count;  char _pad1[64 - sizeof(LONG64)];  /* 已写入结果数 */
     volatile LONG64 blocks_done;   char _pad2[64 - sizeof(LONG64)];  /* 已完成 block 数 */
     volatile LONG   overflow;      char _pad3[64 - sizeof(LONG)];    /* 结果溢出标志 */
 
-    /* 预分配结果数组（无锁写入） */
-    SrResult *results;
-    uint32_t  capacity;
 } SharedCtx;
 
 typedef struct {
     SharedCtx *sh;
     int64_t start_block, end_block;
+    SrResult *results;
+    size_t count, capacity;
 } WorkerArg;
 
 /* 处理单个 block：建 SAT + 预筛 + 精确甜甜圈，命中原子写入共享缓冲。
  * xterm: 每线程一份的 x 项表缓冲（SR_SIZE 个 u64），标量快路径用；AVX2 路径不用可传 NULL。 */
-static void search_one_block(SharedCtx *sh, uint16_t *sat, uint64_t *xterm,
+static void search_one_block(WorkerArg *wa, uint16_t *sat, uint64_t *xterm,
                              int64_t bxi, int64_t bzi) {
+    SharedCtx *sh = wa->sh;
     const int32_t bx0 = sh->x0 + (int32_t)(bxi * SR_TESTED);
     const int32_t bz0 = sh->z0 + (int32_t)(bzi * SR_TESTED);
     const int32_t cx_count = (int32_t)((sh->x1 - bx0) < SR_TESTED ? (sh->x1 - bx0) : SR_TESTED);
     const int32_t cz_count = (int32_t)((sh->z1 - bz0) < SR_TESTED ? (sh->z1 - bz0) : SR_TESTED);
     const int32_t sx0 = bx0 - SR_OFFSET;
     const int32_t sz0 = bz0 - SR_OFFSET;
+    const int map_width = cx_count + 2 * SR_OFFSET;
+    const int map_height = cz_count + 2 * SR_OFFSET;
     const int64_t seed = sh->seed;
     const uint32_t thr = sh->thr;
 
@@ -150,13 +150,13 @@ static void search_one_block(SharedCtx *sh, uint16_t *sat, uint64_t *xterm,
     if (!batch) {
         /* 标量快路径：chunk_seed 可加性拆分——x 项整块预表一次，每行只算 z 项，
          * 逐格一次加+异或后判定，消除跨 512 行重复的 x 相关乘法（对拍逐位一致）。 */
-        for (int i = 0; i < SR_SIZE; ++i) xterm[i] = sr_xterm(sx0 + i);
-        for (int j = 0; j < SR_SIZE; ++j) {
+        for (int i = 0; i < map_width; ++i) xterm[i] = sr_xterm(sx0 + i);
+        for (int j = 0; j < map_height; ++j) {
             const uint64_t zbase = sr_zbase(seed, sz0 + j);
             uint16_t run = 0;
             uint16_t *row_prev = &SAT_AT(sat, j,     1);
             uint16_t *row_cur  = &SAT_AT(sat, j + 1, 1);
-            for (int i = 0; i < SR_SIZE; ++i) {
+            for (int i = 0; i < map_width; ++i) {
                 int64_t cs = (int64_t)((zbase + xterm[i]) ^ (uint64_t)987234911LL);
                 run = (uint16_t)(run + (uint16_t)sr_is_slime_from_cs(cs));
                 row_cur[i] = (uint16_t)(row_prev[i] + run);
@@ -164,11 +164,11 @@ static void search_one_block(SharedCtx *sh, uint16_t *sat, uint64_t *xterm,
         }
     } else {
         /* SIMD 路径（SR_USE_AVX2=1 时）：整行按 8 lane 批量判定，无尾巴。 */
-        for (int j = 0; j < SR_SIZE; ++j) {
+        for (int j = 0; j < map_height; ++j) {
             int32_t z = sz0 + j;
             uint16_t run = 0;
             uint8_t s8[SR_SIMD_LANES];
-            for (int i = 0; i < SR_SIZE; i += SR_SIMD_LANES) {
+            for (int i = 0; i < map_width; i += SR_SIMD_LANES) {
                 batch(seed, sx0 + i, z, s8);
                 for (int k = 0; k < SR_SIMD_LANES; ++k) {
                     run = (uint16_t)(run + s8[k]);
@@ -199,14 +199,19 @@ static void search_one_block(SharedCtx *sh, uint16_t *sat, uint64_t *xterm,
                     + SAT_AT(sat, rr,     c1));
             }
             if (exact >= thr) {
-                /* 无锁占槽：relaxed 足够，槽位互不重叠，join 有 full barrier。 */
-                LONG64 idx = SR_ATOMIC_FAA64(&sh->result_count);
-                if (idx < (LONG64)sh->capacity) {
-                    SrResult res = { bx0 + kx, bz0 + kz, exact };
-                    sh->results[idx] = res;
-                } else {
-                    SR_ATOMIC_STORE32(&sh->overflow, 1);
+                /* Per-worker growable storage: never silently truncate hits. */
+                if (wa->count == wa->capacity) {
+                    size_t capacity = wa->capacity ? wa->capacity * 2 : 1024;
+                    if (capacity > SIZE_MAX / sizeof(SrResult)) {
+                        SR_ATOMIC_STORE32(&sh->overflow, 2); return;
+                    }
+                    SrResult *grown = (SrResult *)realloc(wa->results,
+                                                        capacity * sizeof(SrResult));
+                    if (!grown) { SR_ATOMIC_STORE32(&sh->overflow, 2); return; }
+                    wa->results = grown; wa->capacity = capacity;
                 }
+                SrResult res = { bx0 + kx, bz0 + kz, exact };
+                wa->results[wa->count++] = res;
             }
         }
     }
@@ -226,7 +231,8 @@ static SR_THREAD_RET worker(SR_THREAD_PARAM param) {
         if (!sr_wait_if_paused()) break;
         int64_t bzi = b / sh->blocks_x;
         int64_t bxi = b % sh->blocks_x;
-        search_one_block(sh, sat, xterm, bxi, bzi);
+        search_one_block(wa, sat, xterm, bxi, bzi);
+        if (SR_ATOMIC_LOAD32(&sh->overflow)) break;
         SR_ATOMIC_FAA64(&sh->blocks_done);
     }
 
@@ -276,17 +282,13 @@ int sr_search_cpu(const SrParams *p, unsigned thread_count,
     if (sh.total_blocks == 0) return SR_OK;
     if ((int64_t)nthreads > (int64_t)sh.total_blocks) nthreads = (unsigned)sh.total_blocks;
 
-    /* 预分配结果缓冲 */
-    sh.capacity = SR_MAX_RESULTS;
-    sh.results = (SrResult *)malloc((size_t)sh.capacity * sizeof(SrResult));
-    if (!sh.results) return SR_ERR_ALLOC;
 
     /* 启动线程：block 静态均分 start=total*tid/n, end=total*(tid+1)/n */
     sr_thread_t *handles = (sr_thread_t *)malloc(nthreads * sizeof(sr_thread_t));
-    WorkerArg   *args    = (WorkerArg *)malloc(nthreads * sizeof(WorkerArg));
+    WorkerArg   *args    = (WorkerArg *)calloc(nthreads, sizeof(WorkerArg));
     unsigned char *spawned = (unsigned char *)calloc(nthreads, 1);  /* 标记成功创建的线程 */
     if (!handles || !args || !spawned) {
-        free(sh.results); free(handles); free(args); free(spawned); return SR_ERR_ALLOC;
+        free(handles); free(args); free(spawned); return SR_ERR_ALLOC;
     }
 
     for (unsigned t = 0; t < nthreads; ++t) {
@@ -309,7 +311,7 @@ int sr_search_cpu(const SrParams *p, unsigned thread_count,
             LONG64 d = SR_ATOMIC_LOAD64(&sh.blocks_done);
             on_progress(ctx, (uint64_t)d, sh.total_blocks);
             if ((uint64_t)d >= sh.total_blocks) break;
-            if (!sr_control_should_run()) break;
+            if (!sr_control_should_run() || SR_ATOMIC_LOAD32(&sh.overflow)) break;
             sr_sleep_ms(100);
         }
     }
@@ -327,20 +329,16 @@ int sr_search_cpu(const SrParams *p, unsigned thread_count,
     free(spawned);
 
     /* join 后有 full barrier：安全读取结果，统一回调（顺序留给输出层排序）。 */
-    LONG64 total = SR_ATOMIC_LOAD64(&sh.result_count);
-    uint64_t emit = (total < (LONG64)sh.capacity) ? (uint64_t)total : sh.capacity;
-    for (uint64_t i = 0; i < emit; ++i)
-        on_result(ctx, sh.results[i]);
-
-    if (on_progress) on_progress(ctx, sh.total_blocks, sh.total_blocks);
-
-    int rc = SR_OK;
-    if (SR_ATOMIC_LOAD32(&sh.overflow) != 0) {
-        fprintf(stderr, "[cpu] WARNING: result buffer overflow (>%u hits); "
-                        "output truncated. Lower RANGE or raise THRESHOLD.\n", sh.capacity);
-        rc = SR_OK; /* 非致命：结果被截断但已警告 */
+    int rc = SR_ATOMIC_LOAD32(&sh.overflow) ? SR_ERR_ALLOC : SR_OK;
+    if (rc == SR_OK) {
+        for (unsigned t = 0; t < nthreads; ++t)
+            for (size_t i = 0; i < args[t].count; ++i)
+                on_result(ctx, args[t].results[i]);
     }
+    for (unsigned t = 0; t < nthreads; ++t) free(args[t].results);
+    if (on_progress) on_progress(ctx, (uint64_t)SR_ATOMIC_LOAD64(&sh.blocks_done),
+                                 sh.total_blocks);
 
-    free(handles); free(args); free(sh.results);
+    free(handles); free(args);
     return rc;
 }

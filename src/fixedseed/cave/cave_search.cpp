@@ -5,6 +5,7 @@
 #define DRIPSTONECAVE_FINDER_JNI_LIB
 #endif
 #include "dripstonecave_finder.cpp"
+#include "OctaveFieldCache.cpp"
 
 #include "cubiomes/generator.h"
 
@@ -99,6 +100,21 @@ void runCaveSearch(const CaveSearchConfig &cfg, CaveProgress *progress, std::vec
     // !fastSearch: Cont@32 + Weird@16
     const int contScale = cfg.fastSearch ? 0 : 32;
     const int weirdScale = cfg.fastSearch ? 0 : 16;
+
+    OctaveACache octaveCache;
+    // Period tables amortize only over huge searches. Fine mode would require
+    // over 2 GiB, and therefore retains direct noise sampling.
+    if (cfg.fastSearch && cfg.sx >= 1000000 && cfg.sz >= 1000000) {
+        if (prog) prog->phase1.store(0);
+        buildOctaveACache(&octaveCache, &g.bn,
+                         SearchConfig::PHASE1_CONT_PREFILTER_SCALE,
+                         SearchConfig::PHASE1_WEIRDNESS_GRID_SCALE, threads,
+                         prog ? &prog->current : nullptr, prog ? &prog->total : nullptr,
+                         prog ? &prog->try_pause : nullptr, prog ? &prog->try_stop : nullptr, startX, startZ);
+        if (prog && prog->try_stop.load()) return;
+        if (prog) prog->phase1.store(1);
+    }
+    ScopedOctaveACache cacheScope(octaveCache.ready ? &octaveCache : nullptr);
 
     if (contScale <= 0 && weirdScale <= 0) {
         findBiggestRiverParallelPool(globalResults, &g, startX, startZ, width, height,

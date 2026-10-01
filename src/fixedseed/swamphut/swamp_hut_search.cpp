@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <chrono>
 #include <cstring>
+#include <memory>
 #include <thread>
 #include <vector>
 
@@ -112,6 +113,12 @@ bool runWitchHutSearch(const WitchHutSearchConfig &cfg, WitchHutProgress *progre
     const int maxY = cfg.maxY;
 
     const int bandRows = rz1 - rz0;
+    // lysh partitions work by Z rows. A one-row band silently forces every
+    // requested thread count to one, while still allocating all worker contexts.
+    // Use the upstream GUI's <=256 bands, retaining at least one row per worker.
+    int cpu = std::max(1, lysh_cpu_count());
+    const int threads = std::min(bandRows, std::min(cpu, cfg.threads > 0 ? cfg.threads : cpu));
+    const int bandZ = std::max(threads, (bandRows + 255) / 256);
     if (progress) {
         progress->current = 0;
         // +1 step for session init so the bar moves before the first slow band.
@@ -119,8 +126,9 @@ bool runWitchHutSearch(const WitchHutSearchConfig &cfg, WitchHutProgress *progre
     }
 
     // One seed → one session (noise stack init once). OOM → back off threads then fail loudly.
-    lysh_scan_session *session =
-        openSessionWithBackoff(cfg.seed, &opts, maxHeight, salt, cfg.threads);
+    std::unique_ptr<lysh_scan_session, decltype(&lysh_scan_session_free)> session(
+        openSessionWithBackoff(cfg.seed, &opts, maxHeight, salt, threads),
+        &lysh_scan_session_free);
     if (!session) {
         if (progress)
             progress->current = progress->total.load();
@@ -137,16 +145,17 @@ bool runWitchHutSearch(const WitchHutSearchConfig &cfg, WitchHutProgress *progre
     int hitCap = 256;
     std::vector<int> hitBuf((size_t)hitCap * LYSH_HUT_GRADE_INTS);
 
-    for (int rz = rz0; rz < rz1; rz++) {
+    for (int rz = rz0; rz < rz1; rz += bandZ) {
         if (!checkProgress(progress))
             break;
+        const int rzEnd = std::min(rz1, rz + bandZ);
 
         lysh_hut_grade grade;
         std::memset(&grade, 0, sizeof(grade));
         grade.hits = hitBuf.data();
         grade.hits_cap = hitCap;
 
-        lysh_scan_session_band(session, rx0, rx1, rz, rz + 1, maxY, &grade);
+        lysh_scan_session_band(session.get(), rx0, rx1, rz, rzEnd, maxY, &grade);
 
         // Retry with larger buffer if capacity was insufficient.
         if (grade.accepted > hitCap || (grade.accepted > 0 && grade.hits_written < grade.accepted
@@ -156,16 +165,14 @@ bool runWitchHutSearch(const WitchHutSearchConfig &cfg, WitchHutProgress *progre
             std::memset(&grade, 0, sizeof(grade));
             grade.hits = hitBuf.data();
             grade.hits_cap = hitCap;
-            lysh_scan_session_band(session, rx0, rx1, rz, rz + 1, maxY, &grade);
+            lysh_scan_session_band(session.get(), rx0, rx1, rz, rzEnd, maxY, &grade);
         }
 
         appendHits(grade, out);
 
         if (progress)
-            progress->current = 1 + (rz - rz0) + 1;
+            progress->current = 1 + (rzEnd - rz0);
     }
-
-    lysh_scan_session_free(session);
 
     if (progress)
         progress->current = progress->total.load();

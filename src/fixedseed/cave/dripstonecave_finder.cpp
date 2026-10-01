@@ -7,6 +7,7 @@
 #include <chrono>
 #include "../Thread.h"
 #include "BiomeSampler.h"
+#include "OctaveFieldCache.h"
 #include "SearchConfig.h"
 #include <functional>
 #include <unordered_map>
@@ -486,6 +487,7 @@ void findBiggestRiverParallelPool(
     int weirdnessGridScale = -1
 )
 {
+    const OctaveACache *octaveCache = getActiveOctaveACache();
     ThreadPool pool(numThreads);
     const int chunkSize = 4096 * 2;
     const int tile = SearchConfig::CANDIDATE_TILE_BLOCKS;
@@ -565,6 +567,7 @@ void findBiggestRiverParallelPool(
                         tlsSeed = seedVal;
                     }
 
+                    ScopedOctaveACache workerCache(octaveCache);
                     const int csx = startX + x;
                     const int csz = startZ + z;
 

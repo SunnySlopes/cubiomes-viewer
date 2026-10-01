@@ -1,4 +1,6 @@
 #include "BiomeSampler.h"
+#include "OctaveFieldCache.h"
+#include "ExactBiomeColumnCache.h"
 #include "cubiomes/biomes.h"
 #include "cubiomes/noise.h"
 #include <cstdlib>
@@ -9,7 +11,7 @@ const int PRECISE_YS[PRECISE_Y_COUNT] = { -60, -56, -52 };
 
 static constexpr double kDoublePerlinF = 337.0 / 331.0;
 
-static double sampleContOctA(const DoublePerlinNoise *dpn, int idx, double x, double y, double z)
+static double sampleOctALive(const DoublePerlinNoise *dpn, int idx, double x, double y, double z)
 {
     if (idx < 0 || idx >= dpn->octA.octcnt)
         return 0.0;
@@ -19,6 +21,19 @@ static double sampleContOctA(const DoublePerlinNoise *dpn, int idx, double x, do
     const double ay = maintainPrecision(y * lf);
     const double az = maintainPrecision(z * lf);
     return p->amplitude * samplePerlin(p, ax, ay, az, 0, 0);
+}
+
+static double sampleContOctA(const DoublePerlinNoise *dpn, int idx, double x, double y, double z)
+{
+    const OctaveACache *cache = getActiveOctaveACache();
+    if (cache && cache->ready && y == 0.0 && idx >= 0 && idx < OctaveACache::CONT_OCT)
+    {
+        const int bx = (int) x;
+        const int bz = (int) z;
+        if (cache->contA[idx].onLattice(bx, bz))
+            return (double) cache->contA[idx].atClimate(bx, bz);
+    }
+    return sampleOctALive(dpn, idx, x, y, z);
 }
 
 static double sampleContOctB(const DoublePerlinNoise *dpn, int idx, double x, double y, double z)
@@ -31,6 +46,34 @@ static double sampleContOctB(const DoublePerlinNoise *dpn, int idx, double x, do
     const double ay = maintainPrecision(y * lf * kDoublePerlinF);
     const double az = maintainPrecision(z * lf * kDoublePerlinF);
     return p->amplitude * samplePerlin(p, ax, ay, az, 0, 0);
+}
+
+static double sampleWeirdnessCached(const BiomeNoise *bn, double px, double pz)
+{
+    const DoublePerlinNoise *dpn = &bn->climate[NP_WEIRDNESS];
+    const OctaveACache *cache = getActiveOctaveACache();
+    double v = 0.0;
+    const int octCnt = dpn->octA.octcnt < dpn->octB.octcnt ? dpn->octA.octcnt : dpn->octB.octcnt;
+    const int bx = (int) px;
+    const int bz = (int) pz;
+    const bool useCache = cache && cache->ready
+        && px == (double) bx && pz == (double) bz;
+
+    for (int i = 0; i < octCnt; i++)
+    {
+        if (useCache && i < OctaveACache::RIDGE_OCT)
+        {
+            if (cache->ridgeA[i].onLattice(bx, bz))
+                v += (double) cache->ridgeA[i].atClimate(bx, bz);
+            else
+                v += sampleOctALive(dpn, i, px, 0.0, pz);
+        }
+        else
+            v += sampleOctALive(dpn, i, px, 0.0, pz);
+
+    }
+    v += sampleOctave(&dpn->octB, px * kDoublePerlinF, 0.0, pz * kDoublePerlinF);
+    return v * dpn->amplitude;
 }
 
 bool passContinentalnessPartialThr(const BiomeNoise *bn, int bx, int bz, double threshold)
@@ -88,7 +131,11 @@ static int quantWeirdness(const BiomeNoise *bn, int bx, int bz, uint32_t sample_
         px += sampleDoublePerlin(&bn->climate[NP_SHIFT], bx, 0, bz) * 4.0;
         pz += sampleDoublePerlin(&bn->climate[NP_SHIFT], bz, bx, 0) * 4.0;
     }
-    float w = sampleDoublePerlin(&bn->climate[NP_WEIRDNESS], px, 0, pz);
+    float w;
+    if (getActiveOctaveACache() && getActiveOctaveACache()->ready)
+        w = (float) sampleWeirdnessCached(bn, px, pz);
+    else
+        w = sampleDoublePerlin(&bn->climate[NP_WEIRDNESS], px, 0, pz);
     int wi = (int) (10000.0 * w);
     return wi < 0 ? -wi : wi;
 }
@@ -166,6 +213,7 @@ void samplePreciseCell(const Generator *g, int worldX, int worldZ, int *riverHit
 void fillPreciseWindow(Generator *g, int startX, int startZ, int W, int H,
                        std::vector<int> &rawRiver, std::vector<int> &rawCave)
 {
+    if (W <= 0 || H <= 0) { rawRiver.clear(); rawCave.clear(); return; }
     const size_t n = (size_t) W * (size_t) H;
     rawRiver.assign(n, 0);
     rawCave.assign(n, 0);
@@ -199,38 +247,14 @@ void fillPreciseWindow(Generator *g, int startX, int startZ, int W, int H,
     if (!anyPass)
         return;
 
-    const int y0 = PRECISE_YS[0];
-    const int sy = PRECISE_YS[PRECISE_Y_COUNT - 1] - y0 + 1;
-    Range r = {1, startX, startZ, W, H, y0, sy};
-    int *cache = allocCache(g, r);
-    if (!cache)
-        return;
-    if (genBiomes(g, cache, r) != 0)
-    {
-        free(cache);
-        return;
-    }
-
-    const size_t plane = n;
-    for (int z = 0; z < H; z++)
-    {
-        for (int x = 0; x < W; x++)
-        {
-            const size_t idx = (size_t) x + (size_t) z * W;
-            if (!climatePass[idx])
-                continue;
-            int riverHits = 0;
-            int caveHits = 0;
-            for (int i = 0; i < PRECISE_Y_COUNT; i++)
-            {
-                const int yi = PRECISE_YS[i] - y0;
-                const int id = cache[(size_t) yi * plane + idx];
-                riverHits += (id == river);
-                caveHits += (id == dripstone_caves);
-            }
-            rawRiver[idx] = riverHits;
-            rawCave[idx] = caveHits;
+    ExactBiomeColumnCache biomes(g);
+    for (int z = 0; z < H; ++z) for (int x = 0; x < W; ++x) {
+        const size_t idx = (size_t)x + (size_t)z * W;
+        if (!climatePass[idx]) continue;
+        for (int y : PRECISE_YS) {
+            const int id = biomes.sampleBlock(startX + x, y, startZ + z);
+            rawRiver[idx] += (id == river);
+            rawCave[idx] += (id == dripstone_caves);
         }
     }
-    free(cache);
 }

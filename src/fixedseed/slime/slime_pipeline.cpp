@@ -35,6 +35,9 @@ static void onRadarProgress(void *ctx, uint64_t done, uint64_t total)
 {
     auto *c = (RadarCollect *)ctx;
     if (!c->progress) return;
+    if (c->progress->try_stop.load()) sr_control_stop();
+    if (c->progress->try_pause.load()) sr_control_pause();
+    else sr_control_resume();
     c->progress->phase = 1;
     c->progress->current = (int)std::min<uint64_t>(done, (uint64_t)INT_MAX);
     c->progress->total = (int)std::min<uint64_t>(total, (uint64_t)INT_MAX);
@@ -50,8 +53,8 @@ static bool waitCtrl(SlimePipelineProgress *p)
             sr_control_stop();
             return false;
         }
-        sr_control_resume();
     }
+    sr_control_resume();
     if (p->try_stop.load()) {
         sr_control_stop();
         return false;
@@ -127,24 +130,9 @@ void runSlimePipeline(const SlimePipelineConfig &cfg, SlimePipelineProgress *pro
     params.outerRadius = 128;
     auto ringSpans = computeRingSpans(params.innerRadius, params.outerRadius);
 
-    // Light candidate merge: only collapse near-identical radar peaks.
-    // (Previously used playerSearchRange=10, which dropped most candidates.)
-    std::vector<SrResult> uniqueCands;
-    uniqueCands.reserve(collect.results.size());
-    const int mergeR = 2;
-    for (const SrResult &r : collect.results) {
-        bool near = false;
-        for (const SrResult &u : uniqueCands) {
-            const int dx = std::abs((int)r.x - (int)u.x);
-            const int dz = std::abs((int)r.z - (int)u.z);
-            if (dx <= mergeR && dz <= mergeR) {
-                near = true;
-                break;
-            }
-        }
-        if (!near)
-            uniqueCands.push_back(r);
-    }
+    // Preserve every radar candidate. Exact AFK coordinates are deduplicated only after optimization.
+    const auto &uniqueCands = collect.results;
+    SlimeOptimizer optimizer(params, ringSpans, threads, [&] { return waitCtrl(progress); });
 
     Generator g;
     setupGenerator(&g, cfg.mc, 0);
@@ -166,7 +154,9 @@ void runSlimePipeline(const SlimePipelineConfig &cfg, SlimePipelineProgress *pro
     auto betterThan = [](const SlimePipelineHit &a, const SlimePipelineHit &b) {
         if (a.area != b.area) return a.area > b.area;
         if (a.rawArea != b.rawArea) return a.rawArea > b.rawArea;
-        return a.chunks > b.chunks;
+        if (a.chunks != b.chunks) return a.chunks > b.chunks;
+        if (a.afkX != b.afkX) return a.afkX < b.afkX;
+        return a.afkZ < b.afkZ;
     };
 
     for (size_t i = 0; i < uniqueCands.size(); ++i) {
@@ -175,7 +165,8 @@ void runSlimePipeline(const SlimePipelineConfig &cfg, SlimePipelineProgress *pro
         cand.chunkX = uniqueCands[i].x;
         cand.chunkZ = uniqueCands[i].z;
         cand.count = (int)uniqueCands[i].count;
-        Result r = optimizeCandidate(params, cand, ringSpans);
+        Result r = optimizer.optimize(cand);
+        if (!waitCtrl(progress)) break;
         const int64_t rawArea = r.effectiveSpawnArea;
         const int64_t area = convertArea(&g, cfg.mc, r.playerBlockX, r.playerBlockZ,
                                          24, 128, cfg.biomeConv, rawArea);
