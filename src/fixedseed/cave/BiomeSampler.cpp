@@ -23,9 +23,8 @@ static double sampleOctALive(const DoublePerlinNoise *dpn, int idx, double x, do
     return p->amplitude * samplePerlin(p, ax, ay, az, 0, 0);
 }
 
-static double sampleContOctA(const DoublePerlinNoise *dpn, int idx, double x, double y, double z)
+static double sampleContOctA(const DoublePerlinNoise *dpn, int idx, double x, double y, double z, const OctaveACache *cache)
 {
-    const OctaveACache *cache = getActiveOctaveACache();
     if (cache && cache->ready && y == 0.0 && idx >= 0 && idx < OctaveACache::CONT_OCT)
     {
         const int bx = (int) x;
@@ -48,10 +47,9 @@ static double sampleContOctB(const DoublePerlinNoise *dpn, int idx, double x, do
     return p->amplitude * samplePerlin(p, ax, ay, az, 0, 0);
 }
 
-static double sampleWeirdnessCached(const BiomeNoise *bn, double px, double pz)
+static double sampleWeirdnessCached(const BiomeNoise *bn, double px, double pz, const OctaveACache *cache)
 {
     const DoublePerlinNoise *dpn = &bn->climate[NP_WEIRDNESS];
-    const OctaveACache *cache = getActiveOctaveACache();
     double v = 0.0;
     const int octCnt = dpn->octA.octcnt < dpn->octB.octcnt ? dpn->octA.octcnt : dpn->octB.octcnt;
     const int bx = (int) px;
@@ -76,7 +74,7 @@ static double sampleWeirdnessCached(const BiomeNoise *bn, double px, double pz)
     return v * dpn->amplitude;
 }
 
-bool passContinentalnessPartialThr(const BiomeNoise *bn, int bx, int bz, double threshold)
+static bool passContinentalnessPartialThrCached(const BiomeNoise *bn, int bx, int bz, double threshold, const OctaveACache *cache)
 {
     const DoublePerlinNoise *dpn = &bn->climate[NP_CONTINENTALNESS];
     // sampleDoublePerlin scales octA+octB by this; keep running sum in climate units
@@ -86,11 +84,11 @@ bool passContinentalnessPartialThr(const BiomeNoise *bn, int bx, int bz, double 
     const double z = bz;
     double sum = 0.0;
 
-    sum += amp * (sampleContOctA(dpn, 0, x, y, z) + sampleContOctB(dpn, 0, x, y, z));
+    sum += amp * (sampleContOctA(dpn, 0, x, y, z, cache) + sampleContOctB(dpn, 0, x, y, z));
     if (sum < -0.2)
         return false;
 
-    sum += amp * sampleContOctA(dpn, 1, x, y, z);
+    sum += amp * sampleContOctA(dpn, 1, x, y, z, cache);
     if (sum < -0.1)
         return false;
 
@@ -98,7 +96,7 @@ bool passContinentalnessPartialThr(const BiomeNoise *bn, int bx, int bz, double 
     if (sum < 0.0)
         return false;
 
-    sum += amp * sampleContOctA(dpn, 2, x, y, z);
+    sum += amp * sampleContOctA(dpn, 2, x, y, z, cache);
     if (sum < 0.13)
         return false;
 
@@ -106,7 +104,7 @@ bool passContinentalnessPartialThr(const BiomeNoise *bn, int bx, int bz, double 
     if (sum < 0.3)
         return false;
 
-    sum += amp * sampleContOctA(dpn, 3, x, y, z);
+    sum += amp * sampleContOctA(dpn, 3, x, y, z, cache);
     if (sum < 0.37)
         return false;
 
@@ -114,8 +112,15 @@ bool passContinentalnessPartialThr(const BiomeNoise *bn, int bx, int bz, double 
     if (sum < 0.44)
         return false;
 
-    sum += amp * (sampleContOctA(dpn, 4, x, y, z) + sampleContOctB(dpn, 4, x, y, z));
+    sum += amp * (sampleContOctA(dpn, 4, x, y, z, cache) + sampleContOctB(dpn, 4, x, y, z));
     return sum > threshold;
+}
+
+bool passContinentalnessPartialThr(const BiomeNoise *bn, int bx, int bz, double threshold)
+{
+    // Resolve the worker binding once per gate, rather than repeating
+    // the TLS indirection and cross-unit getter for every A octave.
+    return passContinentalnessPartialThrCached(bn, bx, bz, threshold, getActiveOctaveACache());
 }
 
 bool passContinentalnessPartial(const BiomeNoise *bn, int bx, int bz)
@@ -123,7 +128,7 @@ bool passContinentalnessPartial(const BiomeNoise *bn, int bx, int bz)
     return passContinentalnessPartialThr(bn, bx, bz, CONT_PARTIAL_FINAL_THRESHOLD);
 }
 
-static int quantWeirdness(const BiomeNoise *bn, int bx, int bz, uint32_t sample_flags)
+static int quantWeirdness(const BiomeNoise *bn, int bx, int bz, uint32_t sample_flags, const OctaveACache *cache)
 {
     double px = bx, pz = bz;
     if (!(sample_flags & SAMPLE_NO_SHIFT))
@@ -132,8 +137,8 @@ static int quantWeirdness(const BiomeNoise *bn, int bx, int bz, uint32_t sample_
         pz += sampleDoublePerlin(&bn->climate[NP_SHIFT], bz, bx, 0) * 4.0;
     }
     float w;
-    if (getActiveOctaveACache() && getActiveOctaveACache()->ready)
-        w = (float) sampleWeirdnessCached(bn, px, pz);
+    if (cache && cache->ready)
+        w = (float) sampleWeirdnessCached(bn, px, pz, cache);
     else
         w = sampleDoublePerlin(&bn->climate[NP_WEIRDNESS], px, 0, pz);
     int wi = (int) (10000.0 * w);
@@ -142,15 +147,17 @@ static int quantWeirdness(const BiomeNoise *bn, int bx, int bz, uint32_t sample_
 
 bool passCaveWeirdness(const BiomeNoise *bn, int bx, int bz, uint32_t sample_flags)
 {
-    int wi = quantWeirdness(bn, bx, bz, sample_flags);
+    int wi = quantWeirdness(bn, bx, bz, sample_flags, getActiveOctaveACache());
     return wi < 500 || wi > 12800;
 }
 
 bool passCoarseCaveCell(const BiomeNoise *bn, int bx, int bz, uint32_t sample_flags)
 {
-    if (!passContinentalnessPartial(bn, bx, bz))
+    const OctaveACache *cache = getActiveOctaveACache();
+    if (!passContinentalnessPartialThrCached(bn, bx, bz, CONT_PARTIAL_FINAL_THRESHOLD, cache))
         return false;
-    if (!passCaveWeirdness(bn, bx, bz, sample_flags))
+    const int wi = quantWeirdness(bn, bx, bz, sample_flags, cache);
+    if (!(wi < 500 || wi > 12800))
         return false;
 
     double px = bx, pz = bz;

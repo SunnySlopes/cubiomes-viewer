@@ -10,6 +10,7 @@ struct SlimePipelineProgress {
     std::atomic_int current{0};
     std::atomic_int total{0};
     std::atomic_int phase{0}; // 1=radar, 2=opt
+    std::atomic_int backend{0}; // 1=CPU, 2=CUDA
     std::atomic_bool try_pause{false};
     std::atomic_bool try_stop{false};
 };

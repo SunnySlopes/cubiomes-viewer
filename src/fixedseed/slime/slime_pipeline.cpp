@@ -1,6 +1,7 @@
 #include "slime_pipeline.h"
 #include "slime_biome_conv.h"
 #include "slimerander.h"
+#include "radar/gpu_loader.h"
 #include "optimizer.hpp"
 #include "geometry.hpp"
 #include "types.hpp"
@@ -11,6 +12,8 @@
 #include <chrono>
 #include <climits>
 #include <cstdint>
+#include <cstdlib>
+#include <cstring>
 #include <mutex>
 #include <thread>
 #include <unordered_map>
@@ -22,11 +25,13 @@ struct RadarCollect {
     std::mutex mu;
     std::vector<SrResult> results;
     SlimePipelineProgress *progress = nullptr;
+    bool serialResults = false;
 };
 
 static void onRadarResult(void *ctx, SrResult res)
 {
     auto *c = (RadarCollect *)ctx;
+    if (c->serialResults) { c->results.push_back(res); return; }
     std::lock_guard<std::mutex> lock(c->mu);
     c->results.push_back(res);
 }
@@ -39,8 +44,10 @@ static void onRadarProgress(void *ctx, uint64_t done, uint64_t total)
     if (c->progress->try_pause.load()) sr_control_pause();
     else sr_control_resume();
     c->progress->phase = 1;
-    c->progress->current = (int)std::min<uint64_t>(done, (uint64_t)INT_MAX);
-    c->progress->total = (int)std::min<uint64_t>(total, (uint64_t)INT_MAX);
+    c->progress->current = total>uint64_t(INT_MAX)
+        ? int(std::min<long double>(1.0L,static_cast<long double>(done)/total)*INT_MAX)
+        : int(std::min(done,total));
+    c->progress->total = int(std::min<uint64_t>(total,INT_MAX));
 }
 
 static bool waitCtrl(SlimePipelineProgress *p)
@@ -102,7 +109,25 @@ void runSlimePipeline(const SlimePipelineConfig &cfg, SlimePipelineProgress *pro
     }
 
     unsigned threads = cfg.threads > 0 ? (unsigned)cfg.threads : 0;
-    int rc = sr_search_cpu(&sp, threads, &collect, onRadarResult, onRadarProgress);
+    const char *backend = std::getenv("SR_BACKEND");
+    bool forceGPU = backend && std::strcmp(backend,"gpu")==0;
+    bool forceCPU = backend && std::strcmp(backend,"cpu")==0;
+    uint64_t cells=uint64_t(int64_t(cx1)-cx0)*uint64_t(int64_t(cz1)-cz0);
+    int rc=SR_GPU_UNAVAILABLE;
+    if(!forceCPU && (forceGPU || cells>=4294967296ULL)){
+        if(progress)progress->backend=2;
+        rc=sr_try_gpu(&sp,&collect,onRadarResult,onRadarProgress,[](void *ctx){
+            return waitCtrl(static_cast<RadarCollect*>(ctx)->progress)?1:0;
+        });
+    }
+    if(rc==SR_GPU_UNAVAILABLE && !forceGPU){
+        if(progress)progress->backend=1;
+        collect.results.clear(); // Initialization failure occurs before any GPU result.
+        collect.serialResults = true; // CPU callbacks occur serially after join.
+        rc=sr_search_cpu(&sp,threads,&collect,onRadarResult,onRadarProgress);
+    }
+    // Never present a partial scan as a completed search after a runtime error.
+    if(rc!=SR_OK){if(progress)progress->phase=-2;return;}
     if (rc != SR_OK && rc != 0) return;
     if (!waitCtrl(progress)) {
         if (progress) progress->phase = -1;
@@ -110,10 +135,12 @@ void runSlimePipeline(const SlimePipelineConfig &cfg, SlimePipelineProgress *pro
     }
 
     std::sort(collect.results.begin(), collect.results.end(), [](const SrResult &a, const SrResult &b) {
-        if (a.count != b.count) return a.count > b.count;
-        int64_t da = (int64_t)a.x * a.x + (int64_t)a.z * a.z;
-        int64_t db = (int64_t)b.x * b.x + (int64_t)b.z * b.z;
-        if (da != db) return da < db;
+        // Process nearby candidate windows together so the exact chunk cache
+        // is reused. This affects work order only; final hit ranking is below.
+        const int64_t ax = floorDiv(a.x, 64), az = floorDiv(a.z, 64);
+        const int64_t bx = floorDiv(b.x, 64), bz = floorDiv(b.z, 64);
+        if (ax != bx) return ax < bx;
+        if (az != bz) return az < bz;
         if (a.x != b.x) return a.x < b.x;
         return a.z < b.z;
     });

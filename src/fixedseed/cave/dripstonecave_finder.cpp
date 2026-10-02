@@ -8,6 +8,14 @@
 #include "../Thread.h"
 #include "BiomeSampler.h"
 #include "OctaveFieldCache.h"
+#include "CoarseClimateCache.h"
+
+static thread_local CoarseClimateCache *activeCoarseClimateCache = nullptr;
+struct ScopedCoarseClimateCache {
+    CoarseClimateCache *old;
+    explicit ScopedCoarseClimateCache(CoarseClimateCache *cache): old(activeCoarseClimateCache) { activeCoarseClimateCache = cache; }
+    ~ScopedCoarseClimateCache() { activeCoarseClimateCache = old; }
+};
 #include "SearchConfig.h"
 #include <functional>
 #include <unordered_map>
@@ -80,6 +88,8 @@ static inline int coarseCellValue(Generator *g, int worldX, int worldZ, FilterMo
         return passContinentalnessPartial(&g->bn, nx, nz) ? 1 : 0;
     }
 
+    if (activeCoarseClimateCache)
+        return activeCoarseClimateCache->sample(&g->bn, nx, nz) ? 1 : 0;
     return passCoarseCaveCell(&g->bn, nx, nz, COARSE_SAMPLE_FLAGS) ? 1 : 0;
 }
 
@@ -334,14 +344,16 @@ std::vector<Res> findBiggestRiver(
         }
     }
 
-    for (int z = 1; z <= H; z++)
-    {
-        for (int x = 1; x <= W; x++)
-        {
-            ARRR(x, z) = RAWR(x - 1, z - 1) + ARRR(x - 1, z) + ARRR(x, z - 1) - ARRR(x - 1, z - 1);
-            if constexpr (scale == 1)
-            {
-                ARRC(x, z) = RAWC(x - 1, z - 1) + ARRC(x - 1, z) + ARRC(x, z - 1) - ARRC(x - 1, z - 1);
+    // Each annulus row only needs a horizontal segment sum. A row prefix
+    // halves the dependent memory reads versus a two-dimensional integral.
+    for (int z = 0; z < H; ++z) {
+        int sumR = 0, sumC = 0;
+        for (int x = 0; x < W; ++x) {
+            sumR += RAWR(x, z);
+            ARRR(x + 1, z) = sumR;
+            if constexpr (scale == 1) {
+                sumC += RAWC(x, z);
+                ARRC(x + 1, z) = sumC;
             }
         }
     }
@@ -389,25 +401,10 @@ std::vector<Res> findBiggestRiver(
             const int row = cz + m.dz;
             const int L = cx - m.out;
             const int R = cx + m.out;
-            if (m.in == -1)
-            {
-                area += pref[(size_t) (R + 1) + (size_t) (row + 1) * stride]
-                      - pref[(size_t) L + (size_t) (row + 1) * stride]
-                      - pref[(size_t) (R + 1) + (size_t) row * stride]
-                      + pref[(size_t) L + (size_t) row * stride];
-            } else
-            {
-                const int Lin = cx - m.in;
-                const int Rin = cx + m.in;
-                area += pref[(size_t) Lin + (size_t) (row + 1) * stride]
-                      - pref[(size_t) L + (size_t) (row + 1) * stride]
-                      - pref[(size_t) Lin + (size_t) row * stride]
-                      + pref[(size_t) L + (size_t) row * stride];
-                area += pref[(size_t) (R + 1) + (size_t) (row + 1) * stride]
-                      - pref[(size_t) (Rin + 1) + (size_t) (row + 1) * stride]
-                      - pref[(size_t) (R + 1) + (size_t) row * stride]
-                      + pref[(size_t) (Rin + 1) + (size_t) row * stride];
-            }
+            const int *values = pref.data() + (size_t)row * stride;
+            area += values[R + 1] - values[L];
+            if (m.in != -1)
+                area -= values[cx + m.in + 1] - values[cx - m.in];
         }
         return area;
     };
@@ -568,6 +565,8 @@ void findBiggestRiverParallelPool(
                     }
 
                     ScopedOctaveACache workerCache(octaveCache);
+                    CoarseClimateCache climateCache;
+                    ScopedCoarseClimateCache climateScope(&climateCache);
                     const int csx = startX + x;
                     const int csz = startZ + z;
 

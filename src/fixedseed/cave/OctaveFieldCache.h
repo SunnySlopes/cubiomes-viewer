@@ -21,14 +21,33 @@ struct OctaveACache {
         int periodWorld = 0;
         int sampleScale = 0;
         int phaseX = 0, phaseZ = 0;
+        int stepShift = -1;
+        uint32_t stepMask = 0, periodMask = 0;
         bool onLattice(int bx, int bz) const {
+            if (stepShift >= 0)
+                return ((uint32_t(bx - phaseX) | uint32_t(bz - phaseZ)) & stepMask) == 0;
             const int step = sampleScale / 4;
             return step > 0 && (bx - phaseX) % step == 0 && (bz - phaseZ) % step == 0;
         }
         int n = 0; /* periodWorld / sampleScale */
         std::vector<double> data; /* n * n, row-major */
 
-        double atClimate(int bx, int bz) const;
+        double atClimate(int bx, int bz) const {
+            if (stepShift >= 0) {
+                const uint32_t ix = (uint32_t(bx - phaseX) >> stepShift) & periodMask;
+                const uint32_t iz = (uint32_t(bz - phaseZ) >> stepShift) & periodMask;
+                return data[(size_t)iz * n + ix];
+            }
+            if (n <= 0 || data.empty() || sampleScale <= 0) return 0.0;
+            const int step = sampleScale / 4;
+            auto latticeIndex = [&](int b, int phase) {
+                const int diff = b - phase;
+                int q = diff / step - (diff % step < 0);
+                q %= n;
+                return q < 0 ? q + n : q;
+            };
+            return data[(size_t)latticeIndex(bz, phaseZ) * n + latticeIndex(bx, phaseX)];
+        }
     };
 
     Field contA[CONT_OCT];

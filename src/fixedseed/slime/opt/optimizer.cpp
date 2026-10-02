@@ -2,6 +2,9 @@
 #include "slime_check.hpp"
 #include <algorithm>
 #include <atomic>
+#include <condition_variable>
+#include <deque>
+#include <mutex>
 #include <thread>
 #include <unordered_map>
 #include <utility>
@@ -31,13 +34,20 @@ struct SlimeOptimizer::Impl {
     // position inside its own chunk. Values are <= 256.
     std::vector<uint16_t> weights;
     std::unordered_map<uint64_t, Best> cache;
+    std::deque<uint64_t> cacheOrder;
+    std::mutex workMutex;
+    std::condition_variable workReady, workDone;
+    std::vector<std::thread> workers;
+    std::function<void()> job;
+    size_t epoch = 0, pending = 0;
+    bool closing = false;
 
     Impl(const Params &p, const std::vector<RingSpan> &spans,
          unsigned n, std::function<bool()> c)
         : params(p), threads(n ? n : std::thread::hardware_concurrency()),
           control(std::move(c)), radius((p.outerRadius + 15) / 16),
           dim(2 * radius + 1), weights(size_t(dim) * dim * 256, 0) {
-        threads = std::max(1u, threads);
+        threads = std::min(256u, std::max(1u, threads));
         for (int ox = 0; ox < 16; ++ox)
             for (int oz = 0; oz < 16; ++oz)
                 for (const RingSpan &s : spans) {
@@ -51,6 +61,40 @@ struct SlimeOptimizer::Impl {
                         x = last + 1;
                     }
                 }
+        cache.reserve(131072);
+    }
+
+    ~Impl() {
+        { std::lock_guard<std::mutex> lock(workMutex); closing = true; }
+        workReady.notify_all();
+        for (auto &worker : workers) worker.join();
+    }
+
+    void parallelWork(const std::function<void()> &work, size_t count) {
+        // A few chunks cost less than waking a complete worker group.
+        if (threads == 1 || count < 64) { work(); return; }
+        if (workers.empty()) {
+            for (unsigned i = 1; i < threads; ++i) workers.emplace_back([this] {
+                size_t seen = 0;
+                std::unique_lock<std::mutex> lock(workMutex);
+                for (;;) {
+                    workReady.wait(lock, [&] { return closing || epoch != seen; });
+                    if (closing) return;
+                    seen = epoch;
+                    auto execute = job;
+                    lock.unlock(); execute(); lock.lock();
+                    if (--pending == 0) workDone.notify_one();
+                }
+            });
+        }
+        {
+            std::lock_guard<std::mutex> lock(workMutex);
+            job = work; pending = workers.size(); ++epoch;
+        }
+        workReady.notify_all(); work();
+        std::unique_lock<std::mutex> lock(workMutex);
+        workDone.wait(lock, [&] { return pending == 0; });
+        job = {};
     }
 
     Best evaluateChunk(int32_t cx, int32_t cz) const {
@@ -82,9 +126,8 @@ struct SlimeOptimizer::Impl {
         std::vector<Missing> missing;
         Best best;
         const int pr = params.playerSearchRange;
-        // Bounded session cache. Clearing only changes performance, never the
-        // search domain or answers; ~6 MiB payload at this limit.
-        if (cache.size() > 131072) cache.clear();
+        // Bounded FIFO cache: retire individual old entries rather than
+        // invalidating every overlapping candidate window at once.
         for (int dx = -pr; dx <= pr; ++dx)
             for (int dz = -pr; dz <= pr; ++dz) {
                 int32_t x = candidate.chunkX + dx, z = candidate.chunkZ + dz;
@@ -108,13 +151,14 @@ struct SlimeOptimizer::Impl {
                     missing[i].best = evaluateChunk(missing[i].x, missing[i].z);
                 }
             };
-            const unsigned n = std::min<unsigned>(threads, unsigned(end - start));
-            std::vector<std::thread> workers;
-            for (unsigned t = 1; t < n; ++t) workers.emplace_back(work);
-            work();
-            for (auto &w : workers) w.join();
+            parallelWork(work, end - start);
             for (size_t i = start; i < end; ++i) {
-                cache.emplace(key(missing[i].x, missing[i].z), missing[i].best);
+                const uint64_t k = key(missing[i].x, missing[i].z);
+                cache.emplace(k, missing[i].best);
+                cacheOrder.push_back(k);
+                if (cache.size() > 131072) {
+                    cache.erase(cacheOrder.front()); cacheOrder.pop_front();
+                }
                 if (better(missing[i].best, best)) best = missing[i].best;
             }
         }

@@ -23,33 +23,12 @@ const OctaveACache *getActiveOctaveACache()
     return g_activeOctaveACache;
 }
 
-static inline int floorDivPositive(int a, int b)
-{
-    /* floor div for potentially negative a, positive b */
-    int q = a / b;
-    int r = a % b;
-    if (r != 0 && ((r < 0) != (b < 0)))
-        --q;
-    return q;
-}
-
 static inline int modPositive(int a, int m)
 {
     int r = a % m;
     if (r < 0)
         r += m;
     return r;
-}
-
-double OctaveACache::Field::atClimate(int bx, int bz) const
-{
-    if (n <= 0 || data.empty() || sampleScale <= 0)
-        return 0.0f;
-    const int stepClim = sampleScale / 4; /* world scale → climate */
-    /* Map climate to lattice index of prefilter centers (…, half, half+step, …). */
-    const int ix = modPositive(floorDivPositive(bx - phaseX, stepClim), n);
-    const int iz = modPositive(floorDivPositive(bz - phaseZ, stepClim), n);
-    return data[(size_t) iz * (size_t) n + (size_t) ix];
 }
 
 static double sampleOctALive(const PerlinNoise *p, double x, double z)
@@ -133,6 +112,12 @@ bool buildOctaveACache(
         const int stepClim = contScale / 4;
             f->phaseX = modPositive((startX + f->sampleScale / 2) / 4, stepClim);
         f->phaseZ = modPositive((startZ + f->sampleScale / 2) / 4, stepClim);
+        if ((stepClim & (stepClim - 1)) == 0 && (n & (n - 1)) == 0) {
+            f->stepShift = 0;
+            for (int step = stepClim; step > 1; step >>= 1) ++f->stepShift;
+            f->stepMask = stepClim - 1;
+            f->periodMask = n - 1;
+        }
         const int phaseX = f->phaseX, phaseZ = f->phaseZ;
 
         std::vector<std::thread> pool;
@@ -193,6 +178,12 @@ bool buildOctaveACache(
         const int stepClim = weirdScale / 4;
             f->phaseX = modPositive((startX + f->sampleScale / 2) / 4, stepClim);
         f->phaseZ = modPositive((startZ + f->sampleScale / 2) / 4, stepClim);
+        if ((stepClim & (stepClim - 1)) == 0 && (n & (n - 1)) == 0) {
+            f->stepShift = 0;
+            for (int step = stepClim; step > 1; step >>= 1) ++f->stepShift;
+            f->stepMask = stepClim - 1;
+            f->periodMask = n - 1;
+        }
         const int phaseX = f->phaseX, phaseZ = f->phaseZ;
 
         std::vector<std::thread> pool;

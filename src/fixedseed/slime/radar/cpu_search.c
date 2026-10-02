@@ -21,6 +21,19 @@
 #include "slimerander.h"
 #include "slime.h"
 #include "cpu_simd.h"
+#include "cpu_rng_avx2.h"
+
+/* nextInt(10) accepts exactly bits < 2^31 - (2^31 % 10).
+ * Test acceptance first, then divisibility, avoiding a complete signed
+ * remainder on every chunk. Rejected states still advance the Java LCG. */
+static inline int sr_fast_is_slime(int64_t chunk_seed) {
+    uint64_t s = ((uint64_t)chunk_seed ^ SR_LCG_MUL) & SR_LCG_MASK;
+    for (;;) {
+        s = (s * SR_LCG_MUL + SR_LCG_ADD) & SR_LCG_MASK;
+        uint32_t bits = (uint32_t)(s >> 17);
+        if (bits < UINT32_C(2147483640)) return bits % 10u == 0;
+    }
+}
 
 /* ---- 平台线程抽象：Windows 走 Win32，其余(Linux/macOS) 走 pthreads。 ---- */
 #if defined(_WIN32)
@@ -106,11 +119,15 @@ typedef struct {
     uint64_t total_blocks;
     SrDonutRun runs[SR_DONUT_RUNS];
     sr_batch_fn batch;   /* 批量判定：CPUID 分派 AVX2 或标量 */
+    int fast_avx2;
 
     /* 用户回调 */
     void *ctx;
     sr_result_fn  on_result;
     sr_progress_fn on_progress;
+#if defined(_WIN32)
+    HANDLE completed;
+#endif
 
     /* 频繁写的原子字段：各占一条缓存行，避免彼此及与只读字段伪共享。 */
     char _pad0[64];
@@ -156,9 +173,16 @@ static void search_one_block(WorkerArg *wa, uint16_t *sat, uint64_t *xterm,
             uint16_t run = 0;
             uint16_t *row_prev = &SAT_AT(sat, j,     1);
             uint16_t *row_cur  = &SAT_AT(sat, j + 1, 1);
-            for (int i = 0; i < map_width; ++i) {
+            int i = 0;
+#if defined(SR_HAVE_FAST_AVX2)
+            if (sh->fast_avx2) {
+                sr_fast_sat_row(xterm,zbase,map_width,row_prev,row_cur);
+                continue;
+            }
+#endif
+            for (; i < map_width; ++i) {
                 int64_t cs = (int64_t)((zbase + xterm[i]) ^ (uint64_t)987234911LL);
-                run = (uint16_t)(run + (uint16_t)sr_is_slime_from_cs(cs));
+                run = (uint16_t)(run + (uint16_t)sr_fast_is_slime(cs));
                 row_cur[i] = (uint16_t)(row_prev[i] + run);
             }
         }
@@ -233,7 +257,13 @@ static SR_THREAD_RET worker(SR_THREAD_PARAM param) {
         int64_t bxi = b % sh->blocks_x;
         search_one_block(wa, sat, xterm, bxi, bzi);
         if (SR_ATOMIC_LOAD32(&sh->overflow)) break;
-        SR_ATOMIC_FAA64(&sh->blocks_done);
+        LONG64 previous = SR_ATOMIC_FAA64(&sh->blocks_done);
+#if defined(_WIN32)
+        if ((uint64_t)(previous + 1) == sh->total_blocks && sh->completed)
+            SetEvent(sh->completed);
+#else
+        (void)previous;
+#endif
     }
 
     free(sat);
@@ -263,7 +293,8 @@ int sr_search_cpu(const SrParams *p, unsigned thread_count,
     sh.ctx = ctx; sh.on_result = on_result; sh.on_progress = on_progress;
     sr_build_donut_runs(sh.runs);
 
-    /* 批量判定分派。
+    /* Legacy batch dispatch (SR_USE_AVX2=1). The faster cached-xterm AVX2
+     * SAT row below is independently dispatched on CPUs/OSes that support it.
      * 实测结论（GCC16 -O3 + 本机 AVX2）：手写 AVX2 判定不快于标量——判定瓶颈是 LCG 的
      * 64 位乘，AVX2 无原生 _mm256_mullo_epi64，需 3 次 _mm256_mul_epu32 拼装，其开销抵消
      * 了 8 路并行；而 GCC16 对标量 sr_is_slime 已优化到位。印证 代码需求.md §7.0
@@ -273,6 +304,12 @@ int sr_search_cpu(const SrParams *p, unsigned thread_count,
     if (getenv("SR_USE_AVX2") && sr_detect_isa() == SR_ISA_AVX2) isa = SR_ISA_AVX2;
     /* batch==NULL 标记标量快路径（chunk_seed 预表拆分）；AVX2 显式启用时才走 batch 函数。 */
     sh.batch = (isa == SR_ISA_AVX2) ? sr_are_slime_avx2 : NULL;
+#if defined(SR_HAVE_FAST_AVX2)
+    __builtin_cpu_init();
+    const char *fast_avx2 = getenv("SR_FAST_AVX2");
+    sh.fast_avx2 = (!fast_avx2 || strcmp(fast_avx2, "0") != 0)
+                    && __builtin_cpu_supports("avx2");
+#endif
 
     const int64_t width  = (int64_t)p->x1 - p->x0;
     const int64_t height = (int64_t)p->z1 - p->z0;
@@ -291,6 +328,9 @@ int sr_search_cpu(const SrParams *p, unsigned thread_count,
         free(handles); free(args); free(spawned); return SR_ERR_ALLOC;
     }
 
+#if defined(_WIN32)
+    sh.completed = CreateEvent(NULL, TRUE, FALSE, NULL);
+#endif
     for (unsigned t = 0; t < nthreads; ++t) {
         args[t].sh = &sh;
         args[t].start_block = (int64_t)sh.total_blocks * t / nthreads;
@@ -312,7 +352,12 @@ int sr_search_cpu(const SrParams *p, unsigned thread_count,
             on_progress(ctx, (uint64_t)d, sh.total_blocks);
             if ((uint64_t)d >= sh.total_blocks) break;
             if (!sr_control_should_run() || SR_ATOMIC_LOAD32(&sh.overflow)) break;
-            sr_sleep_ms(100);
+#if defined(_WIN32)
+            if (sh.completed) WaitForSingleObject(sh.completed, 50);
+            else sr_sleep_ms(5);
+#else
+            sr_sleep_ms(5);
+#endif
         }
     }
 
@@ -327,6 +372,9 @@ int sr_search_cpu(const SrParams *p, unsigned thread_count,
 #endif
     }
     free(spawned);
+#if defined(_WIN32)
+    if (sh.completed) CloseHandle(sh.completed);
+#endif
 
     /* join 后有 full barrier：安全读取结果，统一回调（顺序留给输出层排序）。 */
     int rc = SR_ATOMIC_LOAD32(&sh.overflow) ? SR_ERR_ALLOC : SR_OK;

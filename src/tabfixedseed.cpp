@@ -214,7 +214,8 @@ void FixedSeedWorker::run()
                     int ph = prog.phase.load();
                     if (ph < 1)
                         ph = 1;
-                    QString status = ph == 2 ? tr("Optimizing AFK") : tr("Radar scan");
+                    QString status = ph == 2 ? tr("Optimizing AFK")
+                        : prog.backend.load()==2 ? tr("Radar scan (GPU)") : tr("Radar scan (CPU)");
                     emit progress(FS_SLIME, prog.current.load(), std::max(1, prog.total.load()),
                                   ph, phaseCount, status);
                     QThread::msleep(100);
@@ -226,6 +227,11 @@ void FixedSeedWorker::run()
             std::vector<SlimePipelineHit> hits;
             runSlimePipeline(cfg, &prog, hits);
             joinWatcher(watcher);
+            if(prog.phase.load()==-2){
+                emit searchError(tr("Slime search failed. GPU mode requires a working NVIDIA driver and backend; partial results were discarded."));
+                completed=false;
+                break;
+            }
             for (const auto &h : hits) {
                 FixedSeedHit hit;
                 hit.seed = seed;
