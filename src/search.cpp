@@ -1470,6 +1470,7 @@ L_qm_any:
     case F_ANCIENT_CITY:
     case F_TRAILS:
     case F_CHAMBERS:
+    case F_CAMP:
 
     case F_FORTRESS:
     case F_BASTION:
